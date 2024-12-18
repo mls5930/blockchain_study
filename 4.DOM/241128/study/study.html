@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>댓글 기능 구현(CREATE, READ, UPDATE, DELETE)</title>
+</head>
+<body>
+    <ul id="comment">
+        <!-- 입력 폼 -->
+        <li class="comment-form">
+            <form id="commentFrm">
+                <h4>
+                    댓글쓰기
+                    <!-- 댓글 수 자리 -->
+                    <span></span>
+                </h4>
+                <span class="commentWrite">
+                    <input 
+                        type="text" 
+                        placeholder="댓글 내용을 입력해주세요"
+                        name="content"
+                    />
+                </span>
+                <button type="submit" class="write-button">등록</button>
+            </form>
+        </li>
+        <!-- 리스트 자리(HTML내에서 어떻게 보여질건지 미리 구상) -->
+        <li class="comment-row"></li>
+    </ul>
+    <script src="../public/js/comment2.js"></script>
+</body> 
+</html>

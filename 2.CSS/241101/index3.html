@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS직계 자식 선택자</title>
+    <style>
+        /* 
+            직계 자식 선택자
+            
+            선택한 요소의 직계 "모든" 자식들에 속성을 부여함.
+        */
+        .child {
+            color : red;
+        }
+        /* .parent  > .child {
+            color: blue;
+        } */
+        .parent > div > .child {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">직계 자식 태그</div>
+        <div class="child">직계 자식 태그</div>
+        <div>
+            <!-- 얘만 꾸미고 싶어요. -->
+            <div class="child">
+                후손 태그
+            </div>
+        </div>
+    </div>
+</body>
+</html>

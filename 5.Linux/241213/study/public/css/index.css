@@ -1,0 +1,21 @@
+#container {
+	list-style: none;
+}
+#container > li:nth-of-type(4) {
+	color: red;
+}
+#section {
+	width: 100%;
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+}
+#section > div {
+	width: 500px;
+	height: 500px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

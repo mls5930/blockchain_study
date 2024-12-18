@@ -1,0 +1,89 @@
+#sidebar {
+    /* 뷰포트(웹 화면)을 기준으로 요소를 배치함. */
+    /* 
+        웹 뷰포트를 기준으로 하지만, 위치 속성이 정해지지 않으면
+        기존에 위치에서 시작함.
+
+        top: 0;은 초기 위치를 화면 맨 위부터 시작하게 함
+        right: 0;은 초기 위치를 화면의 오른쪽에 배치함
+    */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 90px;
+    height: 100%;
+    background: #333333;
+}
+
+.sidebar-list {
+    list-style: none;
+}
+/* 
+    픽셀 => px값을 사용했잖아요? 고정값
+    vh(viewport height)
+    => vh는 뷰포트 크기를 기준으로 한 상대(상대값) 단위다.
+    화면 높이의 백분율을 나타냅니다
+    1vh => 현재화면 높이의 1%에 해당.
+*/
+.sidebar-list > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 이건 제가 나중에 따로 조사한 뒤에 알려드리겠습니다. */
+    height: 11.11vh;
+    border: 1px solid #E8E8E8;
+    border-bottom: 0;
+    background: white;
+    text-align: center;
+}
+
+.sidebar-list > li > a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.sidebar-list > li img {
+    width: 34px;
+}
+
+.sidebar-list > li:nth-of-type(1) {
+    background: #6A1BEF;
+    border: none;
+}
+
+.sidebar-list > li:nth-of-type(2) {
+    background: #3858FB;
+    border: none;
+}
+
+.sidebar-list > li:nth-of-type(1) > a,
+.sidebar-list > li:nth-of-type(2) > a {
+    color: white;
+}
+
+.top-btn {
+    height: 11.11vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-btn > a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.top-btn > a > img {
+    width: 10px;
+}

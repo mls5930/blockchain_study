@@ -1,0 +1,110 @@
+/* 기본 스타일 설정 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 토글 버튼 스타일 */
+.toggle-btn {
+  position: fixed;
+  top: 15px;
+  left: 9px;
+  background-color: #333;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+  height: 100%;
+  width: 334px;
+  position: fixed;
+  top: 0;
+  left: -250px; /* 숨김 처리 */
+  background-color: #333;
+  color: white;
+  padding-top: 60px;
+  overflow-x: hidden;
+  transition: left 0.3s ease;
+}
+
+.sidebar h2 {
+  text-align: center;
+  color: #fff;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 15px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  background-color: #575757;
+}
+
+/* 사이드바 토글 시 위치 변경 */
+#sidebar-toggle:checked + .toggle-btn + .sidebar {
+  left: 0;
+}
+
+#main-content {
+  margin-left: 100px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+#sidebar-toggle:checked ~ #main-content {
+  margin-left: 334px;
+}
+
+/* 토글 버튼 */
+
+#sidebar-toggle + label > span {
+  position: absolute;
+  display: block;
+  border-radius: 30px;
+  height: 5px;
+  width: 100%;
+  background: white;
+  transition: all 0.35s;
+}
+
+#sidebar-toggle + label > span:nth-child(1) {
+  top: 0px;
+}
+
+#sidebar-toggle + label > span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#sidebar-toggle + label > span:nth-child(3) {
+  bottom: 0px;
+}
+
+#sidebar-toggle:checked + label > span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+#sidebar-toggle:checked + label > span:nth-child(2) {
+  opacity: 0;
+}
+
+#sidebar-toggle:checked + label > span:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}

@@ -1,0 +1,20 @@
+#container {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    background: gray;
+    
+    /* 
+        shorthand
+        4개의 면 전부 적용
+        padding : 20px;
+
+        어떤 요소에 padding을 적용시킬건지 확인하는 것이 중요합니다!(기준)
+    */
+    /*         윗쪽  오른쪽 아랫쪽 왼쪽                */
+    /* padding : 20px 20px 20px 20px; */
+    /*           상하  좌우                  */
+    /* padding : 20px 20px */
+    /*        위   좌우  아래              */
+    padding: 20px 20px 30px
+}

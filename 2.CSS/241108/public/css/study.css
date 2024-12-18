@@ -1,0 +1,98 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#wrap {
+    height: 600px;
+    display: flex;
+    /* flex 자식 요소끼리 간격을 벌릴 수 있는 속성 */
+    gap: 20px;
+}
+
+.body {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.body > .header {
+    padding: 50px 0;
+    border: 1px solid red;
+    /* 테두리를 둥글게 만듦 그리고 border속성 필수 선언 */
+    border-radius: 5px;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body > .contents {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    height: 45%;
+}
+
+.body > .contents > div {
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body > .contents > div:nth-of-type(1) {
+    border: 1px solid blue;
+}
+
+.body > .contents > div:nth-of-type(2) {
+    border: 1px solid blueviolet;
+}
+
+.body > .footer {
+    display: flex;
+    height: 45%;
+    border: 1px solid aqua;
+    border-radius: 5px;
+}
+
+.body > .footer > p {
+    /* 
+        flex-grow : flex 부모로부터 요소 내부에서 할당 가능한공간의 정도를 선언
+        =>
+        부모의 공간을 사이좋게 형제끼리 가져가는 것.
+    */
+    flex-grow: 1;
+    /* 
+        flex-grow: 1; width: 100% => 부모요소 class이름이 body인 애가
+        85%를 받고있으니 100%해도 부모의 영향을 받아 85%임.
+    */
+    /* width: calc(100% / 3); */
+    border: 1px solid red;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar {
+    width: 15%;
+    padding: 20px;
+    border: 1px solid green;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar > p {
+    padding: 10px;
+    border: 1px solid gold;
+    border-radius: 5px;
+}
+
+
+

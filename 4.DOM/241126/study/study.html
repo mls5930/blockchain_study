@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #lotto > li {
+        display: inline-block;
+        font-size: 40px;
+        background: black;
+        color: white;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        text-align: center;
+        line-height: 80px;
+        margin: 30px;
+    }
+      /* [1,5,45,23,33,2] */
+      /* 1 ~ 10 */
+      #lotto > li.a {
+        background: yellow;
+      }
+      /* 11 ~ 20 */
+      #lotto > li.b {
+        background: blue;
+      }
+      /* 21 ~ 30 */
+      #lotto > li.c {
+        background: red;
+      }
+      /* 31 ~ 40 */
+      #lotto > li.d {
+        background: gray;
+      }
+      /* 41 ~ 45 */
+      #lotto > li.e {
+        background: green;
+      }
+    </style>
+</head>
+<body>
+    <ul id="lotto">
+        <li class="a"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <button id="lottoBtn">생성</button>
+    <script src="../public/js/study.js"></script>
+</body>
+</html>

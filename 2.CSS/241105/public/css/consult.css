@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+#header {
+    height: 160px;
+    color: white;
+    background: black;
+}
+
+#main {
+    /* width: 100%; */
+    background: white;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+#main > .inner {
+    /* width: 100%; */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#main > .inner > h2 {
+    text-align: center;
+    /* 폰트 굵기 */
+    font-weight: 700;
+    font-size: 48px
+}
+
+#main > .inner > ul {
+    /* 블록 형태 */
+    list-style: none;
+    /* 블록 형태 요소에서는 적용이 되지 않음 */
+    text-align: center;
+    margin-top: 30px;
+}
+
+#main > .inner > ul > li {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 20px
+}
+
+#main .circle {
+    width: 22px;
+    height: 22px;
+    background: url(../img/arrow-icon.png) no-repeat center / contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#visual {
+    height: 374px;
+    background: #3858fb;
+}
+
+#content {
+    height: 856px;
+    background: #edf1f9;
+}
+
+#footer {
+    height: 554px;
+    color: white;
+    background: #40405d;
+}
+
+/*
+    #main .circle {
+        이미지를 불러올 경로
+        background-image: url("../img/arrow-icon.png"); 
+        44 x 44
+        이미지를 반복 할거냐 안할거냐
+        background-repeat: no-repeat;
+        배경 이미지의 위치를 지정하는데 사용된다.
+        background-position: center;
+        이미지 크기를 조정하여 요소 안에서 어떻게 표시될지 설정
+        contain => 이미지가 요소 안에 완전히 들어가도록 맞추는 방식
+        background-size: contain;
+    } 
+*/

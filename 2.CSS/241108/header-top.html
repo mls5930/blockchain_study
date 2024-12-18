@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경일게임 아카데미 클론코딩 - 헤더 탑</title>
+    <link rel="stylesheet" href="./public/css/header-top.css"/>
+    <link rel="stylesheet" href="./public/css/header-nav.css"/>
+    <link rel="stylesheet" href="./public/css/main.css"/>
+    <link rel="stylesheet" href="./public/css/content.css"/>
+</head>
+<body>
+    <div id="header">
+        <!-- 혜성님 - 헤더 탑 구현 -->
+        <div class="header-top">
+            <div class="tel">
+                <span>전화상담문의</span>
+                <a href="tel: 02-479-4050">02·479·4050</a>
+            </div>
+            <h1 class="logo">
+                <a href="https://www.naver.com">
+                    <img src="./public/img/main-logo.png" alt="로고"/>
+                </a>
+            </h1>
+            <img src="./public/img/right-button.png" alt="오른쪽버튼"/>
+        </div>
+        <!-- 태정님 - 헤더 네비게이션 구현 -->
+        <div id="header-nav">
+            <ul>
+                <li>모집중인 강좌</li>
+                <li>과정소개</li>
+                <li>지원제도</li>
+                <li>경일스토리</li>
+                <li>상담신청</li>
+                <li>회사소개</li>
+            </ul>
+        </div>
+    </div>
+    <!-- 채원님 - 상담 신청하기 구현 -->
+    <div id="main">
+        <div class="inner">
+            <h2>상담신청하기</h2>
+            <ul>
+                <li>H</li>
+                <li class="circle"></li>
+                <li>지원하기</li>
+                <li class="circle"></li>
+                <li>상담신청하기</li>
+            </ul>
+        </div>
+    </div>
+    <div id="visual">visual</div>
+    <div id="content">
+        <div class="inner">
+            <div class="left">left</div>
+            <form class="right" action="https://search.naver.com/search.naver" method="get">
+                <!-- inner -->
+                <div class="main">
+                    <p>이름</p>
+                    <input type="text" name="userName"/>
+                    <p>휴대폰 번호</p>
+                    <div class="phone">
+                        <input type="number" name="phone1"/>
+                        <input type="number" name="phone2"/>
+                        <input type="number" name="phone3"/>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="allAgree" id="all-check-agree"/>
+                        <label for="all-check-agree">전체동의</label>
+                    </div>
+                    <div class="agree-list">
+                        <div>
+                            <input type="checkbox" name="person-info-agree" id="agree-check1" />
+                            <label for="agree-check1">개인 정보 수집 동의</label>
+                        </div>
+                        <p>자세히 보기</p>
+                    </div>
+                    <div class="agree-list">
+                        <div>
+                            <input type="checkbox" name="add-info-agree" id="agree-check2" />
+                            <label for="agree-check2">광고성 정보 수신 동의</label>
+                        </div>
+                        <p>자세히 보기</p>
+                    </div>
+                </div>
+                <button type="submit">상담신청하기</button>
+            </form>
+        </div>
+    </div>
+    <div id="footer">footer</div>
+</body>
+</html>
+<!-- checkbox 하나를 선태할 수 있는 클릭 폼 -->
+
+<!-- 파스칼 케이스 기법 user"N"ame
+<input type="text" name="userName"/> -->
+
+<!-- type="number"는 숫자만 입력 가능함. -->
+<!-- <input type="number"/> -->
+
+

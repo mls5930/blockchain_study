@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- form 태그: 사용자가 입력한 값들을 서버에 전송할 때 많이 사용하는 태그 -->
+    <form id="loginForm" method="get" action="https://search.naver.com/search.naver">
+        <input type="text" id="uid" name="userid" value=""/>
+        <input type="password" id="upw" name="userpw" value=""/>
+        <button type="submit">로그인</button>
+        <div class="error"></div>
+    </form>
+    <script src="./public/js/index5.js"></script>
+</body>
+</html>

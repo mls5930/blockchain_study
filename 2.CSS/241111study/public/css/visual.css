@@ -1,0 +1,44 @@
+* {
+    /* 웹 "브라우저"에 설치된 기본 글꼴 속성 사용 */
+    /* css 자체에 내장되어 있는게 아님! */
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+#visual {
+    padding: 100px 0;
+    background: #3858FB;
+}
+
+#visual > .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#visual > .inner > .left {
+    color: white;
+}
+
+#visual > .inner > .left > h4 {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+#visual > .inner > .left > h3 {
+    padding-top: 16px;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+#visual > .inner > .right {
+    position: absolute;
+    top: -64px;
+    right: -10px;
+}
+
+/*
+    Arial : 산세리프 글꼴이지만, 윈도우 환경에서 적용하는 글꼴
+    Helvetica : Apple MacOs 시스템에서 많이 사용되는 폰트. Arial과 비슷함.
+    sens-serif : 웹 폰트를 사용할 때, 브라우저에 특정 글꼴이 없더라도 
+    비슷한 스타일의 글꼴을 사용할 수 있도록 보완 역할을 합니다.
+*/

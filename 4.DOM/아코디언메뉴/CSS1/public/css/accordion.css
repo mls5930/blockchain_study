@@ -1,0 +1,132 @@
+/* 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.container > .accordion {
+  width: 100%;
+  max-width: 600px;
+}
+
+.accordion-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item > .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transition: color 0.3s ease-in-out;
+}
+.accordion-item > .title > img {
+  width: 24px;
+}
+
+/* 컨텐츠 숨김 (초기 상태) */
+.accordion-item > .content {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0; 
+  padding: 0; 
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, font-size 0.01s ease-in-out;
+}
+
+/* 아코디언 열림 효과 */
+#accordion-button1:checked + .accordion-item {
+  gap: 10px;
+  border: 1px solid #c12ee9;
+  transition: border 0.3s ease-in-out;
+  box-shadow: 5px 4px 10px -5px gray;
+  transition: box-shadow 0.3s ease;
+}
+
+#accordion-button1:checked + .accordion-item > .content {
+  max-height: 300px;
+  padding: 10px 0;
+  font-size: 16px;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+#accordion-button1:checked + .accordion-item > .title {
+  color: #c12ee9;
+  transition: color 0.3s ease-in-out;
+}
+
+
+/* 아이콘 변경 */
+.accordion-item > .title > div:nth-of-type(2),
+#accordion-button1:checked + .accordion-item > .title > div:nth-of-type(2)
+{
+  background-image: url("../img/checkicon.png");
+  background-size: contain;
+  background-position-x: 90%;
+  background-position-y: 50%;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+}
+
+#accordion-button1:checked + .accordion-item > .title > div:nth-of-type(2) {
+  color: #c12ee9;
+  background-image: url("../img/checkiconon.png");
+}
+
+
+/* 아코디언 열림 효과 */
+#accordion-button2:checked + .accordion-item {
+  gap: 10px;
+  border: 1px solid #c12ee9;
+  transition: border 0.3s ease-in-out;
+  box-shadow: 5px 4px 10px -5px gray;
+  transition: box-shadow 0.3s ease;
+}
+
+#accordion-button2:checked + .accordion-item > .content {
+  max-height: 300px;
+  padding: 10px 0;
+  font-size: 16px;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+#accordion-button2:checked + .accordion-item > .title {
+  color: #c12ee9;
+  transition: color 0.3s ease-in-out;
+}
+
+
+/* 아이콘 변경 */
+.accordion-item > .title > div:nth-of-type(2),
+#accordion-button2:checked + .accordion-item > .title > div:nth-of-type(2)
+{
+  background-image: url("../img/checkicon.png");
+  background-size: contain;
+  background-position-x: 90%;
+  background-position-y: 50%;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+}
+
+#accordion-button2:checked + .accordion-item > .title > div:nth-of-type(2) {
+  color: #c12ee9;
+  background-image: url("../img/checkiconon.png");
+}

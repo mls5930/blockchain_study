@@ -1,0 +1,7 @@
+{
+    "username" : "production",
+    "password" : "1234",
+    "database" : "board_production",
+    "host" : "127.0.0.1",
+    "diarect" : "mysql"
+}

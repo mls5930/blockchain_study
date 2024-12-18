@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 인접 형제 선택자</title>
+    <style>
+        /* 웬만하면 태그 선택자는 자제하자 => 선택한 태그 모든 속성값 부여 */
+        /* 
+            인접 형제 선택자 + ~
+            ㄴ 앞에서 지정한 요소의 바로 다음에 위치하는 형제 요소만 선택
+
+            주의! : 전체를 선택하여 선택자 모두에 속성을 적용하는 것이 아니라
+            최종적으로 선택한 선택자만 속성이 부여된다 => 꾸며진다
+            .first-child + li + li {
+                color : red;
+            } 
+        */
+        /* 
+            일반 형제 선택자 
+            ㄴ 앞에서 지정한 요소의 바로 다음 조건에 맞는 선택자를 모두 선택
+        */
+        .first-child ~ #child {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="first-child">첫 번째 자식</li>
+        <li>형제</li>
+        <li>형제</li>
+        <li id="child">형제</li>
+        <li class="child">형제</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 아코디언</title>
+    <link rel="stylesheet" href="./public/css/accordion.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="accordion">
+        <input type="checkbox" id="accordion-button1" hidden />
+        <label for="accordion-button1" class="accordion-item">
+          <div class="title">
+            <div>이것을 아코디언이라고 부릅니다.</div>
+            <div></div>
+          </div>
+          <div class="content">
+            글자도 자유롭게 작성 가능합니다.
+          </div>
+        </label>
+      </div>
+      <div class="accordion">
+        <input type="checkbox" id="accordion-button2" hidden />
+        <label for="accordion-button2" class="accordion-item">
+          <div class="title">
+            <div>이것을 여러개 만들어서 보여줄 수 있습니다.</div>
+            <div></div>
+          </div>
+          <div class="content">
+            이러한 형식을 많이 보셨었죠?
+          </div>
+        </label>
+      </div>
+    </div>
+  </body>
+</html>

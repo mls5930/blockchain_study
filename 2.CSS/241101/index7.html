@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            속성 선택자
+
+            버튼중에서 속성 중에서 타입을 가지고 있고,
+            해당 속성값이 submit,reset인 경우 속성과 속성값 적용
+        */
+        button[type="submit"] {
+            color : red;
+        }
+        button[type="reset"] {
+            color: aqua;
+        }
+        input[type="text"] {
+            /* 테두리 */
+            border : 1px solid red;
+        }
+        input[type="checkbox"] {
+            /* 테두리 */
+            border : 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <button type="submit">나는 submit 타입</button>
+    <button type="reset">나는 reset 타입</button>
+    <input type="text">
+    <input type="checkbox">
+</body>
+</html>

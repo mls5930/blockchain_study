@@ -1,0 +1,26 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#float-container {
+    border: 1px solid #C5C5C5;
+    padding: 20px;
+}
+
+#float-container > .float-item {
+    border: 10px solid gold;
+    background: black;
+    color: #fff;
+    float: left;
+    width: 40%;
+}
+
+/* 
+    왜 마진과 패딩이 잘 적용하지 않는다고 생각하냐면?
+
+    마진과 패딩은 기본적으로 요소의 넓이와 높이가 있다고 판단되면 그 시작점을 기준으로 밉니다.
+*/
+#float-container > .text {
+    margin-left: 20px;
+}

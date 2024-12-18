@@ -1,0 +1,35 @@
+/* 
+    - #container
+        - .static
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    background: gray;
+    border: 2px solid #333;
+    padding: 20px;
+}
+    /* reative : 요소가 원래 위치를 기준으로 상대적인 위치로 이동합니다. */
+#container > .static {
+    /* 모든 박스들은 기본 설정값으로 position이 static을 달고 있음 */
+    /* position: static; */
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: blue;
+    top: 20px;
+}
+
+/* 
+    위치 이동 속성(static을 제외한 모든 속성 값)
+    고정값은 물론 상대값을 넣을 수 있다.
+
+    top : 요소를 아래쪽으로 이동시킵니다. => top: 20px은 아래쪽으로 20px만큼 이동.
+    right : 요소를 왼쪽으로 이동시킵니다. => right: 20px은 왼쪽으로 20px만큼 이동.
+    bottom : 요소를 위쪽으로 이동시킵니다. => bottom: 20px은 위쪽으로 20px만큼 이동.
+    left : 요소를 오른쪽으로 이동시킵니다. => left: 20px은 오른쪽으로 20px만큼 이동
+*/

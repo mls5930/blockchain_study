@@ -1,0 +1,32 @@
+#userListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#dataListTitle,
+.data-list-item {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+#dataListTitle > div,
+.data-list-item > a,
+.data-list-item > div {
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+}
+
+.user-delete-btn {
+  cursor: pointer;
+}
+
+#dataList {
+  width: 100%;
+}

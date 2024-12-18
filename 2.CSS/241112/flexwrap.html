@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-wrap</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        /* 1. 부모 요소의 높이 또는 넓이가 최대한 고정값이 아니어야 함. */
+        .course-info-contents {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 320px;
+            column-gap: 10px;
+        }
+
+        .course-info-contents > li {
+            width: 100px;
+            height: 50px;
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+    <ul class="course-info-contents">
+        <li>첫 번째 태그</li>
+        <li>두 번째 태그</li>
+        <li>세 번째 태그</li>
+        <li>네 번째 태그</li>
+        <li>다섯 번째 태그</li>
+        <li>여섯 번째 태그</li>
+        <li>일곱 번째 태그</li>
+        <li>여덟 번째 태그</li>
+    </ul>
+</body>
+</html>

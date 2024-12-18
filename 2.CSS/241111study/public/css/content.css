@@ -1,0 +1,106 @@
+#content {
+    padding: 100px 0;
+    background: #EDF1F9
+}
+
+#content > .inner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#content > .inner > .left {
+    width: 600px;
+    background: aqua;
+}
+
+#content > .inner > .right {
+    width: 600px;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#content > .inner > .right > .main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 50px;
+}
+
+#content > .inner > .right p,
+#content > .inner > .right label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#content > .inner > .right input[name="userName"] {
+    height: 60px;
+    /* border-box? => 60 + padding-top => 10px, padding-bottom => 10px */
+    /* 80 + 2px => 요소의 총 높이 82px */
+    box-sizing: border-box;
+    /* height => 60px */
+    padding: 10px 20px;
+    border: 1px solid #E8E8E8;
+    /* 테두리와 안쪽 여백의 크기도 요소의 크기로 고려합니다. */
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#content > .inner > .right .phone {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #E8E8E8
+}
+
+#content > .inner > .right .phone > input {
+    width: calc(100% / 3);
+    height: 60px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#content > .inner > .right .checkbox {
+    padding-top: 30px;
+}
+
+#content > .inner > .right .checkbox > label {
+    padding: 0 10px;
+}
+
+#content > .inner > .right .agree-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+}
+
+#content > .inner > .right .agree-list > p {
+    font-size: 13px;
+    color: #aaa;
+    /* 문장 간격 줄이고 늘리기 */
+    letter-spacing: -0.03em;
+    /* 밑줄 긋기 */
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.right > button {
+    background: #6842FF;
+    border-radius: 10px;
+    width: 100%;
+    display: inline-block;
+    height: 60px;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로컬스토리지 - List</title>
+    <style>
+        .data-list-item {
+            display: flex;
+            gap:10px;
+        }
+        .data-list-item > :nth-of-type(1) {
+            color: green;
+        }
+        .data-list-item > :nth-of-type(2) {
+            color: red;
+        }
+        #dataList {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../localstorage/create.html">등록 페이지</a>
+    <h1>데이터는?</h1>
+    <div id="dataList"></div>
+    <script src="../public/js/list.js"></script>
+</body>
+</html>

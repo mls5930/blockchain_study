@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 후손 선택자</title>
+    <style>
+        /* 
+            후손 선택자 : 해당 요소의 하위 요소 모두 선택하여 속성 부여
+            후손 선택자는 공백으로 구분한다
+
+            .container2 클래스 내부에 있는 .highlight 클래스를 가진 요소에만 속성 부여
+        */
+        .container2 .highlight {
+            color : red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="highlight">하이라이트</p>
+    </div>
+    <div class="container2">
+        <div class="highlight">하이라이트</div>
+        <div class="highlight">하이라이트</div>
+        <div>
+            <div>
+                <div class="highlight">하이라이트</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

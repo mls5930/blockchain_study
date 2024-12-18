@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 요소 선택자</title>
+    <style>
+        .container::before {
+            content: "";
+            background: url("./public/img/gameicon.png");
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+        }
+        .container::after {
+            content: ""
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML 문서에 실제로 존재하지 않는 요소를 생성 -->
+    <!-- <div class="container">(::before)나는 컨테이너(::after)</div> -->
+    <div class="container">나는 컨테이너</div>
+</body>
+</html>
+
+<!-- 
+    content: 가상 요소를 생성하기 위한 필수 조건 
+    빈 값이든, 문자든 작성을 해서 브라우저가 가상 "요소" 라는 것을 인지시켜줘야 함.
+
+    1. content는 가상요소의 필수값이다.
+    2. 이미지는 엄연히 컨텐츠가 아닌 속성이기 때문에 이미지 크기를 인식하지 못함.
+    => 가상 요소를 인식하는건 content: "값"이다.
+    3. 이미지를 주입하고 우리가 넓이와 높이를 지정해줘야 하는데 기본적으로 인라인이라서
+        넓이와 높이가 지정이 되지 않는다.
+    4. 그래서 가상요소의 형태를 inline-block으로 변경하는 것.
+-->

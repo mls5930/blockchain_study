@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 선택자</title>
+    <!-- 
+        1. 스타일 태그 안에서 작성
+        2. 인라인 스타일
+        3. 외부의 파일에 css문법을 작성하여 끌고와서 선언하는 방법 
+        <link href="./public/css/index.css"></link> 
+    -->
+     <style>
+        
+        /* class 선택자 */
+        /* 
+            class중에 header인 애를 "선택"하여 
+            속성과 속성값을 주겠다. => 꾸미겠다.
+        */
+        .header {
+            background: red;
+        }
+        /* id 선택자 */
+        /* 
+            id중에 header인 애를 "선택"하여
+            속성과 속성값을 주겠다. => 꾸미겠다. 
+        */
+        #header {
+
+        }
+        /* 태그 선택자 */
+        div {
+            display: inline-block;
+            width: 200px;
+            height : 200px;
+            background : aqua;
+        }
+     </style>
+</head>
+<body>
+    <div class="header" id="header">태그영역</div>
+    <div>
+        나는 자식
+        <div>
+            나는 후손
+            <div>
+                나도 후손
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경일게임 아카데미 클론코딩 - 헤더 탑</title>
+    <link rel="stylesheet" href="./public/css/header-top.css"/>
+    <link rel="stylesheet" href="./public/css/header-nav.css"/>
+    <link rel="stylesheet" href="./public/css/main.css"/>
+    <link rel="stylesheet" href="./public/css/content.css"/>
+    <link rel="stylesheet" href="./public/css/visual.css"/>
+    <link rel="stylesheet" href="./public/css/sidebar.css"/>
+</head>
+<body>
+    <div id="header">
+        <!-- 혜성님 - 헤더 탑 구현 -->
+        <div class="header-top">
+            <div class="tel">
+                <span>전화상담문의</span>
+                <a href="tel: 02-479-4050">02·479·4050</a>
+            </div>
+            <h1 class="logo">
+                <a href="https://www.naver.com">
+                    <img src="./public/img/main-logo.png" alt="로고"/>
+                </a>
+            </h1>
+            <img src="./public/img/right-button.png" alt="오른쪽버튼"/>
+        </div>
+        <!-- 태정님 - 헤더 네비게이션 구현 -->
+        <div id="header-nav">
+            <ul>
+                <li>모집중인 강좌</li>
+                <li>과정소개</li>
+                <li>지원제도</li>
+                <li>경일스토리</li>
+                <li>상담신청</li>
+                <li>회사소개</li>
+            </ul>
+        </div>
+    </div>
+    <!-- 채원님 - 상담 신청하기 구현 -->
+    <div id="main">
+        <div class="inner">
+            <h2>상담신청하기</h2>
+            <ul>
+                <li>H</li>
+                <li class="circle"></li>
+                <li>지원하기</li>
+                <li class="circle"></li>
+                <li>상담신청하기</li>
+            </ul>
+        </div>
+    </div>
+    <div id="visual">
+        <div class="inner">
+            <div class="left">
+                <!-- <br/> => 줄바꿈 -->
+                <h4>
+                    처음 도전하시는 분 누구라도 취업이라는<br />
+                    골까지 달성할 수 있도록
+                </h4>
+                <h3>경일게임아카데미가 함께 하겠습니다.</h3>
+            </div>
+            <img 
+                class="right"
+                src="./public/img/visual-right.png"
+                alt="비주얼 안에 오른쪽 이미지"
+            />
+        </div>
+    </div>
+    <div id="content">
+        <div class="inner">
+            <div class="left">left</div>
+            <form class="right" action="https://search.naver.com/search.naver" method="get">
+                <!-- inner -->
+                <div class="main">
+                    <p>이름</p>
+                    <input type="text" name="userName"/>
+                    <p>휴대폰 번호</p>
+                    <div class="phone">
+                        <input type="number" name="phone1"/>
+                        <input type="number" name="phone2"/>
+                        <input type="number" name="phone3"/>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="allAgree" id="all-check-agree"/>
+                        <label for="all-check-agree">전체동의</label>
+                    </div>
+                    <div class="agree-list">
+                        <div>
+                            <input type="checkbox" name="person-info-agree" id="agree-check1" />
+                            <label for="agree-check1">개인 정보 수집 동의</label>
+                        </div>
+                        <p>자세히 보기</p>
+                    </div>
+                    <div class="agree-list">
+                        <div>
+                            <input type="checkbox" name="add-info-agree" id="agree-check2" />
+                            <label for="agree-check2">광고성 정보 수신 동의</label>
+                        </div>
+                        <p>자세히 보기</p>
+                    </div>
+                </div>
+                <button type="submit">상담신청하기</button>
+            </form>
+        </div>
+    </div>
+    <aside id="sidebar">
+        <ul class="sidebar-list">
+            <li>
+                <a href="http://www.kiweb.co.kr/camp/camp">국비지원<br/>안내 </a>
+            </li>
+            <li>
+                <a href="https://www.kiweb.or.kr/post/3547">생활관<br/> 소개</a>
+            </li>
+            <li>
+                <a href="tel: 02-479-4050">
+                    <img src="./public/img/aside-li-img1.png" alt="전화번호 이미지"/>
+                    전화번호
+                </a>
+            </li>
+            <li>
+                <a href="https://www.kiweb.or.kr/why/map">
+                    <img src="./public/img/aside-li-img2.png" alt="위치안내 이미지"/>
+                    위치안내
+                </a>
+            </li>
+            <li>
+                <a href="https://www.kiweb.or.kr/apply/qualify">
+                    <img src="./public/img/aside-li-img3.png" alt="자격조회 이미지"/>
+                    자격조회
+                </a>
+            </li>
+            <li>
+                <a href="https://www.kiweb.or.kr/curriculum/guide">
+                    <img src="./public/img/aside-li-img4.png" alt="과정보기 이미지"/>
+                    과정보기
+                </a>
+            </li>
+            <li>
+                <a href="https://www.kiweb.or.kr/board/review">
+                    <img src="./public/img/aside-li-img5.png" alt="수강후기 이미지"/>
+                    수강후기
+                </a>
+            </li>
+            <li> 
+                <a href="https://www.kiweb.or.kr/apply/counsel">
+                    <img src="./public/img/aside-li-img6.png" alt="방문상담 이미지"/>
+                    방문상담
+                </a>
+            </li>
+        </ul>
+        <!-- top-btn -->
+         <div class="top-btn">
+            <!-- 
+                # => 클릭 시 페이지의 최상단으로 스크롤됩니다.
+                페이지 내 최상단 이동 버튼이나, 빈 링크를 임시로 넣어둘 때 사용
+            -->
+            <a href="#">
+                <img src="./public/img/top-btn-img.png" alt="맨 위로">
+                <p>TOP</p>
+            </a>
+         </div>
+    </aside>
+    <div id="footer">footer</div>
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+/* 연결이 잘 되었다. */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#header {
+    /* width: 100% */
+    padding: 50px 0;
+    background: red;
+    text-align: center;
+}
+
+#visual {
+    /* width: 100% */
+    background: #6A1bEF;
+    padding: 50px 0;
+}
+
+#visual > .inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 0px;
+    padding-right: 0px; 
+*/
+#contents > .left {
+    /* shorthand */
+    padding: 50px 0;
+    background: green;
+    width: 60%;
+    float: left;
+}
+
+#contents > .right {
+    padding: 50px 0;
+    background: blue;
+    width: 40%;
+    float: right;
+}
+
+#visual > .inner > div,
+#contents > .left > div,
+#contents > .right > div {
+    width: 200px;
+    height: 200px;
+    background: gray;
+    margin: 0 auto;
+}
+
+#footer {
+    padding: 70px 0;
+    /* both는 float의 left, right 속성의 영향을 받지 않겠다!!  */
+    clear: both;
+    background: silver;
+    text-align: center;
+}

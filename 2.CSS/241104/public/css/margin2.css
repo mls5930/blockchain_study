@@ -1,0 +1,20 @@
+/*     
+    인접한 블록 요소들의 상 하단 마진이 "겹쳐져서" 하나의 마진처럼 보이는 현상
+    큰 쪽의 마진 값으로 병합됩니다.
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    background: gray;
+    padding: 20px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background: lightcoral;
+    margin: 20px 0;
+}

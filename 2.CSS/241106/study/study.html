@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실습 문제</title>
+    <link href="../public/css/study.css" type="text/css" rel="stylesheet" />
+  </head>
+  <!-- 
+    1. 화면을 참고하여 넓이와 높이를 설정하세요.
+    2. inner안에 div, left안에 div, right 안에 div를 아래와 같이 작성하고 정 가운데로 정렬하세요
+      ㄴ width: 200px, height: 200px, background: gray
+      ㄴ 패딩이든 마진이든 사용해도 상관없습니다. "정"가운데로 정렬하세요
+    3. id가 contents안에 left, right가 존재하는데, 
+        left, right는 반드시 "블록" 형태입니다.
+    4. footer는 "패딩"을 활용하여 영역을 채웁니다
+      ㄴ 단, padding은 위 70px, 아래 70px를 넘기지 마세요.
+  -->
+  <body>
+    <div id="header">header</div>
+    <div id="visual">
+      <div class="inner">
+        <div></div>
+      </div>
+    </div>
+    <!-- width: 100% -->
+    <div id="contents"> 
+    <!-- 
+        => 자식의 높이를 인식하지 못하니
+        아래의 footer가 위로 올라오는 현상처럼 보이는 것. 
+    -->
+      <div class="left">
+        <div></div>
+      </div>
+      <div class="right">
+        <div></div>
+      </div>
+    </div>
+    <div id="footer">footer</div>
+  </body>
+</html>

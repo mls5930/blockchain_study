@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    margin: 50px 0 50px 0;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid blue;
+    border-radius: 5px;
+    background: gray;
+    cursor: pointer;
+}
+
+input[id="red"]:checked + label {
+    color: red
+}
+
+input[id="blue"]:checked + label {
+    color: blue
+}
+
+input[id="yellow"]:checked + label {
+    color: yellow
+}
+
+.red-item,
+.blue-item,
+.yellow-item {
+    margin: 100px 0;
+    width: 500px;
+    height: 500px;
+    background: gray;
+    display: none;
+}
+
+/* 일반 동위 선택자 */
+input[id="red"]:checked ~ .red-item {
+    display: inline-block;
+}
+
+input[id="blue"]:checked ~ .blue-item {
+    display: inline-block;
+}
+
+input[id="yellow"]:checked ~ .yellow-item {
+    display: inline-block;
+}

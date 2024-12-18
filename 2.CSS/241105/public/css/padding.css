@@ -1,0 +1,14 @@
+#container {
+    background: lightgray;
+    padding: 20px;
+}
+
+.box {
+    width: 200px;
+    height: 100px;
+    background: aqua;
+    /* margin: 20px 0; 상하 마진을 20px로 설정*/
+    padding: 20px 0; /* 상하 패딩을 20px로 설정 */
+    /* 전 요소(태그)에 클릭할 수 있게 강조할 수 있음 */
+    cursor: pointer;
+}

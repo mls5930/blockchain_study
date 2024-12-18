@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    background: red;
+}
+/* float: right; => 요소를 오른쪽으로 정렬한다. */
+/* float: left; => 요소를 왼쪽으로 정렬한다. */
+/* float: none; => 요소를 "떠"있게 하지 않겠다. */
+#container > .float-left {
+    width: 200px;
+    height: 200px;
+    background: dodgerblue;
+    float: left;
+}
+
+#container > .float-right {
+    width: 200px;
+    height: 200px;
+    background: gold;
+    float: right;
+}

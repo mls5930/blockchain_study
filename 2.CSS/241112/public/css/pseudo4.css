@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+/* 가운데 정렬에 필요한 inner */
+.inner {
+    max-width: 1200px;
+    margin: 300px auto 0;
+    padding: 40px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+/* 게임 부트캠프 CSS 영역 */
+#game-bootcamp {
+    width: 100%;
+}
+
+.title::before {
+    content: "";
+    background: url("../img/gameicon.png");
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+
+#game-bootcamp > .title + .content {
+    font-size: 14px;
+    font-weight: 600;
+}

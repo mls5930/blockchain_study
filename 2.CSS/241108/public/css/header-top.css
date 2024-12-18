@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header-top {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.header-top > .tel {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-top > .tel > span {
+    font-size: 13px;
+    color: #666666;
+    font-weight: 600;
+}
+
+.header-top > .tel > a {
+    text-decoration: none;
+    font-size: 26px;
+    font-weight: 900;
+    color: #6842FF;
+}
+
+.header-top > .logo {}

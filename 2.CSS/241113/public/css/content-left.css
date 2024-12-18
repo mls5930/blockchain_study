@@ -1,0 +1,102 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#content {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.course-info {
+    display: inline-block;
+}
+
+.course-info-contents {
+    margin-top: 35px;
+    width: 500px;
+}
+
+.course-info-contents > div {
+    display: flex;
+    gap: 10px;
+}
+
+.course-info-contents > ul {
+    /* width: 500px */
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.course-info-contents > ul > li {
+    width: 148px;
+    height: 48px;
+    /* flex사용한 이유 => 텍스트 가운데 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #D1DAEB;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #666666;
+    cursor: pointer;
+}
+
+.course-info-contents > input {
+    display: none;
+}
+
+.course-info-contents > input[type="checkbox"] + label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 384px;
+    height: 60px;
+    margin-top: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #aaaaaa;
+    cursor: pointer;
+    background-image: url("../img/checkicon.png");
+    /* 아래 속성은 background-image속성이 필수 */
+    background-repeat: no-repeat;
+    /* 백그라운드 이미지로 주입한 이미지의 위치 값 */
+    background-position-x: 90%;
+    background-position-y: 50%;
+    /* 백그라운드 이미지 크기 조절 */
+    background-size: 13px;
+}
+
+.course-info-contents > input[type="checkbox"]:hover + label,
+.course-info-contents > input[type="checkbox"]:checked + label {
+    color: #C12EE9;
+    background-image: url("../img/checkiconon.png");
+    background-position-x: 90%;
+    background-position-y: 50%;
+    background-size: 13px;
+    /* 반복하지 않겠다. */
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 5px 1px gray;
+    /* 시간 => 특정 속성이 나타날때까지의 시간을 정한다 */
+    transition: box-shadow 0.5s ease;
+}
+/* box-shadow 보여줄려고 한게 아니라, hover 클래스 선택자는 모든 태그에서 선택 가능 */
+.course-info-contents > ul > li:hover {
+    /* 요소에 그림자를 넣을 수 있는 속성 */
+    /* 
+        첫 번째 : 그림자의 가로 위치 조정(x좌표)
+        두 번째 : 그림자의 세로 위치 조정(y좌표)
+        세 번째 : 블러 효과(짙은 효과)
+        네 번째 : 그림자 자체의 크기 조정
+        다섯 번째 : 그림자의 색깔
+    */
+    box-shadow: 5px 5px 5px 1px gray;
+    transition: box-shadow 0.5s ease;
+}

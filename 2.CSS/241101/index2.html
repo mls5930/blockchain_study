@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 그룹 선택자 예제</title>
+    <style>
+        /* 
+        border : 태그의 테두리를 설정합니다. 
+            2px : 테두리 크기 
+            solid : 모양
+            blue : 색깔
+        */
+        /* .container {
+            border : 2px solid blue;
+        }
+        .highlight {
+            border : 2px solid red;
+        }
+        .highlight2 {
+            border : 2px solid aqua
+        } */
+        /* 그룹 선택자 */
+         .container, .highlight, .highlight2 {
+            border : 2px solid blue;
+         }
+    </style>
+</head>
+<body>
+    container
+    <div class="container">
+        <p class="highlight">하이라이트</p>
+        <div class="highlight2">
+            <p>하이라이트2</p>
+        </div>
+    </div>
+</body>
+</html>

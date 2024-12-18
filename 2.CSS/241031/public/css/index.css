@@ -1,0 +1,16 @@
+/* 
+    디렉토리 규칙
+
+    1. 디렉토리 이름을 규칙에 맞지 않게 만들면 안됩니다.
+        1. 특수 문자는 넣으시면 안됩니다.
+        2. 파일 이름을 한글로 지으시면 안됩니다.
+*/
+
+#header {
+    background: red;
+    display: inline-block;
+    /* ; 세미콜론 => 마침표 */
+    width: 200px;
+    height:200px;
+    font-size: 20px;
+}

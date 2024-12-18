@@ -1,0 +1,16 @@
+{
+    "imgs" : [
+        {
+            "name": "tree",
+            "img": "./img/tree.png",
+            "width": "500px",
+            "height": "500px"
+        },
+        {
+            "name": "flower",
+            "img": "./img/flower.jpg",
+            "width": "1000px",
+            "height": "500px"
+        }
+    ]
+}

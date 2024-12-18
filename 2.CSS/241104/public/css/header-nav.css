@@ -1,0 +1,45 @@
+/* reset css */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#header-nav {
+    border: 1px solid #eaeaea;
+    /* 오른쪽 테두리 설정:설정값=> none */
+    border-right: none;
+    /* 왼쪽 테두리 설정:설정값=> none */
+    border-left: none;
+}
+
+#header-nav > ul {
+    /* padding: 30px 0px 30px 0px ; */
+    padding: 30px 0px;
+    /* 최대 넓이 값 */
+    max-width: 1200px;
+    /* margin: 0 auto 0 auto; */
+    margin: 0 auto;
+}
+
+#header-nav > ul > li {
+    display: inline-block;
+    width: 16%;
+    /* 텍스트 요소 가운데 정렬 */
+    text-align: center;
+    color: #333333;
+    font-size: 18px;
+    /* 폰트 굵기 */
+    font-weight:700;
+    /* 커서 포인트 */
+    cursor: pointer;
+}
+/* 
+    특정 유형의 "형제" 요소들 중에서
+    그 유형을 기준으로 n번째에 위치하는 요소들을 "선택"
+
+    아래는 ul태그 안에 li요소들 중 첫 번째(n)요소 "선택"
+*/
+#header-nav > ul > li:nth-of-type(1){
+    color: red;
+}
+

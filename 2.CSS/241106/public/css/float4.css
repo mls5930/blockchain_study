@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+#float-container {
+    background: red;
+}
+#float-container > .box {
+    width: 200px;
+    height: 200px;
+    background: gold;
+    float: right;
+}
+
+/* 
+    clear 속성값
+
+    none: clear를 설정하지 않은 기본값.
+    right: 이전 요소에 적용했던 float: right를 취소시킴.
+    left: 이전 요소에 적용했던 float: left를 취소시킴.
+    both: float: left, float: right 둘 다 취소시킴.
+*/
+#float-container > .clear {
+    clear: right;
+}

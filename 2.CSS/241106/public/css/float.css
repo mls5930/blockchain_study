@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    background: red;
+}
+
+#container > .box {
+    width: 200px;
+    height: 200px;
+    background: aqua;
+}

@@ -1,0 +1,13 @@
+#container {
+    background: lightgray;
+    padding: 20px;
+}
+
+.box {
+    width: 200px;
+    height: 100px;
+    background: lightcoral;
+    /* padding: 20px 0; 상하 패딩을 20px로 설정 */
+    margin: 20px 0;
+    cursor: pointer;
+}
