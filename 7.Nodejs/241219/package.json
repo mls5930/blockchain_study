@@ -1,0 +1,14 @@
+{
+  "name": "241219",
+  "version": "1.0.0",
+  "description": "1. Git 기초 → 심화: CLI에서 GUI(VSCode)로 전환하며 시각적인 관리 방법 학습.  \r 2. GitHub 연동 실습: 원격 저장소와 로컬 저장소 연결, 협업 환경 구축.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
