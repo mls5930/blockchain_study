@@ -39,7 +39,7 @@ ex => develop에서 HTML 파일 생성 => commit => switch main => git merge dev
    - 커밋 메시지: `feat: 기본 HTML 구조 작성`
 
 3. public 폴더 생성
-   - public 폴더를 생성하고 다음과 같은 커밋 메세지 작성
+   - public 폴더를 생성하고 다음과 같은 커밋 메세지 작성.
 
 4. public/css/style.css 파일 생성
    - `styles.css` 파일을 생성하여 기본 스타일을 추가합니다.
