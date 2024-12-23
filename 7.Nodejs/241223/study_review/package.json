@@ -1,0 +1,15 @@
+{
+  "name": "study_review",
+  "version": "1.0.0",
+  "description": "이 실습은 Express.js를 사용하여 서버와 클라이언트 간의 요청 및 응답의 기본 개념을 이해하고,  \r CRUD와 유사한 기능을 구현하는 데 중점을 둡니다.  \r 데이터베이스를 다루기 전에, 서버에서 데이터를 어떻게 처리하고,  \r 클라이언트에게 어떻게 응답을 전달하는지에 대한 이해를 돕기 위한 실습입니다.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
