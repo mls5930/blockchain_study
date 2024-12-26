@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+</head>
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #container {
+            padding: 20px;
+        }
+        ul,li {
+            list-style: none;
+            display: flex;
+        }
+        ul {
+            padding: 20px 0 0 0;
+            display: flex;
+            gap: 20px;
+        }
+        li {
+            width: 170px;
+            display: flex;
+            justify-content: center
+        }
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+    <!-- 
+      {
+        id: 1,
+        user_id: 'wnqudgus5565',
+        writer: '주병현',
+        title: '오늘 수업은 HTTP 통신 프로토콜',
+        content: '학생들이 정말 재밌어해요 하하',
+        hit: 0, // 조회수
+    }, 
+    -->
+    <div id="board">
+        <ul>
+            <li>작성자</li>
+            <li>제목</li>
+            <li>조회수</li>
+        </ul>
+        {% for item in boardList %}
+            <ul>
+                <li>{{ item.writer }}</li>
+                <li>
+                    <a href="/view?id={{ item.id }}">{{  item.title }}</a>
+                </li>
+                <li>{{ item.hit }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>
