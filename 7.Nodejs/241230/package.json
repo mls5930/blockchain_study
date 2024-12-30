@@ -1,0 +1,17 @@
+{
+  "name": "241230",
+  "version": "1.0.0",
+  "description": "라우터를 활용한 역할과 책임 분리",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "주병현 교강사",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nunjucks": "^3.2.4"
+  }
+}
