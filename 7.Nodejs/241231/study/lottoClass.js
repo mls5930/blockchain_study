@@ -3,7 +3,6 @@ class Lotto {
         // 로또 번호를 저장할 배열
         this.numbers = [];
     }
-
     // 중복 여부를 검사하는 메서드
     isDuplicate(number) {
         return this.numbers.includes(number);
