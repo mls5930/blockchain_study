@@ -31,6 +31,8 @@ const str6 = str5.split(",");
 
 // String class는 어떻게 이루어져 있을까?
 class String2 {
+    // 인스턴스 객체가 만들어질때, 무조건 한 번 실행됌.
+    // 
     constructor(value) {
         this.value = value;
     }
