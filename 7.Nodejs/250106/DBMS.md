@@ -365,6 +365,14 @@ use mysql;
 select user, host from user;
 ```
 
+### 내 유저 비밀번호 변경
+
+```sql
+mysql -u root -p;
+
+alter user '[변경하고싶은계정]'@'localhost' identified with mysql_native_password by 'new password';
+```
+
 ### 데이터베이스 삭제(주의! 테이블 삭제가 아님)
 
 ```sql

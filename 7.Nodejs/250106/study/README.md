@@ -40,7 +40,7 @@ mysql -u wnqudgus1234 -p
   - `title`: VARCHAR(150) 타입, NULL을 허용하지 않음
   - `content`: TEXT 타입, NULL을 허용
   - `created_at`: DATETIME 타입, NULL을 허용하지 않으며 기본값은 현재 시간
-  - `hit`: INT(11) 타입, 기본값은 0
+  - `hit`: INT(11) default 0
 
 ### 2. 게시글 테이블의 row를 5개 생성
 
