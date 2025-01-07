@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 생성 페이지</title>
+    <style>
+        * {
+          padding: 0;
+          margin: 0;
+        }
+        #write {
+          padding: 20px;
+        }
+        ul,
+        li {
+          list-style: none;
+          display: flex;
+        }
+        li {
+          width: 170px;
+          display: flex;
+          justify-content: center;
+        }
+      </style>
+</head>
+<body>
+    <div id="write">
+        <ul>
+            <li>아이디</li>
+            <li>작성자</li>
+            <li>제목</li>
+            <li>내용</li>
+        </ul>
+        <!-- get, post -->
+        <form method="post" action="/board/write">
+            <input type="text" name="user_id"/>
+            <input type="text" name="writer"/>
+            <input type="text" name="title"/>
+            <input type="text" name="content"/>
+            <button type="submit">글 등록</button>
+        </form>
+    </div>
+</body>
+</html>
