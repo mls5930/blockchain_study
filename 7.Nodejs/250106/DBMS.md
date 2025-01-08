@@ -317,7 +317,7 @@ UPDATE board SET title="첫 번째 제목입니다.", content="첫 번째 내용
 ### 데이터 삭제하기
 
 ```sql
-DELETE FROM board WHERE user_id="rhgPtjd2232";
+DELETE FROM board WHERE id=${id};
 ```
 
 1. 데이터를 조회, 생성, 수정, 삭제한다?

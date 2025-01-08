@@ -22,19 +22,25 @@ app.get('/board/write', (req, res) => {
 })
 
 app.get('/board/view/:id', async(req, res) => {
-    const id = parseInt(req.params.id)
-    const result = await boardService.findOne(id);
-    const board = result[0];
-    res.render('board/view.html', {
-        board
-    })
+    try {
+        const id = parseInt(req.params.id)
+        const result = await boardService.findOne(id);
+        const board = result[0];
+        res.render('board/view.html', {
+            board
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(404).send("상세 페이지 조회에 실패하였습니다.")
+    }
 })
 
 app.post('/board/write', async(req, res) => {
     try {
         const { insertId } = await boardService.create(req.body);
         res.redirect(`/board/view/${insertId}`);
-    } catch {
+    } catch (error) {
+        console.log(error);
         res.status(404).send("글 작성에 실패하였습니다.")
     }
 })

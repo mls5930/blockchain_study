@@ -84,13 +84,10 @@ const boardList = [{}];
 1. **Express와 데이터베이스의 연결 이해**  
    - 연결풀(Pool)을 생성하고, 이를 통해 서버와 DB 간 효율적인 통신이 가능하도록 설정합니다.  
    
-2. **역할과 책임 분리**  
-   - `repository`, `services`, `controllers`로 디렉토리를 나눔으로써 유지보수와 코드 가독성을 높이는 방법을 학습합니다.  
-
-3. **SQL 작성과 결과 처리**  
+2. **SQL 작성과 결과 처리**  
    - JavaScript에서 SQL문을 작성하고 실행하여 데이터를 CRUD(Create, Read)하는 과정을 실습합니다.  
 
-4. **게시판의 핵심 기능 구현**  
+3. **게시판의 핵심 기능 구현**  
    - 클라이언트 요청(Request)을 받아 데이터를 DB에 저장(Create)하고, DB에서 데이터를 불러오는(Read) 기본 기능을 구현합니다.  
 
 ### **이번 시간의 목차**  
@@ -99,14 +96,9 @@ const boardList = [{}];
    - MySQL 설치 및 초기 설정  
    - Node.js에서 `mysql2` 패키지를 사용한 연결풀 생성  
 
-2. **역할과 책임 분리 구조 설계**  
-   - 디렉토리 구조: `repository`, `services`, `controllers`  
-   - 각 디렉토리별 역할과 코드 예제  
-
-3. **SQL문 작성 및 데이터 처리**  
+2. **SQL문 작성 및 데이터 처리**  
    - INSERT와 SELECT 문 작성  
-   - SQL 실행 결과를 처리하여 JSON 형태로 반환  
 
-4. **게시판 구현: Create, Read**  
+3. **게시판 구현: Create, Read**  
    - 새로운 게시글 작성 기능 구현(Create)  
    - 작성된 게시글 목록 조회 기능 구현(Read)  
