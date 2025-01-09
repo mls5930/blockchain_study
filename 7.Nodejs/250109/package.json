@@ -1,0 +1,20 @@
+{
+  "name": "250109",
+  "version": "1.0.0",
+  "description": "검증에 대한 디렉토리 구조 설계 => 그게 바로 middleware인",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "repository": "",
+  "author": "imbhj",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "nunjucks": "^3.2.4"
+  }
+}
