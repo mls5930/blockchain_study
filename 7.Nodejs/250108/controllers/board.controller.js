@@ -48,14 +48,9 @@ const getBoardUpdate = async(req, res) => {
 
 const postBoardUpdate = async(req, res) => {
     try {
-        const { writer, user_id, title, content } = req.body
-        const id = parseInt(req.params.id);
         const data = {
-            id: id,
-            writer: writer,
-            user_id: user_id,
-            title: title,
-            content: content
+            id: parseInt(req.params.id),
+            ...req.body
         }
         await boardServices.update(data);
         res.redirect(`/board/view/${id}`);

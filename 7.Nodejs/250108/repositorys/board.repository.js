@@ -22,9 +22,8 @@ const create = async({ user_id, writer, title, content }) => {
 }
 
 // UPDATE board SET user_id="wnqudgus1234", writer="주병현", title="제목입니다", content="첫 번째 내용입니다." WHERE id=6;
-const update = async({ user_id, writer, title, content, id}) => {
-    const [result] =  await pool.query(`UPDATE board SET user_id="${user_id}", writer="${writer}", title="${title}", content="${content}" WHERE id=${id};`)
-    return result
+const update = async({ user_id, writer, title, content, id }) => {
+    pool.query(`UPDATE board SET user_id="${user_id}", writer="${writer}", title="${title}", content="${content}" WHERE id=${id};`)
 }
 
 // 모듈로 내보냄
