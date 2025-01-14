@@ -1,0 +1,17 @@
+{
+  "name": "250114",
+  "version": "1.0.0",
+  "description": "쿠키를 사용해봅시다.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2"
+  }
+}
