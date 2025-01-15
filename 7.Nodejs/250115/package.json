@@ -1,0 +1,16 @@
+{
+  "name": "250115",
+  "version": "1.0.0",
+  "description": "AJAX 비동기 통신(XMLHttpRequest())",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
