@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+</head>
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #container {
+            padding: 20px;
+        }
+        ul,li {
+            list-style: none;
+            display: flex;
+        }
+        ul {
+            padding: 20px 0 0 0;
+            display: flex;
+            gap: 20px;
+        }
+        li {
+            width: 170px;
+            display: flex;
+            justify-content: center
+        }
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+    <div id="board">
+        <ul>
+            <li>작성자</li>
+            <li>제목</li>
+        </ul>
+        {% for item in comments %}
+            <ul>
+                <li>{{ item.user_id }}</li>
+                <li>
+                    <a href="/comment/{{ item.id }}">{{  item.content }}</a>
+                </li>
+            </ul>
+        {% endfor %}
+        <a href="/write">글 쓰러가기</a>
+    </div>
+</body>
+</html>

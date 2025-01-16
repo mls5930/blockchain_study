@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 수정 페이지</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #container {
+            padding: 20px;
+        }
+        ul,li {
+            list-style: none;
+            display: flex;
+        }
+        li {
+            width: 170px;
+            display: flex;
+            justify-content: center
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul>
+            <li>작성자</li>
+            <li>제목</li>
+            <li>내용</li>
+         </ul>
+         <form method="post" action="/comment/update/{{ comment.id }}">
+            <input type="text" name="user_id" value="{{ comment.user_id }}">
+            <input type="text" name="content" value="{{ comment.content }}">
+            <button type="submit">글 수정</button>
+         </form>
+    </div>
+</body>
+</html>
