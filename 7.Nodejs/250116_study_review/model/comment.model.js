@@ -1,4 +1,3 @@
-// 2. 테이블 구조 정의
 const CommentModel = (sequelize, DataTypes) => {
     return sequelize.define("comment", {
         user_id: {
@@ -10,7 +9,6 @@ const CommentModel = (sequelize, DataTypes) => {
             allowNull: false
         }
     }, {
-        // 복수형 할게!
         freezeTableName: false,
     })
 }
