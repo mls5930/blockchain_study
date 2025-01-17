@@ -1,14 +1,16 @@
+// dotenv
+require('dotenv').config();
 const config = {
     // 서버 포트
-    port: 3000,
+    port: process.env.SERVER_PORT,
     db: {
         development : {
-            host: "127.0.0.1",
+            host: process.env.DB_HOST,
             // ORM 포트
-            port: 3306,
-            database: "Ju",
-            username: "wnqudgus1234",
-            password: "qwerasdf1234",
+            port: process.env.DB_PORT,
+            database: process.env.DB_DATABASE,
+            username: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
             dialect: "mysql"
         }
     }

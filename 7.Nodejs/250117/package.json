@@ -1,7 +1,7 @@
 {
-  "name": "250116_desc",
+  "name": "250117",
   "version": "1.0.0",
-  "description": "sequlize 선녀다.",
+  "description": "파일 업로드에 필요한 multer의 작동 방식과 문법",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,10 +11,8 @@
   "author": "주병현 교강사",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mysql2": "^3.12.0",
-    "nunjucks": "^3.2.4",
-    "sequelize": "^6.37.5"
+    "multer": "^1.4.5-lts.1",
+    "nunjucks": "^3.2.4"
   }
 }
