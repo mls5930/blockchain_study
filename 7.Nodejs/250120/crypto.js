@@ -35,27 +35,27 @@ const signature = crypto
     .digest('base64url');
 
 console.log(signature);
-const 암호화 = 평문 + "." + signature
-console.log(암호화);
+const jwt = 평문 + "." + signature
+console.log(jwt);
 
 /*
     createHmac(algorithm): 사용할 해시 알고리즘 선택
-    update(data): 암호화할 데이터
+    update(data): 데이터
     digest(format): 결과를 특정 형식으로 반환(hex, base64 등)
 
     eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QifQ
     .eyJuYW1lIjoid25xdWRndXMxMjM0IiwiYWRkcmVzcyI6IuyEnOyauCDtirnrs4Tsi5wg7KSR656R6rWsIO2Zjeq4uOuPmSDslYTtjIztirggMuuPmSAyMDLtmLgifQ
     .NYLpEF4uBY5gOIJu3tY74OlIMz8f4qHSG4_bwMxyyTs
 
-    핵심은 암호화 복호화가 단순히, 내 정보가 보이냐 안보이냐를 떠나서,
+    핵심은 내 정보가 보이냐 안보이냐를 떠나서,
     함부로 나를 증명하여 제 3의 웹사이트를 함부로 이용하는 것을 막는 것도 있다.
 
-    즉, 서명값이 진짜 중요하다!(salt값은 외부로 유출되어선 안된다.)
-*/
+    즉, 서명값이 중요하다!(salt값은 외부로 유출되어선 안된다.)
+    서명값의 비교로 나를 검증한다.
 
-/*
-    즉, 검증을 어떻게 하냐?
-    => 나를 어떻게 검증하냐? => 새로운 서명값으로 증명 => 기존의 서명값과 새로운 서명값
+    어떻게?
+
+    새로운 서명값으로 증명 => 기존의 서명값과 새로운 서명값
     비교하여 값이 완전히 똑같은지 확인
 */
 

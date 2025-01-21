@@ -1,0 +1,21 @@
+{
+  "name": "250121",
+  "version": "1.0.0",
+  "description": "AJAX를 활용한 비동기 통신",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "주병현 교강사",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nunjucks": "^3.2.4",
+    "mysql2": "^3.12.0",
+    "sequelize": "^6.37.5",
+    "dotenv": "^16.4.7",
+    "cookie-parser": "^1.4.7"
+  }
+}
