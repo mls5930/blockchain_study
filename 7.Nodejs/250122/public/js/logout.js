@@ -12,13 +12,13 @@ const checkCookie = (cookie, key) => {
 }
 
 logout.addEventListener('click', async() => {
-    const token = checkCookie(document.cookie, "token");
+    const access_token = checkCookie(document.cookie, "access_token");
     const flag = confirm('정말 로그아웃 하시겠습니까?');
     if(flag) {
         const response = await fetch('/user/logout', {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${access_token}`,
                 "Content-Type": "application/json"
             },
         });

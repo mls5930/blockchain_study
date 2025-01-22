@@ -6,7 +6,7 @@
     <title>메인 페이지</title>
 </head>
 <body>
-    {% if token %} {{ token }}님 환영합니다
+    {% if access_token %} {{ access_token }}님 환영합니다
     <!-- if 로그인이 되어있다면?(쿠키가 있다면?) => 로그아웃 화면 -->
     <button id="logout">로그아웃</button>
     {% else %}

@@ -4,9 +4,9 @@ const userService = require('./user.service');
 
 // GET /
 const getList = (req, res) => {
-    const { token } = req.cookies
+    const { access_token } = req.cookies
     res.render('index.html', {
-        token
+      access_token
     });
 }
 
@@ -20,7 +20,6 @@ const getLogin = (req, res) => {
 // 그리고 성공했다는 값을 응답해줄거임.
 const postLogin = async(req, res) => {
     try {
-        // 어떤 값이 넘어올까?
         const { user_id, user_pw } = req.body
         const user = await userService.findOne({ user_id, user_pw });
         const data = {
@@ -28,10 +27,10 @@ const postLogin = async(req, res) => {
             name: "Ju"
         }
         // token = eeejj.fefefefefef.efefefesfsef
-        const token = jwt.sign(data,"wnqudgus1234", { expiresIn: "1m" });
+        const access_token = jwt.sign(data,"wnqudgus1234", { expiresIn: "1m" });
         if (!user) res.status(401).json({success: false});
         // token = eeejj.fefefefefef.efefefesfsef
-        res.setHeader('Set-Cookie', `token=${token}; path=/;`);
+        res.setHeader('Set-Cookie', `access_token=${access_token}; path=/;`);
         // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ3bnF1ZGd1czEyMzQiLCJuYW1lIjoiSnUifQ.x4GQIndugK0UoyMzTJuOd996gdo4eYYglsZNEhOM8IE
         res.json({ success: true, redirect: "/" });
     } catch (error) {
@@ -42,12 +41,7 @@ const postLogin = async(req, res) => {
 // POST /user/logout
 const postLogout = (req, res) => {
   try {
-    const access_token = req.headers["authorization"].split(" ")[1];
-    jwt.verify(access_token, "wnqudgus1234");
-    res.cookie('token', '', {
-        expires: new Date(0),
-        path: "/"
-    })
+    res.setHeader("Set-Cookie", `access_token=; Max-Age=0 Domain=localhost; Path=/; Secure; HttpOnly;`)
     res.json({ success: true, redirect: "/" });
   } catch (error) {
     console.log(error);
