@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 페이지</title>
+</head>
+<body>
+    {% if token %} {{ token }}님 환영합니다
+    <!-- if 로그인이 되어있다면?(쿠키가 있다면?) => 로그아웃 화면 -->
+    <button id="logout">로그아웃</button>
+    {% else %}
+    <!-- else if 로그인이 되어있지 않다면? => 로그인 화면 -->
+    <div>로그인이 필요합니다.</div>
+    <a href="/user/login">로그인</a>
+    {% endif %}
+    <script src="/js/logout.js"></script>
+</body>
+</html>
