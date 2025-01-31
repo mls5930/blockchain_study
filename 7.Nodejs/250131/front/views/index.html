@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹소켓</title>
+    <style>
+      /* 내가 보낸 메세지 구별 */
+      .right {
+        text-align: right;
+        color: red;
+      }
+      #frm {
+        position: absolute;
+        bottom: 100px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <ul id="chat"></ul>
+
+    <!-- 
+      Step5: 클라이언트가 메세지 전송할 폼 만듦.
+      public/js/index.js에서 form태그 이벤트 막고 기능 작성할거임.
+    -->
+    <form id="frm">
+      <input type="text" name="message">
+      <button type="submit">메세지 전송</button>
+    </form>
+
+    <script src="/js/index.js"></script>
+
+  </body>
+</html>

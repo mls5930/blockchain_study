@@ -1,0 +1,17 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "웹소켓을 활용한 임시 채팅 구현(프론트)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "주병현 교강사",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nunjucks": "^3.2.4"
+  }
+}

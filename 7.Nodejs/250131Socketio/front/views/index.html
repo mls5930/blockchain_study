@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹소켓</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+      /* 내가 보낸 메세지 구별 */
+      .right {
+        text-align: right;
+        color: red;
+      }
+      #frm {
+        position: absolute;
+        bottom: 100px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <ul id="chat"></ul>
+
+    <!-- 
+      public/js/index.js에서 form태그 이벤트 막고 기능 작성할거임.
+    -->
+    <form id="frm">
+      <input type="text" name="message">
+      <button type="submit">메세지 전송</button>
+    </form>
+    <script>
+      // io: socket.io 객체. CDN에서 가져옴.
+      // socket.io 서버와 연결
+      // 포트 번호를 강제하지 않음. 하지만 일반적으로
+      // 웹소켓 포트 번호는 8080으로 지정함.
+      const socket = io.connect("http://localhost:3000", {
+        transports: ['websocket'] // 웹소켓으로만 연결 시도할거임!
+      });
+
+      const chat = document.querySelector('#chat');
+      const frm = document.querySelector('#frm');
+
+      // 2. 수신(메세지 받음!)
+      socket.on('chat', (data) => {
+        // data: {
+        //  userId: "wnqudgus1234"
+        //  data: 긴 설 연휴 보내고 오느라 힘들죠 ㅠ
+        // }
+        const json = JSON.parse(data);
+        const li = document.createElement('li');
+        li.innerHTML = json.data + " " + json.userId;
+        chat.append(li);
+      })
+
+      // 1. 발신(메세지 보냄!)
+      frm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const { message } = e.target;
+
+        // socket.send(message.value) => message로 퉁쳐서 서버에서 받음.
+        // emit([보낼 이벤트의 이름], [보낼 메세지])
+        // chat에 접속중인 모든 클라이언트에게 전송(브로드캐스트)
+        socket.emit('chat', message.value);
+        const li = document.createElement('li');
+        li.classList.add('right');
+        li.innerHTML = message.value;
+        chat.append(li);
+
+        e.target.reset();
+        message.focus();
+      })
+    </script>
+  </body>
+</html>
