@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 페이지</title>
+</head>
+<body>
+    {% if userInfo and userInfo.nickname %}
+    <ul>
+        <li>이름</li>
+    </ul>
+    <ul>
+        <li>{{ userInfo.nickname }}</li>
+    </ul>
+    {% else %}
+    <a href="/auth/kakao">카카오 로그인하기</a>
+    {% endif %}
+</body>
+</html>
