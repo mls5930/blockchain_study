@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 기본 예제</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        // 1. React 요소 생성 (JSX 없이 사용)
+        const element = React.createElement("h1", null, "안녕하세요, React!");
+
+        // 2. React 요소를 실제 DOM에 렌더링
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(element);
+    </script>
+</body>
+</html>

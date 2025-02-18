@@ -1,0 +1,137 @@
+## 주의!
+
+오늘은 쉽게 설명하려고 물 흐르듯 설명할거임.  
+딮하고 어려운 내용을 알려고 해봤자 머리만 너무 아픔.  
+오늘은 워밍업 시간이라고 생각하고 제발! `흐름`에만 집중!!
+
+## 렌더링
+
+렌더링 렌더링 노래를 부르던 시기가 있었죠?  
+사실 어려운 단어는 아님.
+
+“렌더링(Rendering)”은 화면에 내용(태그)를 표시하는 과정.
+=> “`데이터`가 변하면, 화면을 자동으로 다시 그려줌(업데이트).”  
+=> 즉, 데이터에 따라서 화면이 바뀐다.
+
+리액트에서는 자바스크립트 코드가 실제 HTML로 변환되어 웹페이지에 출력되는 것을 의미.
+
+> `자바스크립트 코드가 실제 HTML로 변환`이라는 단어 기억하세요.  
+
+**즉, 데이터가 변하면, 화면이 바뀐다.**
+
+기존에는 데이터와 화면이 분리되어 있었죠?  
+아래는 특정 유저의 데이터를 뽑아서 화면에 뿌리는 작업임.  
+
+```js
+app.get('/', async(req,res) => {
+    const user_id = parseInt(req.params.user_id)
+    const user = await findOne(user_id);
+    res.render('index.html', { user })
+})
+```
+
+```html
+    <!-- index.html -->
+    <div>{{ user.id }}</div>
+```
+
+위의 코드도 nunjucks문법으로 엄연히, html파일을 다시 읽어와 동적으로 다시 만들어야 했음.  
+그래서 다음과 같은 생각을 함.
+
+`데이터를 화면과 같이 만들면 안됌?`  
+=> 자바스크립트랑 HTML을 같이 사용하면 안됨?
+
+그래서 자바스크립트를 HTML와 합침  
+=> 더 정확하게 표현하자면, 자바스크립트 확장 문법이라고 함.  
+
+## 문법 맛보기
+
+nunjucks에서 {{}} 두개 썼죠?  
+일단 하나만 빼보자.
+
+```jsx
+    const a = "주병현"
+    <div>{a}</div>
+```
+
+여기서 꺽쇠를 만나면, HTML문법으로 인식.  
+`{`를 만나면 자바스크립트 문법으로 인식함.  
+
+어라? 변수 자체를 태그 안에다가 넣어버리네?
+
+그래서 javascript + XML => JSX라고 표현함.
+어려운 것 없고, 자바스크립트에 HTML을 확장한 문법임. 
+
+> 객체와 배열값은 `{}` 안에 일단 넣지말고, 나중에 활용하는 방법을 배울거임. 차근차근^^
+
+```html
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const number = 1;
+            const Component = <div>{a}</div>
+            return Component
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+```
+
+```html
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const Component = React.createElement("div", null, 1);
+            return Component
+        }
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(App);
+    </script>
+```
+
+그건 알겠는데, root는 뭐임? `/` 이거임?
+아주 비슷함.
+
+## 렌더링의 기준
+
+렌더링이 뭐다? 데이터가 변하면 화면도 바뀐다고 했죠?
+바뀌는 기준을 어디에다 둘거냐?에 대한 기준이에요.
+
+`즉, root라는 태그에 데이터만 바꾸면서 화면을 넣겠다.`  
+
+### root를 이해하는 핵심 개념 
+
+리액트는 HTML 문서에 **기준이 되는 특정 태그(root)**를 만들고,  
+이 안에서 화면을 계속 업데이트함.
+
+```html
+<div id="root"></div>
+```
+
+## 아무 데이터만 넣으면 걍 화면이 바뀜?
+
+절대 아님!
+
+리액트에서 `정해진 데이터` 가 있음
+그게 바로 `상태(State) 라고 함.`
+
+## 상태
+
+`리액트를 사용한다!`라고 하면 **상태(State)** 개념을 꼭 알아야 함.
+상태가 변하면, **자동으로 렌더링이 다시 일어남!**
+
+## 여기까지 왔을 때, 여러분들이 궁금해 할만한 내용들
+
+- "렌더링이 자동으로 된다고 했는데, 그 시기가 언제임?"
+- "그럼 {} 중괄호 안에 모든 걸 다 넣어도 되나요?"
+- "그럼 HTML 태그 안에서 {} 없이 그냥 a 써도 되나요?"
+- "nunjucks에서 {{}} 썼는데, 여기서는 {} 하나만 쓰는 이유가 뭐예요?"
+- "이거 그냥 HTML이랑 똑같이 보이는데 뭐가 다름?"
+
+일단 실습부터 하고, 기본적인 문법에 대해서 알아보고, 리액트의 기본 소양에 대해서 알아봄.
+
+리액트는 브라우저에서 실행되지만, `document.querySelector()` 로 조작하면 안됌.
+즉, realDOM을 조작하면 안됨
