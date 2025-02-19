@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 안녕하세요 JSX 컴포넌트 예제</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 1. Class 컴포넌트 생성
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    hi: props.hi
+                }
+                this.changeHi = this.changeHi.bind(this);
+            }
+            // 최초 render() 호출 후에 실행되는 내장 메서드
+            componentDidMount() {
+                console.log("나는 렌더되고 나서 실행됨!");
+            }
+
+            // state가 변경될 때 마다 호출되는 내장 메서드
+            // 더 정확히는, render()호출 후, 실행 됨
+            componentDidUpdate() {
+                console.log("나는 state가 바뀔때마다 실행됨!");
+            }
+
+            changeHi() {
+                this.setState({hi: "안녕하세요 JSX! 그리고 컴포넌트"})
+            }
+            render() {
+                return (
+                    <button onClick={this.changeHi}>{this.state.hi}</button>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#root'));
+        root.render(<App hi="정말 초기값이 되나요?"/>);
+    </script>
+</body>
+</html>
+    <!-- 
+        바벨
+        
+        화면 출력은 브라우저가.
+        근데 JSX문법 즉 태그를 변수에 할당하는 문법같은건 브라우저가 해석 못함.
+        HTML, JS, CSS만 해석 가능함. => 명확하진 않지만.
+        그래서 JSX를 다시 해석할 수 있게끔 만들어주는게 babel
+        트랜스파일링한다라고도 표현함.
+
+        type="text/babel"
+    -->

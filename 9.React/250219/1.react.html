@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React 기본 예제</title>
+    <title>리액트 DOM 렌더링</title>
+    <!-- 리액트를 사용하기 위해서 필요한 CDN 라이브러리 -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 </head>
 <body>
+    <!-- 화면에 리액트 문법으로 안녕하세요 React만 출력해볼거임 -->
     <div id="root"></div>
-
     <script>
         // 1. React 요소 생성 (JSX 없이 사용)
-        const element = React.createElement("h1", null, "안녕하세요, React!");
+        const element = React.createElement("div", null, "안녕하세요 React!");
 
         // 2. React 요소를 실제 DOM에 렌더링
-        const root = ReactDOM.createRoot(document.getElementById("root"));
+        // 렌더링 기준을 어디에 둘거임?
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
         root.render(element);
     </script>
 </body>

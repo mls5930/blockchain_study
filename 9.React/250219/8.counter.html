@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Class형 컴포넌트로 만드는 Counter 기능</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Counter extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    number : 1
+                }
+                this.increment = this.increment.bind(this);
+            }
+
+            increment() {
+                this.setState({
+                    number: this.state.number + 1
+                })
+            }
+            
+            decrement() {}
+
+            render() {
+                return (
+                    <div className="container">
+                        <h1>{this.state.number}</h1>
+                        <button onClick={this.increment}>+</button>
+                        <button>-</button>
+                    </div>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#root'));
+        root.render(<Counter />);
+    </script>
+</body>
+</html>
+
+<!-- 
+    Counter 기능에서 필요한 속성
+
+    this.state = {
+        number: 1
+    }
+
+    클릭하는 행동 두 개 있겠죠?
+
+    increment();
+    decrement();
+
+    화면 UI 메서드
+
+    render();
+-->

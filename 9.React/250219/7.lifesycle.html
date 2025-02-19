@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 안녕하세요 JSX 컴포넌트 예제</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            // 2. 생성자가 실행됨
+            constructor() {
+                super();
+                this.state = {
+                    hi: ""
+                }
+                this.changeHi = this.changeHi.bind(this);
+            }
+            // 4. render()메서드 호출 후, 해당 메서드 호출
+            componentDidMount() {
+                this.setState({hi: "나는 초기에 설정된 인사 하이!"})
+            }
+            // 5. componentDidMount함수 안에, setState로 값이 변경되었으니
+            // 해당 함수가 실행됨.
+            componentDidUpdate() {
+                console.log("나는 state가 바뀔때마다 실행됨!");
+            }
+
+            changeHi() {
+                this.setState({hi: "안녕하세요 JSX! 그리고 컴포넌트"})
+            }
+            // 3. render()메서드 호출하여 화면을 출력함
+            render() {
+                return (
+                    <button onClick={this.changeHi}>{this.state.hi}</button>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#root'));
+        // 1. App class 컴포넌트가 호출이 됨(실체화 됨!)
+        root.render(<App />);
+    </script>
+</body>
+</html>
+    <!-- 
+        바벨
+        
+        화면 출력은 브라우저가.
+        근데 JSX문법 즉 태그를 변수에 할당하는 문법같은건 브라우저가 해석 못함.
+        HTML, JS, CSS만 해석 가능함. => 명확하진 않지만.
+        그래서 JSX를 다시 해석할 수 있게끔 만들어주는게 babel
+        트랜스파일링한다라고도 표현함.
+
+        type="text/babel"
+    -->
