@@ -24,4 +24,3 @@
 - Component
 - Babel
 - JSX
-- 생명주기
