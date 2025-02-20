@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>React Class Component</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+        class Comment extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    comment : [
+                        { 
+                            userid: "wnqudgus5565", 
+                            content: "안녕하세요 댓글1", 
+                            date: "2025-02-20" 
+                        },
+                    ],
+                    newComment: ""
+                }
+                this.handleInputChange = this.handleInputChange.bind(this)
+                this.handleSubmit = this.handleSubmit.bind(this)
+            }
+
+            // newComment 값 항상 리액트에 알려주기
+            handleInputChange(e) {
+                this.setState({newComment : e.target.value})
+            }
+
+            // 버튼 땅 때렸을 때.
+            handleSubmit (e) {
+                e.preventDefault();
+                const newComment = {
+                    userid: "wnqudgus5565",
+                    content: this.state.newComment,
+                    date: "2025-02-20"
+                }
+
+                this.setState({
+                    comment: [...this.state.comment, newComment], // 기존의 댓글에 댓글 추가
+                    newComment: ""// 입력창 초기화
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <h4>댓글 쓰기<span>(댓글 개수)</span></h4>
+                            <input 
+                                type="text" 
+                                placeholder="댓글 입력" 
+                                value={this.state.newComment}
+                                onChange={this.handleInputChange}
+                            />
+                            <button type="submit">등록</button>
+                        </form>
+                        {this.state.comment.map((value, index) => (
+                            <ul key={index}>
+                                <li>{value.userid}</li>
+                                <li>{value.content}</li>
+                                <li>{value.date}</li>
+                            </ul>
+                        ))}
+                    </div>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(<Comment />);
+        </script>
+    </body>
+</html>

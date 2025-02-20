@@ -19,6 +19,7 @@
                     number : 1
                 }
                 this.increment = this.increment.bind(this);
+                this.decrement = this.decrement.bind(this);
             }
 
             increment() {
@@ -26,22 +27,26 @@
                     number: this.state.number + 1
                 })
             }
-            
-            decrement() {}
+
+            decrement() {
+                this.setState({
+                    number: this.state.number - 1
+                })
+            }
 
             render() {
                 return (
                     <div className="container">
                         <h1>{this.state.number}</h1>
                         <button onClick={this.increment}>+</button>
-                        <button>-</button>
+                        <button onClick={this.decrement}>-</button>
                     </div>
                 )
             }
         }
 
         const root = ReactDOM.createRoot(document.querySelector('#root'));
-        root.render(<Counter />);
+        root.render(<Counter number={1}/>);
     </script>
 </body>
 </html>
