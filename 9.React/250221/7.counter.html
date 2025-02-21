@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter 예제로 알아보는 생명주기(생명주기 메서드)</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Counter extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    value: 0,
+                    isLoading: false
+                }
+                this.increment = this.increment.bind(this);
+                this.decrement = this.decrement.bind(this);
+            }
+
+            componentDidMount() {
+
+                this.setState({value: 10})
+                console.log("나는 render 메서드 호출 후 최초 한 번 실행 됨!");
+            }
+
+            componentDidUpdate(prevProps, prevState, snapShot) {
+                console.log("prevState", prevState);
+            }
+
+            setLoading() {
+                this.setState({
+                    isLoading: true
+                })
+            }
+
+            increment() {
+                this.setLoading();
+                setTimeout(() => {
+                    this.setState({
+                        value: this.state.value + 1,
+                        isLoading: false
+                    })
+                }, 1000)
+            }
+
+            decrement() {
+                this.setLoading();
+                setTimeout(() => {
+                    this.setState({
+                        value: this.state.value - 1,
+                        isLoading: false
+                    })
+                }, 1000)
+            }
+
+            render() {
+                if (this.state.isLoading) return <h1>로딩 중...</h1>
+                return (
+                    <div>
+                        <p>Counter : {this.state.value}</p>
+                        <button onClick={this.increment}>+</button>
+                        <button onClick={this.decrement}>-</button>
+                    </div>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector('#root'));
+        root.render(<Counter />);
+    </script>
+</body>
+</html>
