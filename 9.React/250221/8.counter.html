@@ -28,9 +28,6 @@
             }
 
             componentDidUpdate(prevProps, prevState, snapShot) {
-                console.log("prevState", prevState);
-                // 로딩이 끝났을 때 실행 => prevState 즉 이전 상태를 파악
-                // 값을 증가 및 감소 시킬거임.
                 if (prevState.isLoading && !this.state.isLoading) {
                     if(prevState.action === "increment") {
                         this.setState({ value: prevState.value + 1});
@@ -50,15 +47,17 @@
             }
 
             render() {
-                if (this.state.isLoading) return <h1>로딩 중...</h1>
+                console.log("render() 실행됨!");
+                if (this.state.isLoading) return <h1>로딩 중...</h1>;
                 return (
                     <div>
                         <p>Counter : {this.state.value}</p>
                         <button onClick={() => this.setLoading("increment")}>+</button>
                         <button onClick={() => this.setLoading("decrement")}>-</button>
                     </div>
-                )
+                );
             }
+
         }
 
         const root = ReactDOM.createRoot(document.querySelector('#root'));
