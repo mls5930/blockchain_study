@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Square extends React.Component {}
+      class Board extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <div className="board-row">
+                여기에 스퀘어 즉, 각 하나하나마다의 네모 버튼을 그릴거임. 
+              </div>
+              <div className="board-row">
+
+              </div>
+              <div className="board-row">
+
+              </div>
+            </div>
+          )
+        }
+      }
+      class Game extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            // fill: 배열의 인덱스 범위 내에 있는 모든 요소를 정적값으로 => null로 채우겠다.
+            // [null, null, null, null, null, null, null, null, null]
+            squares: Array(9).fill(null), // 9칸을 비어있는 상태(null)로 초기화
+            xIsNext: true // x가 먼저 시작
+          }
+        }
+
+        render() {
+          return (
+            <div className="game">
+              <h1>Tic-Tac-Toe</h1>
+              <Board squares={this.state.squares}/>  
+            </div>
+          )
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Game />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // squares: [string, string, null....등등] 
+      function calculrateWinner(squares) {
+        const lines = [
+          [0,1,2], // 가로
+          [3,4,5], // 가로
+          [6,7,8], // 가로
+          [0,3,6], // 세로
+          [1,4,7], // 세로
+          [2,5,8], // 세로
+          [0,4,8], // 대각선 => 얘죠?
+          [2,4,6] // 대각선
+        ]
+        /*
+          squares = [
+            "X", "O", "O"
+            "O", "X", "O"
+            "O", "X", "X"
+          ]
+        */
+        for(let i = 0; i < lines.length; i++) {
+          // 0, 4, 8
+          const [a, b, c] = lines[6];
+          if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            return squares[a]; // 승리한 기호("X" 또는 "O")를 반환
+          } 
+        }
+        // 위의 조건에 만족하지 않으면 그냥 게임 속행
+        return null;
+      }
+
+      class Square extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return (
+            <button className="square" onClick={this.props.onClick}>
+              {this.props.value}  
+            </button>
+          )
+        }
+      }
+
+      class Board extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            // fill: 배열의 인덱스 범위 내에 있는 모든 요소를 정적값으로 => null로 채우겠다.
+            // ["X", "O", null, null, null, null, null, null, null]
+            squares: Array(9).fill(null), // 9칸을 비어있는 상태(null)로 초기화
+            xIsNext: true // x가 먼저 시작
+          }
+        }
+
+        // 클릭했을 때, 이벤트 핸들러 작성
+        // i: 0 | 1 | 2.... | 8
+        handleClick(i) {
+          // 클릭했을 때, "X" 또는 "O" 표시 그리고 턴 변경
+          const squares = this.state.squares.slice(); // 원본 배열 복사 후 새로운 배열 생성
+          // ["X", null, null, null, null, null, null, null, null]
+          if(calculrateWinner(squares) || squares[i]) return;
+          // 위는 이미 승자가 구해졌거나, 이미 클릭된 칸이면 무시
+          squares[i] = this.state.xIsNext ? "X" : "O"; // X 또는 O 표시
+
+          this.setState({
+            squares: squares,
+            xIsNext: !this.state.xIsNext // 턴 변경
+          })
+        }
+
+        // ["X", "O", null, null, null, null, null, null, null]
+        renderSquare(i) {
+          return (
+            <Square value={this.state.squares[i]} onClick={this.handleClick(i)}/>
+          )
+        }
+        // 1. onClick={this.handleClick(i)} 와 onClick={() => this.handleClick(i)}의 차이점
+        render() {
+          // winner: "X" | "O" | null
+          const winner = calculrateWinner(this.state.squares);
+          // 위의 winner값이 존재하면 승자 표시 ("X" 또는 "O")
+          // 위의 winner값이 null이면 게임 속행 및 다음 플레이어가 누군지 알려줌
+          const status = winner ? `승자: ${winner}` : `다음 플레이어: ${this.state.xIsNext ? "X" : "O"}`
+          return (
+            <div>
+              <div>{status}</div>
+              <div className="board-row">
+                {this.renderSquare(0)}
+                {this.renderSquare(1)}
+                {this.renderSquare(2)}
+              </div>
+              <div className="board-row">
+                {this.renderSquare(3)}
+                {this.renderSquare(4)}
+                {this.renderSquare(5)}
+              </div>
+              <div className="board-row">
+                {this.renderSquare(6)}
+                {this.renderSquare(7)}
+                {this.renderSquare(8)}
+              </div>
+            </div>
+          )
+        }
+      }
+      class Game extends React.Component {
+        constructor() {
+          super();
+        }
+
+        render() {
+          return (
+            <div className="game">
+              <h1>Tic-Tac-Toe</h1>
+              <Board />  
+              게임 히스토리 구현
+            </div>
+          )
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Game />);
+    </script>
+  </body>
+</html>
+
+<!-- 
+  이제 구현해야 할 것
+
+  1. 게임 승리(게임 승리후 버튼 클릭 금지까지 포함) 함수
+  calculateWinner => 승리한 사람은 누구?
+  2. 게임 승리 함수는 누를 때마다 발동되어야 함!
+  3. 최종적으로 게임 승리한 플레이어 반환 => X 또는 O
+  4. 누구도 이기지 못했다면 null 반환
+
+  다음 구현해야 할 것
+
+  승자가 구해졌으면, 클릭이 되지 말아야 함.
+
+  그러면, 승자가 구해지는 때, => calculrateWinner(squares)
+
+  다음 구현해야 할 것
+
+  무승부, 게임 히스토리 구현
+-->

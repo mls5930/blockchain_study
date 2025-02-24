@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리액트는 단방향!</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Child extends React.Component {
+            constructor() {
+                super();
+              
+            }
+
+            render() {
+                return (
+                    <div>{this.props.나는부모상태값}</div>
+                )
+            }
+        }
+        
+        class Parent extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    나는부모상태값: 0
+                }
+            }
+            // 나는 자식의 상태를 알 수 있음?
+            // 리액트에서는 자식이 상태를 가지고 있으면 그거 못가져옴!
+            render() {
+                return (
+                    <Child value={this.state.나는부모상태값}/>
+                )
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(<Parent/>)
+    </script>
+</body>
+</html>
+
+<!-- 
+    문제 하나 내보자
+
+    위의 코드가 실행될 때 오류가 발생하는 이유를 설명하세요.
+
+    심화 문제
+
+    위의 코드에서 부모가 자식의 상태를 가져오려면?
+
+-->
+
+
+
+
+
+
+
+
+<!-- 
+    답은 부모가 state(상태)를 관리하고, 자식은 props로 값을 받아야 함.
+-->

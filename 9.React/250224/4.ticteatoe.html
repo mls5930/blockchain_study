@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Square extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return (
+            <button className="square" onClick={this.props.onClick}>
+              {this.props.value}  
+            </button>
+          )
+        }
+      }
+      
+      class Board extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            // fill: 배열의 인덱스 범위 내에 있는 모든 요소를 정적값으로 => null로 채우겠다.
+            // ["X", "O", null, null, null, null, null, null, null]
+            squares: Array(9).fill(null), // 9칸을 비어있는 상태(null)로 초기화
+            xIsNext: true // x가 먼저 시작
+          }
+        }
+
+        // 클릭했을 때, 이벤트 핸들러 작성
+        // i: 0 | 1 | 2.... | 8
+        handleClick(i) {
+          // 클릭했을 때, "X" 또는 "O" 표시 그리고 턴 변경
+          const squares = this.state.squares.slice(); // 원본 배열 복사 후 새로운 배열 생성
+          // ["X", null, null, null, null, null, null, null, null]
+          if(squares[i]) return; // 이미 클릭된 칸이면 무시
+          squares[i] = this.state.xIsNext ? "X" : "O"; // X 또는 O 표시
+
+          this.setState({
+            squares: squares,
+            xIsNext: !this.state.xIsNext // 턴 변경
+          })
+        }
+
+        // ["X", "O", null, null, null, null, null, null, null]
+        renderSquare(i) {
+          return (
+            <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)}/>
+          )
+        }
+
+        render() {
+          return (
+            <div>
+              <div className="board-row">
+                {this.renderSquare(0)}
+                {this.renderSquare(1)}
+                {this.renderSquare(2)}
+              </div>
+              <div className="board-row">
+                {this.renderSquare(3)}
+                {this.renderSquare(4)}
+                {this.renderSquare(5)}
+              </div>
+              <div className="board-row">
+                {this.renderSquare(6)}
+                {this.renderSquare(7)}
+                {this.renderSquare(8)}
+              </div>
+            </div>
+          )
+        }
+      }
+      class Game extends React.Component {
+        constructor() {
+          super();
+        }
+
+        render() {
+          return (
+            <div className="game">
+              <h1>Tic-Tac-Toe</h1>
+              <Board />  
+            </div>
+          )
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Game />);
+    </script>
+  </body>
+</html>

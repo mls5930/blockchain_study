@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리액트는 단방향!</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Child extends React.Component {
+            render() {
+                return (
+                    <button onClick={this.props.showAlert}>클릭</button>
+                );
+            }
+        }
+
+        class Parent extends React.Component {
+            constructor() {
+                super();
+            }
+            
+            showAlert() {
+                alert("Clicked!");
+            }
+
+            render() {
+                return <Child showAlert={() => this.showAlert()}/>
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(<Parent/>)
+    </script>
+</body>
+</html>
+
+<!-- 
+    문제 하나 더 내보자
+
+    다음 코드에서 버튼을 클릭하면 아무런 변화가 발생하지 않는 이유를 설명하세요.
+    그리고 제대로 동작하도록 수정하세요.
+
+    심화 문제
+
+    버튼을 클릭하면 부모에게 숫자를 전달하여 부모의 상태를 업데이트하도록 수정하세요.
+
+-->
+
+
+
+
+
+
+
+
+<!-- 
+    답은 부모가 state(상태)를 관리하고, 자식은 props로 값을 받아야 함.
+-->
