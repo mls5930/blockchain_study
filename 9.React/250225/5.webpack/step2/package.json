@@ -1,0 +1,18 @@
+{
+  "name": "step2",
+  "version": "1.0.0",
+  "description": "Wepback의 `Loaders`는 다양한 유형의 파일을 Javascript 모듈처럼 사용할 수 있도록 도와줌.  \r 이 예제에서는 CSS 파일을 Webpack을 통해 번들링하는 방법을 알아보겠슴.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  }
+}
