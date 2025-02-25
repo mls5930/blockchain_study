@@ -7,7 +7,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/, // 모든 .js 파일에 대해
+                test: /\.(js|jsx)$/, // 모든 .js 또는 .jsx 파일에 대해
                 exclude: /node_modules/,
                 use: ["babel-loader"] // 바벨 적용
             }
