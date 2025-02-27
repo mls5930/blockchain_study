@@ -1,47 +1,43 @@
-const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    name: "styled-components_v1",
+    name: "Styled-Component",
     mode: "development",
-    resolve: {
-        extensions: [".js", ".jsx"],
-    },
     entry: "./src/index.jsx",
+    resolve: {
+        extensions: ['.js' ,'.jsx']
+    },
     module: {
         rules: [
             {
-                test: /\.jsx?/,
-                loader: "babel-loader",
+                test: /\.jsx/,
+                loader: 'babel-loader',
                 options: {
-                    presets: ["@babel/preset-env", "@babel/preset-react"],
-                },
+                    presets: ["@babel/preset-env", "@babel/preset-react"]
+                }
             },
-            {
-                test: /\.css/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
-            },
-        ],
+        ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./public/index.html",
-            filename: "index.html",
+            filename: "index.html"
         }),
-        new MiniCssExtractPlugin({ filename: "bundle.css" }),
+        new MiniCssExtractPlugin({filename : 'bundle.css'})
     ],
     output: {
-        filename: "bundle.js",
         path: path.join(__dirname, "dist"),
+        filename: "bundle.js"
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, "dist"),
+            directory: path.join(__dirname, "dist")
         },
         compress: true,
         port: 3000,
         hot: true,
-        historyApiFallback: true,
-    },
+        historyApiFallback: true
+    }
 }

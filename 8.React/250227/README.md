@@ -1,226 +1,88 @@
-## 리액트 환경 구성
+## 저번 수업은 뭐했을까?
 
-어제 했던것처럼 똑같은 환경
+- **React 환경 구성**
+- 함수형 컴포넌트를 이용해 간단한 **카운터 예제**를 만들며, **React Hooks**의 기초(`useState`)를 체험합니다.  
+- **Webpack Dev Server**로 자동 리프레시(Hot Reloading) 하는 방법을 배웁니다.  
 
-### 관련 패키지 설정
+## 저번 수업의 핵심
 
-```sh
-npm init -y
-npm install -D webpack webpack-cli @babel/core @babel/preset-env @babel/preset-react
-npm install -D webpack-dev-server html-webpack-plugin babel-loader react react-dom
-```
+즉, “리액트로 빠르게 앱을 개발할 수 있는 환경”을 구축하고  
+클래스형 컴포넌트가 아닌, 함수형 컴포넌트를 기준으로 “기초 컴포넌트, 상태 관리”를 실습해 볼 계획
 
-### 웹팩 초기 설정
+1. **프로젝트 구조와 빌드 도구**  
+2. **Webpack Dev Server로 빠른 개발**  
+3. **함수형 컴포넌트 & Hooks**  
+  
+## 저번 수업의 목차
 
-```js
-const path = require("path")
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+1. **개요 & 목표 설정**  
 
-module.exports = {
-    name: "250226",
-    mode: "development",
-    entry: "./src/index.jsx",
-    resolve: { 
-        extensions: [".js", ".jsx"]
-    },
-    module: {
-        rules: [
-          {
-            test: /\.jsx?/,
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
-          },
-        ],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: "./public/index.html",
-            filename: "index.html"
-        })
-    ],
-    output: {
-    path: path.join(__dirname, "dist"),
-    filename: "bundle.js"
-    },
-    devServer: {
-      static: {
-          directory: path.join(__dirname, "dist")
-      },
-      compress: true,
-      port: 3000,
-      hot: true,
-      historyApiFallback: true
-    },
-}
-```
+   - 리액트 프로젝트를 시작할 때 필요한 것들 
+      - 리액트 디렉토리 구조
 
-여기까지 잘 되는지 테스트하기 위해서 디렉토리 구성해봄
+2. **개발 환경 셋업**  
 
-### Test 파일 생성
+   - `npm init` 및 필요한 라이브러리 설치  
+   - `webpack.config.js`, `.babelrc` 기본 설정
 
-```sh
-250227/
-├── public/
-│   ├── index.html
-├── src/
-│   ├── app.js
-│   ├── index.js
-```
+3. **Webpack Dev Server & Hot Reloading**  
 
-**index.html**
+   - `webpack-dev-server` 설정  
+   - 핫 리로딩 동작 원리
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div id="root"></div>
-    </body>
-</html>
-```
+4. **간단 예제 실습: Counter**  
 
-**src/app.jsx**
+   - 함수형 컴포넌트(`.jsx`)
+   - 생명주기 함수 `useState`, `useEffect`
+   - 버튼 클릭 시 카운트 증가/감소
 
-```jsx
-import React from "react"
+## 오늘 수업은 뭐할까?
 
-const App = () => {
-    return <>Hello World!</>
-}
+`리액트 특성`을 잘 알고 활용해보자
 
-export default App
-```
+### 데이터 흐름 이해하기
 
-**src/index.jsx**
+- children을 활용하여 컴포넌트 구조 파악
 
-```jsx
-import React from "react";
-import ReactDOM from 'react-dom/client';
-import App from './app';
+### React 스타일링 생태계 탐색
 
-const root = ReactDOM.createRoot(document.querySelector('#root'));
-root.render(<App/>)
-```
+리액트에서 스타일을 적용하는 방법은 여러 가지가 있다.  
 
-### ReactDOM 역할 이해하기
+- **전통적인 CSS 관리 방식**  
+  - `css-loader`, `style-loader`를 사용하여 `.css` 파일 적용  
 
-**webpack**
+- **CSS-in-JS 방식**  
+  - `Styled-Components`를 활용한 동적 스타일링  
 
-웹팩을 실행하는 방법은 두 가지가 있음.
+이 두 가지 방식이 어떻게 다른지 비교하면서,  
+각 방법이 **어떤 상황에서 적절한지**.
 
-```sh
-npx webpack
-# 어떻게 동작이 이루어지는지
+## 오늘 수업의 핵심
 
-npx webpack server
-# 위에랑 두가지 차이점을 아는가
+- 리액트의 **핵심 개념(props, children)**을 정확히 이해하고, 이를 기반으로 스타일링 생태계를 탐색한다.
+- 리액트에서 다양한 방식으로 CSS를 적용하는 방법을 학습.
+=> **React에서 데이터가 어떻게 전달되고 관리되는지** 명확히 이해할 수 있다.  
 
-npm run dev
-# 이친구는 왜 되는가 ?
-```
+## 오늘 수업 목차
 
-**package.json**
+1. React 스타일링 생태계 둘러보기  
 
-```json
-"scripts":{
-    "dev": "webpack server",
-}
-```
+   - **기본적인 CSS 관리 방식**  
+     - `css-loader`, `style-loader`를 통한 .css 파일 관리  
+   - **CSS-in-JS 방식**  
+     - Styled-Components를 이용한 동적 스타일링  
+     - 왜 CSS-in-JS가 필요한가? 장단점은?  
 
-여기서는 왜 npx 가 빠져도 되는지.
-알아보면 좋습니다.
+2. 실습 및 적용  
 
-**실행**
+   - 간단한 컴포넌트(`App`, `Main`, `Button`)에 스타일 적용  
+   - `props`로 데이터를 넘기며 컴포넌트 구조 익히기  
+   - Styled-Components 세팅 후, 기존 CSS 로더와 병행 사용 테스트  
 
-```sh
-npm run dev
+### 결론 
 
-> 230303@1.0.0 dev
-> webpack server
+오늘은 **React 기초(컴포넌트, props)**를 복습하며,  
+**CSS 로더 기반 정적 스타일링 → Styled-Components 기반 동적 스타일링**까지 폭넓게 살펴보고 실습. 
 
-<i> [webpack-dev-server] Project is running at:
-<i> [webpack-dev-server] Loopback: http://localhost:3000/
-<i> [webpack-dev-server] On Your Network (IPv4): http://192.168.0.163:3000/
-<i> [webpack-dev-server] Content not from webpack is served from 'C:\Users\pc-007\Documents\block8\7. React\230303\dist' directory
-<i> [webpack-dev-server] 404s will fallback to '/index.html'
-[BABEL] Note: The code generator has deoptimised the styling of C:\Users\pc-007\Documents\block8\7. React\230303\node_modules\react-dom\cjs\react-dom.development.js as it exceeds the max of 500KB.
-asset bundle.js 1.23 MiB [emitted] (name: main)
-asset index.html 378 bytes [emitted]
-runtime modules 27.4 KiB 13 modules
-modules by path ./node_modules/ 1.13 MiB
-  modules by path ./node_modules/webpack-dev-server/client/ 60.9 KiB 12 modules
-  modules by path ./node_modules/webpack/hot/*.js 4.62 KiB 4 modules
-  modules by path ./node_modules/html-entities/lib/*.js 115 KiB 4 modules
-  modules by path ./node_modules/react-dom/ 844 KiB 3 modules
-  modules by path ./node_modules/react/ 94.9 KiB 2 modules
-  modules by path ./node_modules/scheduler/ 19.5 KiB 2 modules
-  ./node_modules/ansi-html-community/index.js 4.58 KiB [built] [code generated]
-  ./node_modules/events/events.js 14.3 KiB [built] [code generated]
-modules by path ./src/*.jsx 373 bytes
-  ./src/index.jsx 216 bytes [built] [code generated]
-  ./src/app.jsx 157 bytes [built] [code generated]
-styled-components_v1 (webpack 5.75.0) compiled successfully in 7206 ms
-```
 
-이러한 명령어가 뜬다면 `http://localhost:3000` 으로 접속해보기.
-`Hello world` 가 나온다면 성공적
-
-### Styled-component
-
-Styled-Components 설정하기전에 CSS-loader를 설정하도록 하겠습니다.
-
-- css-loader
-
-style-loader 대신 mini-css-extract-plugin 설치할거임
-
-**관련 패키지 설치**
-
-```sh
-npm install -D  mini-css-extract-plugin css-loader
-```
-
-webpack 관련 plugin, loader를 설치했으면, `webpack.config.js` 설정파일 수정
-
-**추가된 설정**
-
-`webpack.config.js`
-
-```js
-    module: {
-        rules: [
-            {
-                test: /\.jsx?/,
-                loader: "babel-loader",
-                options: {
-                    presets: ["@babel/preset-env", "@babel/preset-react"],
-                },
-            },
-            {
-                test: /\.css/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
-            },
-        ],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: "index.html",
-            filename: "index.html",
-        }),
-        new MiniCssExtractPlugin({ filename: "bundle.css" }),
-    ],
-```
-
-**실행**
-
-```sh
-npm run dev
-```
-
-`http://localhost:3000` 접속해보기
+### 
