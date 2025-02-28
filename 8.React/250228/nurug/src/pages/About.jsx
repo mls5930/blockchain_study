@@ -1,3 +1,5 @@
 export const About = () => {
-    return <>About 페이지 입니다.</>
+    return (
+        <div>나는 About</div>
+    )
 }

@@ -1,340 +1,103 @@
-# 리액트 프레임워크 환경 설정
-
-```sh
-npx create-react-app nurug
-```
-
-nurug 부분은 프로젝트 이름이라고 봐도 됨
-
-## 디렉토리 구조
-
-```sh
-nurug
-├─ node_modules
-├─ public
-│  ├─ favicon.ico
-│  ├─ index.html
-│  ├─ logo192.png
-│  ├─ logo512.png
-│  ├─ manifest.json
-│  └─ robots.txt
-└─ src
-│   ├─ App.css
-│   ├─ App.js
-│   ├─ App.test.js
-│   ├─ index.css
-│   ├─ index.js
-│   ├─ logo.svg
-│   ├─ reportWebVitals.js
-│   └─ setupTests.js
-├─ package-lock.json
-├─ package.json
-└─ README_md
-```
+## 저번 수업은 뭐했을까?
 
-와우 손나 많음  
-리액트의 대표적인 프레임워크.
+`리액트 특성`을 잘 알고 활용해보자
 
-`CRA` <-- webpack & babel 이 설치 및 설정되어있음.
+### 데이터 흐름 이해하기
 
+- children을 활용하여 컴포넌트 구조 파악
 
-### src/App.jsx
-
-```jsx
-function App() {
-  return (
-    <div className="App">
-      나는 App 컴포넌트
-    </div>
-  );
-}
+### React 스타일링 생태계 탐색
 
-export default App;
-```
+리액트에서 스타일을 적용하는 방법은 여러 가지가 있다.  
 
-## styled-components  설치
+- **전통적인 CSS 관리 방식**  
+  - `css-loader`, `style-loader`를 사용하여 `.css` 파일 적용  
 
-CSS는 CSS-in-JS인 스타일드 컴포넌츠 설치
+- **CSS-in-JS 방식**  
+  - `Styled-Components`를 활용한 동적 스타일링  
 
-```sh
-cd [프로젝트명]
-npm install styled-components
-```
+이 두 가지 방식이 어떻게 다른지 비교하면서,  
+각 방법이 **어떤 상황에서 적절한지**.
 
-CSS 
+## 저번 수업의 핵심
 
-styled-components 
+- 리액트의 **핵심 개념(props, children)**을 정확히 이해하고, 이를 기반으로 스타일링 생태계를 탐색한다.
+- 리액트에서 다양한 방식으로 CSS를 적용하는 방법을 학습.
+=> **React에서 데이터가 어떻게 전달되고 관리되는지** 명확히 이해할 수 있다.  
 
-```css
-* {
-    margin:0;
-    padding:0;
-}
+## 저번 수업 목차
 
-ul ,li {
-    list-style:none;
-}
-```
+1. React 스타일링 생태계 둘러보기  
 
-에 대한 내용을 `index.css` 내용을 고쳐서 사용함.
+   - **기본적인 CSS 관리 방식**  
+     - `css-loader`, `style-loader`를 통한 .css 파일 관리  
+   - **CSS-in-JS 방식**  
+     - Styled-Components를 이용한 동적 스타일링  
+     - 왜 CSS-in-JS가 필요한가? 장단점은?  
 
-## 디렉토리 구조 설명
+2. 실습 및 적용  
 
-- components: 조그마한 컴포넌트에 대한 내용을 만듦
-=> button, input, checkbox, radiobox
-- hooks: 커스텀 훅
-- layouts: header, footer, siderbar...
-- pages: 메인, 과정소개
+   - 간단한 컴포넌트(`App`, `Main`, `Button`)에 스타일 적용  
+   - `props`로 데이터를 넘기며 컴포넌트 구조 익히기  
+   - Styled-Components 세팅 후, 기존 CSS 로더와 병행 사용 테스트  
 
-## Header 컴포넌트 만들거임
+### 결론 
 
-```sh
-nurug
-├─ src
-│   ├─ components
-│   ├─ layouts
-│   ├─ pages
-│   └─ hooks
-```
+오늘은 **React 기초(컴포넌트, props)**를 복습하며,  
+**CSS 로더 기반 정적 스타일링 → Styled-Components 기반 동적 스타일링**까지 폭넓게 살펴보고 실습. 
 
-### header는 어디 디렉토리에?
+## 오늘 수업은 뭐할까?
 
-누룩으로 봅시다.  
-헤더에 뭘 넣을지 구상은 해봄?  
+리액트 프로젝트 `누룩` 초기 세팅
 
-혜성님한테 물어봄  
-헤더에 뭘 넣으면 좋을 것 같아?
+### 리액트 프로젝트 구조화
 
-레이아웃
+- React 프로젝트를 생성하고 폴더 구조를 이해.
+- **react-router-dom**을 활용하여 페이지 간 이동을 설정.
+- styled-components를 활용하여 공통 레이아웃을 설계.
+- hooks를 활용한 사용자 입력 관리(`useInput` Hook) 컴포넌트 운용
 
-큼지큼지막한 것들 생각
+### 위의 처음보는 키워드
 
-- header
-- body
-- footer
-- sidebar
+- react-router-dom
+- hooks
 
-등등
+앞에서 설명할거임!
 
-### layout/header
+### 오늘 수업의 핵심
 
-```jsx
-import React from "react";
+- React 프로젝트를 체계적으로 구조화하고, 유지보수하기 쉬운 디렉토리 구성을 만든다.
+- 라우팅을 통해 페이지 전환을 구현하고, Outlet을 활용한 공통 레이아웃 적용법을 익힌다.
+- Styled-Components를 이용한 디자인 시스템을 적용해 재사용 가능한 UI를 설계한다.
+- 커스텀 훅(useInput)을 만들어 입력값을 효율적으로 관리하는 방법을 학습한다.
 
-export const Header = () => {
-    return (
-        <div>나는 헤더</div>
-    )
-}
-```
+## 오늘 수업의 목차
 
-### src/App.jsx
+1. **React 프로젝트 초기 설정**  
+   - `create-react-app`으로 프로젝트 생성  
+   - 폴더 구조 및 역할 정리  
 
-```jsx
-import { Header } from "./layout/Header"
+2. **라우팅 적용 (`react-router-dom`)**  
+   - `BrowserRouter`, `Routes`, `Route`, `Outlet` 활용  
+   - `NavLink`를 사용하여 내비게이션 구성  
+   
+3. **공통 레이아웃 설계 (`Header`, `Footer`, `BodyWrapper`)**  
+   - `styled-components`를 이용한 스타일 관리  
+   - `Layout` 컴포넌트에서 `Outlet`을 사용하여 공통 레이아웃 적용  
+   
+4. **커스텀 훅(`useInput`) 실습**  
+   - `useState`를 활용한 사용자 입력값 관리  
+   - 재사용 가능한 `useInput` 훅을 만들고 `Form` 컴포넌트에 적용  
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-    </div>
-  );
-}
+### 결론
 
-export default App;
-```
+오늘 수업을 통해 **React 프로젝트의 구조화, 라우팅, 공통 레이아웃 설계, 커스텀 훅 활용법**을 익히며, 유지보수가 쉬운 프로젝트를 설계하는 방법을 실습.
 
-## 헤더 디자인 요소 설계
+`전역 상태가 왜 필요한지 간접 체험`
 
-뭐가 보여야 할까?
+## Hook
 
-- 로고
-- 네비게이션
-    - Home(Main)
-    - About
-    - contact
+App.jsx에 상태는 웬만해서 상태는 가지면 안됌.
+그래서, 커스텀 훅을 만들어서 필요할 때마다 사용하는 것임.  
 
-일단 `감싸야` 할 것이 필요.
-
-`Wrapper`
-
-components/header 만들게요
-
-### components/header/headerWrapper.jsx
-
-```jsx
-import styled from "styled-components"
-
-export const HeaderWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #333;
-    color: #fff;
-`
-```
-
-어디에 적용시켜야 할까?
-
-layout/header
-
-### layout/header/Header.jsx
-
-```jsx
-import React from "react";
-import { HeaderWrapper } from "../components/header/HeaderWrapper.styled"
-
-export const Header = () => {
-    return (
-        <HeaderWrapper>
-            나는 헤더!
-        </HeaderWrapper>
-    )
-}
-```
-
-컴포넌트들 만들어서 각 `페이지` 들을 구성할거임!
-
-1. / => **pages/Home.jsx**
-2. /about => **pages/About.jsx**
-3. /contact => **pages/Contact.jsx**
-
-적어도 컴포넌트 3개는 필요하네?
-
-컴포넌트 만들기전에, 링크부터 구성하자
-
-### layout/Header.jsx
-
-```jsx
-import React from "react";
-import { HeaderWrapper } from "../components/header/HeaderWrapper.styled"
-import { NavLink } from "react-router-dom";
-
-export const Header = () => {
-    return (
-        <HeaderWrapper>
-            <ul>
-                <li>
-                    <NavLink href="/"></NavLink>
-                </li>
-                <li>
-                    <NavLink href="/about"></NavLink>
-                </li>
-                <li>
-                    <NavLink href="/contact"></NavLink>
-                </li>
-            </ul>
-        </HeaderWrapper>
-    )
-}
-```
-
-### NavLink?
-
-이건 무엇인가
-왜 a태그 안사용함?
-
-### pages에 페이지에 링크 때리면 나올 컴포넌트들 각각 만들자
-
-## react-router-dom
-
-```sh
-npm install react-router-dom
-```
-
-## App.jsx
-
-```jsx
-import { Header } from "./layout/Header"
-
-function App() {
-  return (
-    <div className="App">
-      {/* Header 에 관련된 Routes */}
-      {/* Content 에 관련된 Routes */}
-      {/* Footer 에 관련된 Routes */}
-    </div>
-  );
-}
-
-export default App;
-```
-
-라우터로 감쌉니다.
-
-
-```jsx
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-```
-
-- BrowserRouter: 
-- Routes: 
-- Route: 
-
-헤더만 적용해보자
-
-```jsx
-import { Header } from "./layout/Header"
-import { BrowserRouter, Routes, Route} from "react-router-dom"
-
-function App() {
-  return (
-    <BrowserRouter className="App">
-      
-      {/* Header 에 관련된 Routes */}
-      <Routes>
-        <Route path="*" element={<Header/>}/>
-      </Routes>
-      {/* Content 에 관련된 Routes */}
-      {/* Footer 에 관련된 Routes */}
-    </BrowserRouter>
-  );
-}
-
-export default App;
-```
-
-- path: URL 경로로 GET(땅) 요청했을 때
-- element: 해당 엘리먼트(컴포넌트)가 나와라!
-
-## Content에 관련된 라우트 설정
-
-### / (Home)
-
-```jsx
-function App() {
-  return (
-    <BrowserRouter className="App">
-      
-      {/* Header 에 관련된 Routes */}
-      <Routes>
-        <Route path="*" element={<Header/>}/>
-      </Routes>
-      {/* Content 에 관련된 Routes */}
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-      </Routes>
-      {/* Footer 에 관련된 Routes */}
-    </BrowserRouter>
-  );
-}
-
-```
-
-### /about
-
-```jsx
-    <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About />} />
-    </Routes>
-```
-
-GET /about 한 번 요청 때려보자
-
-## 핵심
-
-전역 상태가 왜 필요한가?에 대한 간접적인 체험
-
-## index.css
+useState를 훅에다가 만들고 필요할 때 사용하자
