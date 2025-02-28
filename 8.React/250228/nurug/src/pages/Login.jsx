@@ -10,7 +10,7 @@ import { useInput } from "../hooks/useInput"
         children
     }
 */
-export const Login = (props) => {
+export const Login = () => {
     const userid = useInput("");
     const password = useInput("");
     const navigate = useNavigate();
