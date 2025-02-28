@@ -10,7 +10,7 @@ export const HeaderWrapper = styled.div`
         align-items: center;
     }
 
-    ul > li > a {
+    /* ul > li > a {
         color: yellow;
-    }
+    } */
 ` 

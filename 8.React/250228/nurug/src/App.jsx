@@ -1,6 +1,6 @@
 import { Header } from "./layouts/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { About, Home, Contact, Login } from "./pages"
+import { About, Home, Contact, Login, CustomHookTest, CustomHookTest2 } from "./pages"
 import "./App.css"
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact/>}/>
-          <Route path="/login" element={<Login/>}
-          />
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/customhooktest" element={<CustomHookTest/>}/>
+          <Route path="/customhooktest2" element={<CustomHookTest2/>}/>
         </Routes>
         {/* Footer 에 관련된 Routes */}
       </BrowserRouter>
