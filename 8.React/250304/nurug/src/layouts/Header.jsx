@@ -20,6 +20,12 @@ export const Header = () => {
         <li>
           <StyledNavLink to="/login">Login</StyledNavLink>
         </li>
+        <li>
+          <StyledNavLink to="/counter2">CounterUseMemo2</StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/counter3">CounterUseCallback</StyledNavLink>
+        </li>
       </ul>
     </HeaderWrapper>
   );

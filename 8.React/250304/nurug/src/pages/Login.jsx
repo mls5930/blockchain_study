@@ -1,24 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../contexts/AuthContext";
+import { AuthContext } from "../hooks/contexts/AuthContext";
 
-/*
-    로그인을 하자!
-
-    1. 입력값 입력함
-    2. 버튼 땅 때림
-    3. user값이 있으면 /dashboard 이동 없으면 /login 이동
-*/
 export const Login = () => {
     const navigate = useNavigate();
-    const { setUser } = useAuth(); // 추가함
+    const { setUser } = useContext(AuthContext);
     const [userId, setUserId] = useState("");
     const [userPw, setUserPw] = useState("");
     
     const handleUserId = (e) => {
         setUserId(e.target.value)
     }
-    
     const handleUserPw = (e) => {
         setUserPw(e.target.value)
     }
