@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import { reducer } from "./reducer"
+
 export const AppContext = createContext(null);
 
 const getInit = () => {

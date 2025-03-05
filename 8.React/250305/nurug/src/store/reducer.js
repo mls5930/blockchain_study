@@ -1,4 +1,5 @@
 export const reducer = (state, action) => {
+    
     switch (action.type) {
         case "INCREMENT":
             return {...state, count: state.count + 1}
@@ -6,8 +7,8 @@ export const reducer = (state, action) => {
         case "DECREMENT":
             return {...state, count: state.count - 1}
         case "LOGIN": 
-            return {...state, isLogin: true}
+            return {...state, isLogin: true, userid: action.payload.userid, userpw: action.payload.userpw }
         case "LOGOUT": 
-            return {...state, isLogin: false}
+            return {...state, isLogin: false, userid: "", userpw: ""}
     }
 }
