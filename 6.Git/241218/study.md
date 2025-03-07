@@ -26,6 +26,7 @@ ex => develop에서 HTML 파일 생성 => commit => switch main => git merge dev
 - 제출 방법
 
 1. 저장소 생성
+
    - GitHub에서 새로운 저장소를 생성합니다. 저장소 이름은 `study`로 설정합니다.
 
 2. 브랜치 생성
