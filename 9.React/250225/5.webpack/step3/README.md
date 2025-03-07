@@ -65,11 +65,11 @@ module.exports = {
 
 **설정 설명**
 
-- **`entry`**: Webpack이 번들링을 시작할 JavaScript 파일 (`index.js`).
-- **`output`**: 번들링된 파일(`bundle.js`)을 `dist` 폴더에 저장.
-- **`plugins`**:
-  - `HtmlWebpackPlugin`: `src/index.html`을 템플릿으로 사용하여 자동으로 HTML 파일 생성.
-  - HTML 파일 내부에 Webpack이 생성한 `bundle.js`가 자동으로 포함됨.
+entry: Webpack이 번들링을 시작할 JavaScript 파일 (index.js).
+output: 번들링된 파일(bundle.js)을 dist 폴더에 저장.
+plugins:
+ HtmlWebpackPlugin: src/index.html을 템플릿으로 사용하여 자동으로 HTML 파일 생성.
+ HTML 파일 내부에 Webpack이 생성한 bundle.js가 자동으로 포함됨.
 
 ## 리액트 프로젝트 디렉토리 구성
 

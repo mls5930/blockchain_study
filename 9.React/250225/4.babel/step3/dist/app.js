@@ -3,9 +3,7 @@
 var _react = _interopRequireDefault(require("react"));
 var _reactDom = _interopRequireDefault(require("react-dom"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-// 리액트 설치할거임 그리고 가져올거임
-// const React = require("react");
-// const ReactDOM = require("react-dom");
+
 
 class App extends _react.default.Component {
   render() {
