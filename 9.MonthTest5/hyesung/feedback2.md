@@ -54,9 +54,9 @@ useEffect(() => {
 
 #### **혜성 학생이 보완해야 할 개념**
 
-✅ `useEffect`의 return은 **cleanup 용도**  
-✅ `setState`는 **return하지 않음**  
-✅ 리액트 상태 변경 & 렌더링 흐름 이해  
+`useEffect`의 return은 **cleanup 용도**  
+`setState`는 **return하지 않음**  
+리액트 상태 변경 & 렌더링 흐름 이해  
  
 ## useContext를 잘못 작성했다는 느낌
 
