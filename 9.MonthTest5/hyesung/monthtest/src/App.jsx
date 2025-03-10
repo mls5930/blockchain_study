@@ -1,16 +1,8 @@
 import './App.css';
-import CounteProvider from './store/CountProvider'
-import Counter from './pages/counter'
-import Countertext from './pages/countText'
-import Time from "./pages/Time"
+import CounteWrapper from './pages/CounteWrapper';
 function App() {
   return (
-    <CounteProvider>
-      <Countertext>
-          <Counter/>
-          <Time/>
-      </Countertext>
-    </CounteProvider>
+      <CounteWrapper/>
   );
 }
 

@@ -1,7 +1,9 @@
 
-import React, {useState,useEffect,useContext,createContext} from "react";
+import React, {useState,useEffect} from "react";
 import styled from "styled-components";
-import axios from "axios"
+import Counter from "./counter"
+import Time  from "./Time"
+import Time  from "./"
 const StyledBox = styled.div`
     padding: 20px 0 ;
     margin: 20px auto;
@@ -13,11 +15,13 @@ const StyledBox = styled.div`
     justify-content: center;
     flex-direction: column;
     text-align: center;
+
+    .counter {
+        display: flex
+    }
     
 `
-const Databox = createContext(null)
-
-export const CounteProvider = ({children}) => {
+export const CounteWrapper = () => {
 
     const [state,setstate] = useState(
         {
@@ -39,15 +43,18 @@ export const CounteProvider = ({children}) => {
             })
         }
        
-    },[state.count])
+    }, [state.count])
 
     return(
         <StyledBox>
-            <Databox.Provider value={{state , setstate}} >
-                {children}
-            </Databox.Provider>
+            <div>
+            <div>count{state.count}</div>
+                <div className="counter">  
+                    <Counter state={state} setstate={setstate}/>
+                    <Time state={state} />
+                </div>
+            </div>
         </StyledBox>
     )
 }
-export const useCounter = () => useContext(Databox)
-export default CounteProvider
+export default CounteWrapper

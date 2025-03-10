@@ -1,8 +1,6 @@
 import React from "react";
-import { useCounter } from "../store/CountProvider";
 import ContentBox from "../component/ContentBox"
- const Counter = () => {
-    const {state,setstate} =useCounter()
+ const Counter = ({state, setstate}) => {
     const enventhandle = (e) =>{
         switch(e){
             case"INCREMENT":
