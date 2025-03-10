@@ -59,9 +59,9 @@ await axios.post("http://localhost:3005/counter", { newValue: newValue });
 8. **이력(Log) 추가 기능  0점**
    - (선택) 특정 시점으로 돌아가기 등 확장 기능 (5점)
    - (선택) 이력 초기화 (5점)
-9. **styled-components를 활용하여 요소를 꾸몄는가? 5점**
-   - 전체 Wrapper 테두리 색은 #9e9e9e (5점)
-   - 오른쪽 로그의 텍스트들 font-size는 24px (5점)
+9. **styled-components를 활용하여 요소를 꾸몄는가? 4점**
+   - 전체 Wrapper 테두리 색은 #9e9e9e (4점)
+   - 오른쪽 로그의 텍스트들 font-size는 24px (6점)
 10. **코드 가독성/문서화  6점**
    - 컴포넌트 파일, 함수, 변수명 등이 직관적이고 체계적인가
 
@@ -141,5 +141,3 @@ app.get("/counter", async (req, res) => {
 ## 학생의견: 주말 숙제로 해올게요
 
 내가 뭐가 되니....그러면
-너무 이쁘다. ㅇㅋ
-
