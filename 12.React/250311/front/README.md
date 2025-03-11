@@ -1,4 +1,14 @@
-## 디렉토리 구조
+# 오늘 할 것
+
+카운터 구현
+
+1. 단순 useState만으로 구현
+2. 전역 환경(useContext)으로 구현
+3. 리듀서 함수 및 dispatch 적용
+
+## 단순 useState만으로 구현
+
+### 디렉토리 구조
 
 ```sh
 front
@@ -29,7 +39,7 @@ front
 
 ```
 
-## 초기 Counter.js
+### 초기 Counter.js
 
 ```jsx
 import { useEffect, useState } from "react"
@@ -72,7 +82,7 @@ export const Counter = () => {
 
 ```
 
-### back/server.js
+#### back/server.js
 
 ```js
 app.get('/counter', async (req, res) => {
@@ -87,7 +97,7 @@ app.get('/counter', async (req, res) => {
 });
 ```
 
-### front/Counter.jsx
+#### front/Counter.jsx
 
 ```jsx
  useEffect(() => {
@@ -101,7 +111,7 @@ app.get('/counter', async (req, res) => {
     }, [])
 ```
 
-### front/Counter.jsx
+#### front/Counter.jsx
 
 ```jsx
    const getHistory = (result) => {
@@ -112,7 +122,7 @@ app.get('/counter', async (req, res) => {
     }
 ```
 
-### front/Counter.jsx
+#### front/Counter.jsx
 
 ```jsx
     <ul>
@@ -124,7 +134,7 @@ app.get('/counter', async (req, res) => {
     </ul>
 ```
 
-### back/server.js
+#### back/server.js
 
 ```jsx
 app.post("/counter", async(req, res) => {
@@ -139,7 +149,7 @@ app.post("/counter", async(req, res) => {
 })
 ```
 
-### front/src/api/counter.js
+#### front/src/api/counter.js
 
 원래의 값
 
@@ -161,7 +171,7 @@ export const postCount = async(newValue) => {
 }
 ```
 
-## 전역 환경(전역 상태) 구현
+## 전역 환경(useContext) 구현
 
 store 디렉토리 생성
 store/index.jsx 생성
@@ -261,7 +271,6 @@ export const RESET = "RESET";
 
 const AppContext = createContext(null);
 ```
-
 
 
 ```jsx
@@ -436,36 +445,4 @@ front
    └─ store
       ├─ counterReducer.js
       └─ index.jsx
-```
-
-## 리덕스 설정
-
-```sh
-npm install redux react-redux
-```
-
-### 디렉토리 구조
-
-```sh
-src
-  ├── store/
-  │   ├── counterReducer.js
-  │   ├── rootReducer.js
-  │   ├── store.js
-  ├── App.js
-  ├── index.js
-
-```
-
-### src/store/rootReducers
-
-```js
-import { combineReducers } from "redux"
-import { countReducer } from "./counterReducer";
-
-const rootReducers = combineReducers({
-    count: countReducer
-})
-
-export default rootReducers
 ```

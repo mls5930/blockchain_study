@@ -13,17 +13,9 @@ export const counterReducer = (state = initialState, action) => {
         case SETDATA:
             return { ...state, ...action.payload };
         case INCREMENT:
-            return { 
-                ...state, 
-                count: state.count + 1, 
-                history: [...state.history, { id: state.history.length + 1, createdAt: new Date().toISOString() }]
-            };
+            return { ...state, ...action.payload };
         case DECREMENT:
-            return { 
-                ...state, 
-                count: state.count - 1, 
-                history: [...state.history, { id: state.history.length + 1, createdAt: new Date().toISOString() }]
-            };
+            return { ...state, ...action.payload };
         case RESET:
             return { ...state, count: 0, history: [] };
         default:
