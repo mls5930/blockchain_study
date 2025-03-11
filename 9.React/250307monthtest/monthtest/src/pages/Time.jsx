@@ -1,17 +1,14 @@
 import React from "react";
-import { useCounter } from "../store/CountProvider";
 import ContentBox from "../component/ContentBox"
- const Time = () => {
-    const {state,setstate} =useCounter()
-    console.log(state);
-    const stateTime = () =>{
-        
-    }
-
+ const Time = ({state}) => {
+    console.log(state.time);
+    
     return(
         <ContentBox>
-            <div>
-                <p>{state.time}</p>
+            <div className="textBox">
+                {!state.time? "로딩중" : state.time.map((value, index) =>{
+                    return <p key={index}>{value}</p>
+                })}
             </div>
         </ContentBox>
     )
