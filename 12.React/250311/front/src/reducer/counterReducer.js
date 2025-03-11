@@ -1,12 +1,14 @@
 import {INCREMENT, DECREMENT} from "../pages/Counter"
 
-export const countReducer = (state, action) => {
+export const countReducer = (count, action) => {
     switch (action.type) {
         case INCREMENT:
-            return state + 1;
+            return count + 1;
         case DECREMENT:
-            return state - 1;
+            return count - 1;
+        case DECREMENT:
+            return count - 1;
         default:
-            return state; 
+            return count; 
     }
 };
