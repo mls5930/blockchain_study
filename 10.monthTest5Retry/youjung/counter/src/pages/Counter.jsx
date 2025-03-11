@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledButton  } from "../styled";
 import { StyledWrapper, StyledLeftWrapper, StyledRightWrapper } from "../layouts";
 import { getCounter, postCounter } from "../api/counter"
