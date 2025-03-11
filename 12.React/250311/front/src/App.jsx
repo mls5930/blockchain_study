@@ -1,9 +1,12 @@
 import './App.css';
 import { Counter } from "./pages"
+import { AppProvider } from "./store"
 
 function App() {
   return (
-    <Counter/>
+    <AppProvider>
+      <Counter/>
+    </AppProvider>
   );
 }
 

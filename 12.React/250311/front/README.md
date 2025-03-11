@@ -38,6 +38,7 @@ import { getCount, postCount } from "../api"
 
 export const INCREMENT = "INCREMENT"
 export const DECREMENT = "DECREMENT"
+export const RESET = "RESET"
 
 export const Counter = () => {
     const [count, setCount] = useState(0);
@@ -161,3 +162,310 @@ export const postCount = async(newValue) => {
 ```
 
 ## 전역 환경(전역 상태) 구현
+
+store 디렉토리 생성
+store/index.jsx 생성
+
+```jsx
+import React, { createContext } from "react"
+
+const AppContext = createContext(null);
+```
+
+```jsx
+export const AppProvider = ({children}) => {
+
+    const [count, setCount] = useState(0);
+    const [history, setHistory] = useState([]);
+
+    return (
+        <AppContext.Provider value={{
+            count,
+            setCount,
+            history,
+            setHistory
+        }}>
+            {children}
+        </AppContext.Provider>
+    )
+}
+```
+
+```jsx
+export const useCounter = () => useContext(AppContext);
+```
+
+### src/App.jsx
+
+```jsx
+import './App.css';
+import { Counter } from "./pages"
+import { AppProvider } from "./store"
+
+
+function App() {
+  return (
+    <AppProvider>
+      <Counter/>
+    </AppProvider>
+  );
+}
+
+export default App;
+```
+
+### src/pages/Counter.jsx
+
+```jsx
+export const Counter = () => {
+
+    const {            
+        count,
+        setCount,
+        history,
+        setHistory 
+    } = useCounter();
+}
+```
+
+## 리듀서 구현
+
+### 리듀서 위치 변경
+
+`src/reducer/counterReducer.js` => `src/store/counterReducer.js`
+
+### useReducer
+
+`src/store/index.jsx`
+
+```jsx
+
+export const AppProvider = ({children}) => {
+
+    const init = {
+        count: 0,
+        history: []
+    }
+
+    useReducer(countReducer, init)
+}
+```
+
+### src/store/index.jsx
+
+```jsx
+export const SETDATA = "SETDATA";
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DECREMENT";
+export const RESET = "RESET";
+
+const AppContext = createContext(null);
+```
+
+
+
+```jsx
+    const [state, dispatch] = useReducer(countReducer, { count: 0, history: [] });
+    const [isInitialized, setIsInitialized] = useState(false);
+```
+
+```jsx
+
+    const getHistory = (result) => {
+        return result.map((value) => ({
+            id: value.id,
+            createdAt: value.createdAt
+        }));
+    };
+
+    const getInit = async () => {
+        const result = await getCount();
+        const history = getHistory(result);
+        return { count: result[0].value, history };
+    };
+```
+
+```jsx
+useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getInit();
+                dispatch({ type: SETDATA, payload: data });
+                setIsInitialized(true);
+            } catch (error) {
+                console.error("초기 데이터 로딩 실패", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleDispatch = async (action) => {
+        try {
+            const value = await postCount(action.payload);
+            const result = await getCount();
+            const history = getHistory(result);
+            const payload = { count:value, history };
+            dispatch({ type: action.type, payload });
+        } catch (error) {
+            console.error("Counter 기능 실패...", error);
+        }
+    };
+```
+
+전체코드
+
+### src/store/index.jsx
+
+```jsx
+import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { countReducer } from "./counterReducer";
+import { getCount, postCount } from "../api";
+
+export const SETDATA = "SETDATA";
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DECREMENT";
+export const RESET = "RESET";
+
+const AppContext = createContext(null);
+
+export const AppProvider = ({ children }) => {
+
+    const getHistory = (result) => {
+        return result.map((value) => ({
+            id: value.id,
+            createdAt: value.createdAt
+        }));
+    };
+
+    const getInit = async () => {
+        const result = await getCount();
+        const history = getHistory(result);
+        return { count: result[0].value, history };
+    };
+
+    const [state, dispatch] = useReducer(countReducer, { count: 0, history: [] });
+    const [isInitialized, setIsInitialized] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getInit();
+                dispatch({ type: SETDATA, payload: data });
+                setIsInitialized(true);
+            } catch (error) {
+                console.error("초기 데이터 로딩 실패", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleDispatch = async (action) => {
+        try {
+            const value = await postCount(action.payload);
+            const result = await getCount();
+            const history = getHistory(result);
+            const payload = { count:value, history };
+            dispatch({ type: action.type, payload });
+        } catch (error) {
+            console.error("Counter 기능 실패...", error);
+        }
+    };
+
+    if (!isInitialized) {
+        return <div>Loading...</div>; // 초기 로딩 화면 표시
+    }
+
+    return (
+        <AppContext.Provider value={{ state, handleDispatch }}>
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export const useCounter = () => useContext(AppContext);
+```
+
+### src/pages/Counter.jsx
+
+```jsx
+import React from "react"
+import { DECREMENT, INCREMENT, useCounter } from "../store"
+
+export const Counter = () => {
+
+    const { state, handleDispatch } = useCounter();
+    if(state.history.length <= 0) return <>값이 없음!</>
+
+    return (
+        <>
+            {state.count}
+            <button onClick={() => handleDispatch({type: INCREMENT, payload: state.count + 1})}>+</button>
+            <button onClick={() => handleDispatch({type: DECREMENT, payload: state.count - 1})}>-</button>
+            <ul>
+                {state.history.map((value) => (
+                   <React.Fragment key={value.id}>
+                        <li>{value.createdAt}</li>
+                   </React.Fragment>
+                ))}
+            </ul>
+        </>
+    )
+}
+```
+
+## 전체 디렉토리 구조
+
+```sh
+front
+├─ README.md
+├─ package-lock.json
+├─ package.json
+├─ public
+└─ src
+   ├─ App.css
+   ├─ App.jsx
+   ├─ index.css
+   ├─ index.jsx
+   ├─ api
+   │  ├─ axios.js
+   │  ├─ counter.js
+   │  └─ index.js
+   ├─ pages
+   │  ├─ Counter.jsx
+   │  └─ index.jsx
+   └─ store
+      ├─ counterReducer.js
+      └─ index.jsx
+```
+
+## 리덕스 설정
+
+```sh
+npm install redux react-redux
+```
+
+### 디렉토리 구조
+
+```sh
+src
+  ├── store/
+  │   ├── counterReducer.js
+  │   ├── rootReducer.js
+  │   ├── store.js
+  ├── App.js
+  ├── index.js
+
+```
+
+### src/store/rootReducers
+
+```js
+import { combineReducers } from "redux"
+import { countReducer } from "./counterReducer";
+
+const rootReducers = combineReducers({
+    count: countReducer
+})
+
+export default rootReducers
+```
