@@ -3,7 +3,7 @@
 // 1. 초기값 설정 (useState)
 // const [state, setState] = useState({ count : 0, history: [] })
 
- let state = { count: 0 , history: [] }
+let state = { count: 0 , history: [] }
 
 // 리듀서 함수 정의
 const counterReducer = (state, action) => {
@@ -29,7 +29,7 @@ const dispatch = (action) => {
     // setState({count: state.count + 1})
     //state = counterReducer(state, action);
     const newState = counterReducer(state, action);
-    state = newState
+    state = newState;
 }
 
 // Counter UI가 있다고 칠게요

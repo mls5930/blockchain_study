@@ -6,6 +6,7 @@ import { getHistory, getInit } from "./getData"
 
 export const Counter = () => {
     const dispatch = useDispatch();
+    
     const { count, history } = useSelector((state) => state);
 
     useEffect(() => {
