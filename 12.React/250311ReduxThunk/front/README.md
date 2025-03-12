@@ -60,6 +60,7 @@ front
 └─ src
    ├─ App.css
    ├─ App.jsx
+#    ├─ store 디렉토리 삭제
    ├─ api
    │  ├─ axios.js
    │  ├─ counter.js
