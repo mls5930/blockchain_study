@@ -1,4 +1,5 @@
-## **Redux Thunk 적용 방식**
+# **Redux Thunk 적용 방식**
+
 1. **Redux Middleware 적용** → `redux-thunk` 설치 및 Redux Store 설정 변경  
 2. **비동기 Action 생성** → `fetchData` 등의 API 요청을 Action에서 실행  
 3. **컴포넌트에서 dispatch 호출** → `dispatch(fetchData())` 형태로 사용  

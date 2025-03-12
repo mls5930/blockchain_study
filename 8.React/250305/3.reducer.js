@@ -1,9 +1,9 @@
 // 카운터로 보는 reducer 예제
 
 // 1. 초기값 설정 (useState)
-// const [state, setState] = useState({ count : 0 })
+// const [state, setState] = useState({ count : 0, history: [] })
 
- let state = { count: 0 }
+ let state = { count: 0 , history: [] }
 
 // 리듀서 함수 정의
 const counterReducer = (state, action) => {
