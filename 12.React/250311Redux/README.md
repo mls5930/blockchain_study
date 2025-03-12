@@ -1,209 +1,49 @@
-# 리덕스
+## 저번 수업에는 뭐했을까?
 
-## 적용 방향
+`프론트 배포`
 
-1. **Redux 설정**
+## 저번 수업의 목차
 
-   - `redux` 및 `react-redux`를 설치하고 Redux Store 생성.
-   - 기존의 `useReducer`를 `Redux Reducer`로 변환.
-   - `store/index.js`에서 Redux Store를 관리.
+- Nginx란?
+    - 리버스 프록시
+- 프론트 배포
 
-2. **전역 상태 변경**
+## 오늘 수업은 뭐할까?
 
-   - 기존의 `useContext + useReducer` 구조를 Redux로 대체.
-   - `dispatch({ type })` 형태로 상태를 업데이트.
+`카운터 구현`  
 
-3. **컴포넌트 수정**
+## 오늘 수업의 목차
 
-   - `useCounter` 대신 `useSelector`, `useDispatch`를 사용하여 Redux Store와 연동.
+1. useState를 이용한 기본 카운터 기능 구현
+2. useContext 적용 (전역 환경 생성)
+3. useReducer 적용
 
-## 설치해야 할 패키지
+## 4. 리덕스(redux, react-redux) 적용하기
 
-터미널에서 아래 명령어 실행
+### Redux 설정
 
-```sh
-npm install redux react-redux
-```
+- redux 및 react-redux를 설치하고 Redux Store 생성.
+- 기존의 useReducer를 Redux Reducer로 변환.
+- store/index.js에서 Redux Store를 관리.
 
-## 디렉토리 구조 변경
+### 전역 상태 변경
 
-```sh
-front
-├─ src
-│  ├─ store
-│  │  ├─ counterReducer.js    # 리덕스 리듀서
-│  │  ├─ index.js             # Redux Store 설정
-│  ├─ pages
-│  │  ├─ counter          # 카운터 관련 디렉토리
-│  │     ├─ Counter.jsx          # Redux로 상태 변경
-│  │     ├─ getDate.jsx          # Redux로 상태 변경
-│  │  ├─ index.jsx          
-│  ├─ App.jsx                 # Redux Provider 적용
-```
+- 기존의 useContext + useReducer 구조를 Redux로 대체.
+- useSelector, useDispatch를 활용한 상태 관리
 
-## Redux 적용 코드
+### 컴포넌트 수정
 
-### 1. Redux Store 설정
+- 기존 useCounter 제거
+- Redux Store와 직접 연동
 
-`src/store/index.js`  
+## 5. Redux Thunk 적용 (비동기 상태 관리 도입)
 
-```jsx
-import { createStore } from "redux";
-import { counterReducer } from "./counterReducer";
+Redux의 기본 동작 방식의 한계를 이해하고 Thunk로 해결
 
-const store = createStore(counterReducer);
+1. 데이터 패치를 어디서 할 것인가?(불편함 느낌)
+2. 데이터 패치에 미들웨어 즉, 중간단계가 필요하다.
+3. 리덕스 썽크로 구현하기
 
-export { store };
-```
+## 주의 사항
 
----
-
-### 2. Counter Reducer 변환
-
-`src/store/counterReducer.js`
-
-```jsx
-const initialState = {
-    count: 0,
-    history: []
-};
-
-export const SETDATA = "SETDATA";
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
-export const RESET = "RESET";
-
-export const counterReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SETDATA:
-            return { ...state, ...action.payload };
-        case INCREMENT:
-            return { ...state, ...action.payload };
-        case DECREMENT:
-            return { ...state, ...action.payload };
-        case RESET:
-            return { ...state, count: 0, history: [] };
-        default:
-            return state;
-    }
-};
-```
-
----
-
-### 3. Redux Store 연결
-
-`index.jsx`  
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { store } from "./store";
-import { Provider } from "react-redux";
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-);
-```
-
----
-
-### 4. getDate로 함수 분리
-
-
-`src/pages/counter/getDate.js`
-
-```js
-import { getCount } from "../../api/counter"
-
-export const getHistory = (result) => {
-    return result.map((value) => ({
-        id: value.id,
-        createdAt: value.createdAt
-    }));
-};
-
-export const getInit = async () => {
-    const result = await getCount();
-    const history = getHistory(result);
-    return { count: result[0].value, history };
-};
-```
-
----
-
-### 5. Counter 컴포넌트에서 Redux 적용
-
-`src/pages/counter/Counter.jsx`  
-
-```jsx
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DECREMENT, INCREMENT, SETDATA } from "../../store/counterReducer";
-import {getCount, postCount} from "../../api/counter"
-import { getHistory, getInit } from "./getData"
-
-export const Counter = () => {
-    const dispatch = useDispatch();
-    const { count, history } = useSelector((state) => state);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getInit();
-                dispatch({ type: SETDATA, payload: data });
-            } catch (error) {
-                console.error("초기 데이터 로딩 실패", error);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const handleDispatch = async (type, newValue) => {
-        try {
-            await postCount(newValue); // 새로운 값 저장
-            const result = await getCount(); // 최신 데이터 불러오기
-            const updatedHistory = getHistory(result);
-            dispatch({ type, payload: { count: result[0].value, history: updatedHistory } });
-        } catch (error) {
-            console.error("Counter 기능 실패...", error);
-        }
-    };
-
-    if (history.length <= 0) return <>값이 없음!</>;
-
-    return (
-        <>
-            {count}
-            <button onClick={() => handleDispatch(INCREMENT, count + 1)}>+</button>
-            <button onClick={() => handleDispatch(DECREMENT, count - 1)}>-</button>
-            <ul>
-                {history.map((value) => (
-                    <React.Fragment key={value.id}>
-                        <li>{value.createdAt}</li>
-                    </React.Fragment>
-                ))}
-            </ul>
-        </>
-    );
-};
-```
-
-## 변경된 점 요약
-
-1. 기존 `useReducer` → **Redux 적용**
-2. `useContext` 제거 → `Provider store={store}` 적용
-3. `useCounter` 제거 → `useSelector`, `useDispatch`로 대체
-4. 상태 업데이트 시 **`dispatch({ type })`** 방식으로 변경
-
----
-
-## **다음 단계**
-- 현재는 **동기 상태 관리만 적용**되었음.
-- 비동기 `getCount()`, `postCount()`를 적용하려면 `redux-thunk`가 필요함.
-- 다음 목표: **Redux Thunk 적용 후 비동기 처리 반영**
+- 본 수업은 count-front, count-api를 기준으로 수업하고 있습니다.

@@ -29,6 +29,7 @@ app.post("/counter", async(req, res) => {
   try {
       const { newValue } = req.body      
       const newCounter = await Counter.create({value: newValue});
+      // const {value} = await Counter.create({value: newValue});
       res.json(newCounter.value);
   } catch (error) {
       console.log(error);
