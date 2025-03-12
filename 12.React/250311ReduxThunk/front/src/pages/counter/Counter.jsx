@@ -1,20 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { INCREMENT, DECREMENT } from "../../reducers/counterReducer"
-import {fetchSetData, updateCount } from "../../actions/counterAction";
-
-const AsyncCount = () => {
-    const { count } = useSelector((state) => state.count);
-    const dispatch = useDispatch()
-    return (
-        <>
-            {count}
-            <button onClick={() => dispatch(updateCount(INCREMENT, count + 1))}>+</button>
-            <button onClick={() => dispatch(updateCount(DECREMENT, count - 1))}>-</button>
-        </>
-    )
-}
-
+import { COUNT_INCREMENT, COUNT_DECREMENT } from "../../reducers/counterReducer"
+import { fetchSetData, updateCount } from "../../actions";
 
 const Left = () => {
     const { count } = useSelector((state) => state.count);
@@ -22,8 +9,8 @@ const Left = () => {
     return (
         <>
             {count}
-            <button onClick={() => dispatch(updateCount(INCREMENT, count + 1))}>+</button>
-            <button onClick={() => dispatch(updateCount(DECREMENT, count - 1))}>-</button>
+            <button onClick={() => dispatch(updateCount(COUNT_INCREMENT, count + 1))}>+</button>
+            <button onClick={() => dispatch(updateCount(COUNT_DECREMENT, count - 1))}>-</button>
         </>
     )
 }
@@ -55,7 +42,6 @@ export const Counter = () => {
         <>
             <Left/>
             <Right/>
-            <AsyncCount/>
         </>
     )
 }

@@ -1,25 +1,22 @@
-// 상태를 반환
 const init = {
     count: 0,
     history: []
 }
 
-// const {count, history} = useSelector((state) => state.count)
-export const SETDATA = "SETDATA";
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
-export const RESET = "RESET"
+export const COUNT_SETDATA = "COUNT_SETDATA";
+export const COUNT_INCREMENT = "COUNT_INCREMENT";
+export const COUNT_DECREMENT = "COUNT_DECREMENT";
+export const COUNT_RESET = "COUNT_RESET"
 
-// countReducer( "SETDATA", {count:3, history:[{id:1,createdAt: "24"}]});
 export const counterReducer = (state = init, action) => {
     switch (action.type) {
-        case SETDATA:
+        case COUNT_SETDATA:
             return {...state, ...action.payload}
-        case INCREMENT:
+        case COUNT_INCREMENT:
             return {...state, ...action.payload}
-        case DECREMENT:
+        case COUNT_DECREMENT:
             return {...state, ...action.payload}
-        case RESET:
+        case COUNT_RESET:
             return { count:0, history:[] }
         default:
             return state; 

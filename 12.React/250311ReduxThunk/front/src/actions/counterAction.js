@@ -1,11 +1,11 @@
 import { postCount } from "../api/counter";
 import { getData } from "../pages/counter/getData";
-import { SETDATA } from "../reducers/counterReducer";
+import { COUNT_SETDATA } from "../reducers/counterReducer";
 
 export const fetchSetData = () => {
     return async (dispatch) => {
         const data = await getData();
-        dispatch({ type: SETDATA, payload: data });
+        dispatch({ type: COUNT_SETDATA, payload: data });
     };
 };
 
@@ -17,8 +17,3 @@ export const updateCount = (type, newValue) => {
         dispatch({ type, payload: { ...data } });
     };
 };
-
-export const incrementAction = () => ({
-    type: "INCREMENT",
-  });
-  

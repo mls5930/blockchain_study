@@ -1,9 +1,14 @@
 import './App.css';
-import { Counter } from "./pages"
+import { Login } from './pages';
+
 
 function App() {
   return (
-    <Counter/>
+    <>
+      <Login/>
+      {/* <Counter/> */}
+      {/* <Counter2/> */}
+    </>
   );
 }
 
