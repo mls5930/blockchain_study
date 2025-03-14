@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div`
     padding: 10px 20px;
     background: #333;
 
@@ -14,3 +14,7 @@ export const HeaderWrapper = styled.div`
         color: yellow;
     } */
 ` 
+
+export const StyledHeaderWrapper = ({children, ...rest}) => {
+    return <HeaderWrapper {...rest}>{children}</HeaderWrapper>
+}
