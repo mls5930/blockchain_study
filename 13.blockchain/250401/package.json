@@ -1,0 +1,15 @@
+{
+  "name": "250401",
+  "version": "1.0.0",
+  "description": "## 리액트 프로젝트 회고 및 정리",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "merkle": "^0.6.0"
+  }
+}
