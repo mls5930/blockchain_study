@@ -1,40 +1,40 @@
 ## 먼저, 전달 사항
 
 다음 주 3월 10일 ~ 3월 11일 AWS 수업이 예정되어 있습니다.  
-학생분들은 반드시!! 다음 사전 준비를 읽고 준비해주세요.  
+학생분들은 반드시!! 다음 사전 준비를 읽고 준비해주세요.
 
 **AWS 계정 생성 및 로그인**
 
 ## 저번 수업에는 뭐했을까?
 
-`5차 월별 평가`  
+`5차 월별 평가`
 
-### 주제: 카운터 구현  
+### 주제: 카운터 구현
 
 1. 데이터의 흐름을 명확히 이해하는가?(state, props...)
 2. 리액트 런타임 환경을 명확히 이해하는가?
 3. 리액트 생명주기를 명확히 이해하는가?
 
-여러분이 지금까지 배운 개념을 **실제 개발 환경에서 어떻게 적용할 수 있는지** 평가하는 과정.  
+여러분이 지금까지 배운 개념을 **실제 개발 환경에서 어떻게 적용할 수 있는지** 평가하는 과정.
 
-### 카운터 구현? 이걸 잘한다고 실력이 검증될까요?  
+### 카운터 구현? 이걸 잘한다고 실력이 검증될까요?
 
 카운터는 단순한 기능처럼 보이지만  
 **웹 개발의 핵심 개념을 종합적으로 확인할 수 있는 문제**입니다.  
 즉, **우리가 진행한 수업의 흐름**을 제대로 이해하고 있는지  
-파악하기에 매우 적합한 평가 방식입니다.  
+파악하기에 매우 적합한 평가 방식입니다.
 
-### 결국, 카운터 구현이 중요한 이유  
+### 결국, 카운터 구현이 중요한 이유
 
 Node.js와 React.js를 활용해 **데이터가 어떻게 흘러가는지**를 명확히 이해하고 있느냐가 핵심입니다.  
 즉, **"웹 개발의 기본 원리와 흐름을 정확히 이해했는가?"**를 평가하는 문제이며,  
-이 과정이 정립되지 않았다면 이후 블록체인 개발에서도 개념을 제대로 적용할 수 없습니다.  
+이 과정이 정립되지 않았다면 이후 블록체인 개발에서도 개념을 제대로 적용할 수 없습니다.
 
 > 카운터를 제대로 구현할 수 있다면? → **"기본기가 탄탄하다!"**  
-> 카운터조차 구현이 어렵다면? → **"아직 학습이 더 필요하다."**  
+> 카운터조차 구현이 어렵다면? → **"아직 학습이 더 필요하다."**
 
 고생하셨습니다.  
-참고로 재시험 봐야하는 인원 있습니다.  
+참고로 재시험 봐야하는 인원 있습니다.
 
 ## 이번 수업에는 뭐할까?
 
@@ -43,10 +43,10 @@ Node.js와 React.js를 활용해 **데이터가 어떻게 흘러가는지**를 �
 ## 이번 수업의 핵심
 
 - 배포 과정을 통해 네트워크(서버·클라이언트, 포트·방화벽 등)를 직접 다루게 되므로  
-시야와 이해가 폭넓어짐
+  시야와 이해가 폭넓어짐
 - 서버 환경에서 돌아가는 코드를 체험하면서, 개발 프로세스 전반에 대한 이해할 수 있다.
 - 즉, 배포해서 좋음 ㅠ이 끝이 아니라  
-네트워크를 더 폭 넓게 안다면, 코드를 대하는 태도부터가 달라진다.
+  네트워크를 더 폭 넓게 안다면, 코드를 대하는 태도부터가 달라진다.
 
 **배포 실습을 하면, 서버 운영(프로세스·로그·보안 등)에 대한 책임감**  
 **네트워크 구조를 이해할 수 있다(이해해야 한다)**
@@ -57,15 +57,15 @@ Node.js와 React.js를 활용해 **데이터가 어떻게 흘러가는지**를 �
 - EC2
 - EC2 Instance
 - EC2 Instance 생성해보자
-    - AMI (Amazon Machine Image)
-    - Region(리전)
-    - 키페어란?
-    - 네트워크 설정
-    - 스토리지 구성
+  - AMI (Amazon Machine Image)
+  - Region(리전)
+  - 키페어란?
+  - 네트워크 설정
+  - 스토리지 구성
 - 인바운드 & 아웃바운드
 - EC2 내부 환경에 Node.js, Mysql 설치
 - Nginx란?
-    - 리버스 프록시
+  - 리버스 프록시
 
 ## 백 서버 디렉토리 설정
 
@@ -96,7 +96,7 @@ git clone [여러분fork주소] .
 
 근데 먼저, 우분투 계정이 지금 root되어 있잖아요?  
 wnqudgus1234(본인 이름 계정) 만들어야지.  
-그리고 권한 설정먼저 합시다.  
+그리고 권한 설정먼저 합시다.
 
 ### 우분투 계정 생성
 
@@ -114,7 +114,7 @@ info: Adding new group `wnqudgus1234' (1001) ...
 info: Adding new user `wnqudgus1234' (1001) with group `wnqudgus1234 (1001)' ...
 info: Creating home directory `/home/wnqudgus1234' ...
 info: Copying files from `/etc/skel' ...
-New password: 
+New password:
 ```
 
 - 비밀번호 까먹기만 해봐.
@@ -161,10 +161,10 @@ cd /home/wnqudgus1234
 
 필요한게 무엇이 있을까? (리눅스 환경에서 설치)
 
-1. Node.js(express) 
+1. Node.js(express)
 2. git 설치
 
-### Node.js 설치 (LTS 버전 추천)**
+### Node.js 설치 (LTS 버전 추천)\*\*
 
 ```bash
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
@@ -221,14 +221,14 @@ http://13.125.219.8
 http://13.25.219.8:3005
 ```
 
-`hello aws!`  
+`hello aws!`
 
-화면이 나올겁니다.  
+화면이 나올겁니다.
 
 ### 찾아보면 좋은 것
 
 - 80번대와 3005번대인데 왜 우리 로컬에서 브라우저 URL에 버블릭 주소 입력 후 땅 때리면 되지??  
-도대체 어떤 연관이 있길래?
+  도대체 어떤 연관이 있길래?
 - localhost와 차이점은?
 - 왜 :3005 포트번호까지 붙힐까?
 
@@ -292,6 +292,7 @@ use Ju;
 ```sql
 CREATE USER 'wnqudgus1234'@'%' IDENTIFIED BY 'qwwqsa4544!!';
 ```
+
 2. 데이터베이스(`Ju`)에 대한 모든 권한 부여
 
 ```sql
@@ -316,34 +317,33 @@ mysql -u wnqudgus1234 -p
 ### config.js
 
 ```js
-require('dotenv').config();
+require("dotenv").config();
 
 const config = {
-    env: process.env.NODE_ENV || "development",
-    port: process.env.PORT || 3000,
-    db: {
-        development: {
-            username: process.env.DB_USER || '',
-            password: process.env.DB_PASSWORD || '',
-            database: process.env.DB_DATABASE || '',
-            port: process.env.DB_PORT || '',
-            host: process.env.DB_HOST || '',
-            dialect: 'mysql',
-        }
-    }
-}
+  env: process.env.NODE_ENV || "development",
+  port: process.env.PORT || 3000,
+  db: {
+    development: {
+      username: process.env.DB_USER || "",
+      password: process.env.DB_PASSWORD || "",
+      database: process.env.DB_DATABASE || "",
+      port: process.env.DB_PORT || "",
+      host: process.env.DB_HOST || "",
+      dialect: "mysql",
+    },
+  },
+};
 
 module.exports = config;
 ```
 
 해당 config.js는 env 환경 변수를 의존하고 있죠?  
-.env파일을 **EC2!!!!!!!!환경에서**에서 생성합시다.  
+.env파일을 **EC2!!!!!!!!환경에서**에서 생성합시다.
 
 ### vi .env
 
 ```ini
 DB_USER="wnqudgus1234"
-DB_PASSWORD="qwwqsa4544!!"
 DB_DATABASE="Ju"
 DB_PORT=3306
 DB_HOST="127.0.0.1"
@@ -362,7 +362,7 @@ server.js 코드 수정합시다.
 
 ### 1. PM2 설치
 
-EC2 인스턴스에 접속 후 PM2 설치  
+EC2 인스턴스에 접속 후 PM2 설치
 
 ```sh
 npm install -g pm2
@@ -385,11 +385,12 @@ pm2 start server.js --name counter-api
 ```bash
 pm2 list
 ```
-💡 *현재 실행 중인 프로세스를 확인할 수 있습니다.*
+
+💡 _현재 실행 중인 프로세스를 확인할 수 있습니다._
 
 ### 5. PM2 프로세스 중지 및 삭제
 
-**서버 중지**  
+**서버 중지**
 
 ```sh
 pm2 stop counter-api
