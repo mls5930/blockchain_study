@@ -8,7 +8,7 @@ const fn1 = (a:number, b:number):number => {
     return 1;
 }
 
-const fn2 = <T>(a:number, b:number):T => {
+const fn2 = <T>() :T => {
     return "1" as T;
 }
 
@@ -19,7 +19,27 @@ const fn2 = <T>(a:number, b:number):T => {
 // 정적으로 number만을 표현할 수 있는 함수다! 가아니라
 // 얘는 호출하는 시점에서 타입을 결정하고 싶다면?
 
-const result = fn2<string>(1, 2);
+fn2<string>();
+
+const fn4 = <T>():T => {
+    return "1" as T
+}
+
+fn4<string>()
+
+// as T는 왜 어설션을 사용해야 함?
+
+const fn100 = (): string | number | Array<string> => {
+    return "1"
+}
+
+fn100();
+
+const fn101 = (): any => {
+    return "1"
+}
+
+fn101();
 
 // 왜 이런 동적 타입같은 기능을 제공할까?
 // 코드의 재사용성
