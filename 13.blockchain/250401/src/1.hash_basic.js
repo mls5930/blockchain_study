@@ -25,7 +25,7 @@ const genesisBlockHash1 = createHash(genesisBlock);
 
 const block2 = {
     version: "1.0.0",
-    height:0,
+    height: 0,
     timestamp: new Date().getTime(),
     data: "genesisBlock 따라서 나도 하버드 생임",
     previousHash: genesisBlockHash1
