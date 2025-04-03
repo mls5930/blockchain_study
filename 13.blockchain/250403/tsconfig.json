@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": [
+        "src/core/*"
+      ]
+    }
+  },
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  }
+}

@@ -1,25 +1,14 @@
 const stringArray: string[] = [
-    "15%",
-    "16%",
     "17%"
+]
 
-];
-const numberArray: number[] = [
-    15,
-    16,
-    17
+const numberArray: number[] = [1,2,3];
 
-];
+// 튜플
+const stringArray2: [string, number, string[]] = ["150", 200, ["dd"]]
 
-const Array2: Array<string | number> = [
-    "15%",
-    "16%",
-    "17%",
-    3
-
-];
+// <> 제네릭 또는 제네릭 괄호
+const stringArray3:Array<string | number> = ["12년산 동동주", "호랑이 막걸리", 1]
 
 type 한글자 = (string | number | (string | number)[])[]
-
-
-const stringArray2: 한글자 = ["150", 200, ["da", 1]]
+const stringArray4: 한글자 = ["150", 200, ["dd", 1]]

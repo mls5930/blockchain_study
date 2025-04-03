@@ -72,4 +72,25 @@ console.log(함수(123, 456));
 
 const value: any = "Hello, TypeScript!";
 const strLength: number = (value as string).length;
-console.log(strLength); // 18
+console.log(strLength);
+function assertIsString(value: unknown): asserts value is string {
+    if (typeof value !== "string") {
+        throw new Error("값이 문자열이 아닙니다!");
+    }
+}
+
+const data: unknown = "TypeScript";
+assertIsString(data);
+console.log(data.toUpperCase());
+type User = { id: number; name: string };
+
+
+function assertIsUser(obj: any): asserts obj is User {
+    if (typeof obj !== "object" || typeof obj.id !== "number" || typeof obj.name !== "string") {
+        throw new Error("User 타입이 아닙니다!");
+    }
+}
+
+const userData: any = { id: 1, name: "Alice" };
+assertIsUser(userData);
+console.log(userData.name.toUpperCase()); // "ALICE" (안전하게 사용 가능!)

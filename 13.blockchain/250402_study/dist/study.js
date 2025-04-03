@@ -55,12 +55,3 @@ const 유저7 = [
         ]
     ]
 ];
-const 함수 = (a, b) => {
-    console.log(a, b);
-    return b;
-};
-console.log(함수(123, "이거123"));
-console.log(함수(123, 456));
-const value = "Hello, TypeScript!";
-const strLength = value.length;
-console.log(strLength); // 18
