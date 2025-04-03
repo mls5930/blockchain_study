@@ -1,0 +1,25 @@
+{
+  "name": "250404",
+  "version": "1.0.0",
+  "description": "## 목표: 제네시스 블록을 구현",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.13.11",
+    "crypto-js": "^4.2.0",
+    "merkle": "^0.6.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.6"
+  }
+}
