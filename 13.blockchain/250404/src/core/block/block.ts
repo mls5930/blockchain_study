@@ -75,7 +75,4 @@ let data = ["tx01"]
 newBlock = Block.generateBlock(GENESIS, data);
 newBlock2 = Block.generateBlock(newBlock,data);
 
-console.log(newBlock);
-console.log(newBlock2);
-
 export default Block;

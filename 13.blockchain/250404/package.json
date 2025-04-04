@@ -4,7 +4,8 @@
   "description": "## 목표: 제네시스 블록을 구현",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "sangah": "jest -- src/core/_test/sangah.test.ts"
   },
   "keywords": [],
   "author": "",
