@@ -6,7 +6,7 @@ import BlockHeader from "./blockHeader"
 import { GENESIS } from "@core/config";
 import merkle from "merkle"
 import crypto from "crypto-js"
-import CryptoModule from "@core/ctypto/crypto.module";
+import CryptoModule from "@core/crypto/crypto.module";
 class Block extends BlockHeader implements IBlock {
     merkleRoot: string;
     hash: string;

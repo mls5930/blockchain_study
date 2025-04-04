@@ -43,4 +43,38 @@ describe("block 테스트", () => {
     })
     // it("fingBlock", () => {})
     // it("generateBlock", () => { })
-})
+
+
+
+
+    // - 블록을 하나 생성한 뒤 `findBlock()` 메서드를 실행하여 채굴
+    // - 채굴된 블록의 `hash`는 반드시 difficulty 조건을 만족해야 함
+
+    it("실습문제 1 findBlock()", () => {
+
+        let data = ["tx01"];
+        const generateBlock = new Block(GENESIS, data);
+        const newBlock = Block.findBlock(generateBlock);
+        generateBlock.difficulty = 3;
+        console.log(newBlock.hash);
+        console.log(generateBlock.hash);
+        expect(newBlock.hash).toBe("".startsWith("000"))
+
+    })
+
+    //     | `findBlock()`     | 해시가 difficulty 조건을 만족하는가?     |
+    //     | `generateBlock()` | 블록 연결이 정확한가? 해시값이 적절한가? |
+
+    it("실습문제 2 generateBlock() 새로운 블럭 생성", () => {
+
+        let data = ["tx01"]
+        let data2 = ["tx02"]
+        const generateBlock = new Block(GENESIS, data);
+        generateBlock.difficulty = 3;
+        const generateBlock2 = new Block(generateBlock, data2);
+        const newBlock = Block.findBlock(generateBlock);
+        const newBlock2 = Block.findBlock(generateBlock2);
+        expect(newBlock.hash).toEqual(newBlock2.previousHash)
+
+    });
+});
