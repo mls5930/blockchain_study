@@ -9,6 +9,7 @@ const createBlock = (height, timestamp, data, previousHash) => {
         height,
         timestamp,
         data,
+        previousHash
     }
     const blockString = `${block.height}${block.timestamp}${block.data}${previousHash}`
     block.hash = createHash(blockString);
@@ -20,4 +21,6 @@ const block3 = createBlock(2, Date.now(), "나는 세 번째 하버드 생임!",
 
 console.log(block);
 console.log(block2);
+console.log(block3);
+
 

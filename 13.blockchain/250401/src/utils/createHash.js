@@ -18,7 +18,7 @@ console.log(createHash(data2)); // 3a408d3693e24201ce62d507715ab2edb5351f31bbe27
 
 const block1 = {
     version: "1.0.0",
-    height:0,
+    height: 0,
     timestamp: new Date().getTime(),
     data: "나 하버드 생임",
 }

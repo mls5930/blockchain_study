@@ -7,10 +7,14 @@
     "baseUrl": ".",
     "paths": {
       // 기본 경로에서 부터 설정할 별칭
-      "@core/*": ["src/core/*"]
+      "@core/*": [
+        "src/core/*"
+      ]
     }
   },
   "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "require": [
+      "tsconfig-paths/register"
+    ]
   }
 }
