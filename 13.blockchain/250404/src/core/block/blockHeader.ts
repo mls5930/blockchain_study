@@ -1,38 +1,25 @@
 import { IBlock, IBlockHeader } from "@core/interface/block.interface";
-
+// implements: 추상화 구조 => IBlockHeader 구조를 지키겠다.
 class BlockHeader implements IBlockHeader {
+    // ES7 문법
     version: string;
     height: number;
     timestamp: number;
     previousHash: string;
-    constructor(_previousBlock : IBlock) {
-        // 새로 생성되는 블록은 이전블록의 내용이 필요하다
-         this.version = BlockHeader.getVersion();
-         this.timestamp = BlockHeader.getTimestamp();
-         this.height = _previousBlock.height + 1;
-         this.previousHash = _previousBlock.hash;
+    constructor(_previousBlock: IBlock) {
+        this.version = BlockHeader.getVersion();
+        this.timestamp = BlockHeader.getTimestamp();
+        this.height = _previousBlock.height + 1;
+        this.previousHash = _previousBlock.hash || "0".repeat(64)
     }
 
     static getVersion() {
-        return "1.0.0";
+        return "1.0.0"
     }
-    static getTimestamp () {
+
+    static getTimestamp() {
         return new Date().getTime();
     }
 }
-
-const genesisBlock: IBlock = {
-    version: "1.0.0",
-    height: 0,
-    timestamp: 0,
-    previousHash: "0".repeat(64),
-    merkleRoot: "0".repeat(64),
-    hash: "0".repeat(64),
-    nonce: 0,
-    difficulty: 0,
-    data: [],
-  };
-  
-const header = new BlockHeader(genesisBlock);
 
 export default BlockHeader;

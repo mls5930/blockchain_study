@@ -1,7 +1,7 @@
 class CryptoModule {
     static hashToBinary(hash : string) : string {
         let binary : string = "";
-        for (let i = 0; i < hash.length; i++) {
+        for (let i = 0; i < hash.length; i+=2) {
             const hexByte = hash.substr(i,2);
             const dec = parseInt(hexByte, 16);
             const binaryByte = dec.toString(2).padStart(8, "0");
