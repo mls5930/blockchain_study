@@ -47,12 +47,12 @@ class Block extends BlockHeader implements IBlock  {
     static findBlock(generateBlock: Block): Block {
         let hash: string
         let nonce: number = 0
-        
+        let binary: string;
         while (true) {
             nonce++
             generateBlock.nonce = nonce;
             hash = Block.createBlockHash(generateBlock);
-            const binary = CryptoModule.hashToBinary(hash);
+            binary = CryptoModule.hashToBinary(hash);
             if(binary.startsWith("0".repeat(generateBlock.difficulty))) {
                 // 채굴이 되었다는거겠지? 해당 스코프 진입 조건은
                 generateBlock.hash = hash;

@@ -32,7 +32,7 @@ const findBlock = (genesisBlock: Block) => {
 */
 describe("블록 검증 테스트", ()=> {
     let data: string[] = ["tx01"]
-    let newBlock:Block = new Block(GENESIS, data);;
+    let newBlock:Block = new Block(GENESIS, data);
 
     it("채굴 테스트", () => {
         // 블록 후보 생성
