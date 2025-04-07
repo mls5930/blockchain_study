@@ -7,6 +7,7 @@
     "baseUrl": ".",
     "paths": {
       // 기본 경로에서 부터 설정할 별칭
+<<<<<<< HEAD:13.blockchain/250407_study/tsconfig.json
       "@core/*": [
         "src/core/*"
       ]
@@ -16,5 +17,12 @@
     "require": [
       "tsconfig-paths/register"
     ]
+=======
+      "@core/*": ["src/core/*"]
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+>>>>>>> 4f8bc67538ba6ef45b3c3fbf1278b199122da45e:13.blockchain/250407/tsconfig.json
   }
 }
