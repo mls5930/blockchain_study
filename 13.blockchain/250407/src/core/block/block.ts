@@ -21,7 +21,7 @@ class Block extends BlockHeader implements IBlock  {
         this.merkleRoot = Block.getMerkleRoot<string>(_data);
         this.hash = Block.createBlockHash(this);
         this.nonce = 0;
-        this.difficulty = Block.getDifficulty(this, _adjustmentBlock, _previousBlock); // difficulty는 임의로 0으로 넣겠음.
+        this.difficulty = Block.getDifficulty(this, _adjustmentBlock, _previousBlock);
         this.data = _data;
     }
     // data: ["tx01"]
@@ -72,8 +72,6 @@ class Block extends BlockHeader implements IBlock  {
     // _previousBlock => _newBlock 바로 이전의 블록 => 조정이 안일어나면 이 블록의 난이도를 따라감
     static getDifficulty(_newBlock: Block, _adjustmentBlock: Block, _previousBlock: Block): number {
         if(_newBlock.height <= 0) throw new Error("높이가 없습니다!");
-        if(_newBlock.height < 10) return 0;
-        if(_newBlock.height < 21) return 1;
         
         if(_newBlock.height % DIFFICULTY_ADJUSTMENT_INTERVAL !== 0) {
             return _previousBlock.difficulty;
@@ -83,8 +81,8 @@ class Block extends BlockHeader implements IBlock  {
         const timeToken: number = _newBlock.timestamp - _adjustmentBlock.timestamp;
         // 원래 예상했던 시간(예: 블록 하나당 10초 곱하기 주기 개수)
         const timeExpected = BLOCK_GENERATION_INTERVAL * 10 * DIFFICULTY_ADJUSTMENT_INTERVAL;
-        if (timeToken < timeExpected / 2) return _previousBlock.difficulty; // 채굴 속도가 너무 빠르면 난이도 +1
-        if (timeToken > timeExpected * 2) return _previousBlock.difficulty; // 채굴 속도가 너무 느리면 난이도 -1
+        if (timeToken < timeExpected / 2) return _previousBlock.difficulty + 1; // 채굴 속도가 너무 빠르면 난이도 +1
+        if (timeToken > timeExpected * 2) return _previousBlock.difficulty - 1; // 채굴 속도가 너무 느리면 난이도 -1
     }
 }
 

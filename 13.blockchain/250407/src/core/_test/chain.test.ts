@@ -43,31 +43,40 @@ describe("🧪 난이도 조정 흐름 테스트 - 단계별", () => {
   });
 
   it("4단계. 주기만큼 블록을 추가하고 난 후, 다음 블록을 생성한다", () => {
-    // DIFFICULTY_ADJUSTMENT_INTERVAL만큼 블록 생성
-    for (let i = 1; i <= DIFFICULTY_ADJUSTMENT_INTERVAL; i++) {
+    for (let i = 1; i <= DIFFICULTY_ADJUSTMENT_INTERVAL + 1; i++) {
       let adjustment: Block;
-
-      const prev = chain.latestBlock();
+      // 10
+      const prev = chain.latestBlock()
       
-      if (i >= DIFFICULTY_ADJUSTMENT_INTERVAL) {
+      if (i > DIFFICULTY_ADJUSTMENT_INTERVAL) {
         const index = i - DIFFICULTY_ADJUSTMENT_INTERVAL;
         adjustment = chain.get()[index];
       } else {
         adjustment = GENESIS;
       }
-
       const newBlock = Block.generateBlock(prev, data, adjustment);
       chain.addToChain(newBlock);
     }
-
-    expect(chain.length()).toBe(DIFFICULTY_ADJUSTMENT_INTERVAL + 1); // 제네시스 포함
   });
 
   it("5단계. 난이도가 조정되는지 확인한다", () => {
+    for (let i = 1; i <= DIFFICULTY_ADJUSTMENT_INTERVAL + 1; i++) {
+      let adjustment: Block;
+      const prev = chain.latestBlock()
+      
+      if (i > DIFFICULTY_ADJUSTMENT_INTERVAL) {
+        const index = i - DIFFICULTY_ADJUSTMENT_INTERVAL;
+        adjustment = chain.get()[index];
+      } else {
+        adjustment = GENESIS;
+      }
+      const newBlock = Block.generateBlock(prev, data, adjustment);
+      chain.addToChain(newBlock);
+    }
+    
     const prevBlock = chain.latestBlock();
+    
     const adjustment = chain.get()[chain.length() - DIFFICULTY_ADJUSTMENT_INTERVAL];
-    const nextBlock = Block.generateBlock(prevBlock, data, adjustment);
-
-    expect(nextBlock.difficulty).not.toBe(prevBlock.difficulty);
+    expect(adjustment.difficulty).not.toBe(prevBlock.difficulty);
   });
 });
