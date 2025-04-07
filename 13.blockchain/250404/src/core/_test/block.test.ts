@@ -70,9 +70,8 @@ describe("block 테스트", () => {
         let data = ["tx01"]
         let data2 = ["tx02"]
         const generateBlock = new Block(GENESIS, data);
-        generateBlock.difficulty = 3;
-        const generateBlock2 = new Block(generateBlock, data2);
         const newBlock = Block.findBlock(generateBlock);
+        const generateBlock2 = new Block(newBlock, data2);
         const newBlock2 = Block.findBlock(generateBlock2);
         expect(newBlock.hash).toEqual(newBlock2.previousHash)
 
