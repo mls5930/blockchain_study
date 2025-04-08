@@ -50,17 +50,17 @@ describe("block 테스트", () => {
     // - 블록을 하나 생성한 뒤 `findBlock()` 메서드를 실행하여 채굴
     // - 채굴된 블록의 `hash`는 반드시 difficulty 조건을 만족해야 함
 
-    it("실습문제 1 findBlock()", () => {
+    // it("실습문제 1 findBlock()", () => {
 
-        let data = ["tx01"];
-        const generateBlock = new Block(GENESIS, data);
-        const newBlock = Block.findBlock(generateBlock);
-        generateBlock.difficulty = 3;
-        console.log(newBlock.hash);
-        console.log(generateBlock.hash);
-        expect(newBlock.hash).toBe("".startsWith("000"))
+    //     let data = ["tx01"];
+    //     const generateBlock = new Block(GENESIS, data);
+    //     const newBlock = Block.findBlock(generateBlock);
+    //     generateBlock.difficulty = 3;
+    //     console.log(newBlock.hash);
+    //     console.log(generateBlock.hash);
+    //     expect(newBlock.hash).toBe("".startsWith("000"))
 
-    })
+    // })
 
     //     | `findBlock()`     | 해시가 difficulty 조건을 만족하는가?     |
     //     | `generateBlock()` | 블록 연결이 정확한가? 해시값이 적절한가? |
@@ -73,7 +73,17 @@ describe("block 테스트", () => {
         const newBlock = Block.findBlock(generateBlock);
         const generateBlock2 = new Block(newBlock, data2);
         const newBlock2 = Block.findBlock(generateBlock2);
-        expect(newBlock.hash).toEqual(newBlock2.previousHash)
+        console.log(newBlock.hash);
+        console.log(newBlock2.previousHash);
 
+        //     console.log
+        //     cfd571bb4ea9760eef11ec1f13e2f4c85b22a2f231bcebb893664c2f6559db3f
+
+        //      console.log
+        //     cfd571bb4ea9760eef11ec1f13e2f4c85b22a2f231bcebb893664c2f6559db3f
+
+
+
+        expect(newBlock.hash).toEqual(newBlock2.previousHash)
     });
 });

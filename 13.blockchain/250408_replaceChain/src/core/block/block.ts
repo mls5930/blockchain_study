@@ -8,14 +8,14 @@ import merkle from "merkle";
 import crypto from "crypto-js";
 import CryptoModule from "@core/crypto/cryptoModule";
 
-class Block extends BlockHeader implements IBlock  {
+class Block extends BlockHeader implements IBlock {
     merkleRoot: string;
     hash: string;
     nonce: number;
     difficulty: number;
     data: string[];
     // 이전 블록에 대한 정보도 필요하다.
-    constructor(_previousBlock: Block, _data : string[], _adjustmentBlock: Block) {
+    constructor(_previousBlock: Block, _data: string[], _adjustmentBlock: Block) {
         // super => 이전 블록 생성자 함수 호출 때문에
         super(_previousBlock);
         this.merkleRoot = Block.getMerkleRoot<string>(_data);
@@ -32,15 +32,15 @@ class Block extends BlockHeader implements IBlock  {
 
     static createBlockHash(_block: Block): string {
         const {
-            version, 
-            difficulty, 
-            height, 
-            merkleRoot, 
-            nonce, 
-            previousHash, 
+            version,
+            difficulty,
+            height,
+            merkleRoot,
+            nonce,
+            previousHash,
             timestamp
         } = _block
-        const value : string = `${version}${timestamp}${height}${merkleRoot}${previousHash}${difficulty}${nonce}`;
+        const value: string = `${version}${timestamp}${height}${merkleRoot}${previousHash}${difficulty}${nonce}`;
         return crypto.SHA256(value).toString();
     }
 
@@ -53,7 +53,7 @@ class Block extends BlockHeader implements IBlock  {
             generateBlock.nonce = nonce;
             hash = Block.createBlockHash(generateBlock);
             binary = CryptoModule.hashToBinary(hash);
-            if(binary.startsWith("0".repeat(generateBlock.difficulty))) {
+            if (binary.startsWith("0".repeat(generateBlock.difficulty))) {
                 // 채굴이 되었다는거겠지? 해당 스코프 진입 조건은
                 generateBlock.hash = hash;
                 return generateBlock
@@ -68,9 +68,9 @@ class Block extends BlockHeader implements IBlock  {
     }
 
     static getDifficulty(_newBlock: Block, _adjustmentBlock: Block, _previousBlock: Block): number {
-        if(_newBlock.height <= 0) throw new Error("높이가 없습니다!");
-        
-        if(_newBlock.height % DIFFICULTY_ADJUSTMENT_INTERVAL !== 0) {
+        if (_newBlock.height <= 0) throw new Error("높이가 없습니다!");
+
+        if (_newBlock.height % DIFFICULTY_ADJUSTMENT_INTERVAL !== 0) {
             return _previousBlock.difficulty;
         }
         // 이번엔 난이도를 높일까? 낮출까? 그대로 둘까?
@@ -84,3 +84,17 @@ class Block extends BlockHeader implements IBlock  {
 }
 
 export default Block;
+
+// generateBlock() 호출
+//     ↓
+// new Block(...) → 후보 블록 생성
+//     ├─ 머클루트 계산
+//     ├─ 난이도 계산
+//     ├─ 해시 (임시)
+//     ↓
+// findBlock(...) → 채굴 시작
+//     ├─ nonce 변경
+//     ├─ 해시 새로 계산
+//     ├─ 조건 만족하면 → 진짜 해시로 바꿈
+//     ↓
+// 완성된 블록 리턴

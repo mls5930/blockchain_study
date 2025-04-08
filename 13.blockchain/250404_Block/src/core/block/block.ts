@@ -71,12 +71,12 @@ class Block extends BlockHeader implements IBlock {
 // 1. 제네시스 블록
 // 2. 그 이후의 블록
 
-let newBlock: Block;
+
 let newBlock2: Block;
 // 블록 추가를 해볼거임
 // 최초의 진입점 => new Block X Block.generateBlock(newBlock)
 // 데이터는 임의로 넣을게요
-
+let newBlock: Block;
 let data = ["tx04"]
 newBlock = Block.generateBlock(GENESIS, data)
 newBlock2 = Block.generateBlock(newBlock, data)
