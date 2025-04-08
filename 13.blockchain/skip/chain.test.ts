@@ -3,11 +3,11 @@ import Block from "@core/block/block";
 import { GENESIS } from "@core/config";
 
 // 우리가 어제 구현했던 블록 채굴 기능을 이용하여 채굴 이후 상황을 만들고 체인에 추가해보자
-describe("Chain 구현", () => {
+describe("Chain 구현", ()=> {
     let chain: Chain;
     let newBlock: Block;
     let data = ['tx01']
-    beforeEach(() => {
+    beforeEach(()=> {
         chain = new Chain();
     })
 
@@ -35,7 +35,7 @@ describe("Chain 구현", () => {
         expect(chain.get()[1].previousHash).toEqual(GENESIS.hash);
     })
 
-    it("체인에서 특정 높이의 블록을 조회할 수 있는가?", () => {
+    it("체인에서 특정 높이의 블록을 조회할 수 있는가?", ()=> {
         const block0 = chain.getBlockByHeight(0);
         console.log(block0);
     })
