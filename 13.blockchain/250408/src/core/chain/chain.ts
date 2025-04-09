@@ -71,18 +71,20 @@ class Chain implements IChain {
     }
 
     getAdjustmentBlock(): Block {
+        // 11
         const currentLength = this.length();
-
         // 블록이 10개 미만이면, GENESIS를 반환
         if (currentLength < INTERVAL) return this.chain[0];
 
         // 그렇지 않으면 => 만약 11개다? 11개 이전 블록 반환 => 기준 => 1 10 => timestamp 계산 => 난이도 조정
         return this.chain[currentLength - INTERVAL]
     }
+
     serialize(): string {
         // "[{block1}, {block2}, {block3}]"
         return JSON.stringify(this.chain);
     }
+    
     deserialize(chunk: string): Block[] {
         // 다른 노드에서 받은 체인JSON 문자열을 파싱
         return JSON.parse(chunk);

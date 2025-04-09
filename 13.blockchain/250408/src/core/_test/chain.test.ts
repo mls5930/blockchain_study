@@ -120,7 +120,6 @@ describe("🧪 난이도 조정 흐름 테스트 - 단계별", () => {
     }
     
     const prevBlock = newChain.latestBlock();
-    
     const adjustment = newChain.get()[newChain.length() - DIFFICULTY_ADJUSTMENT_INTERVAL];
     expect(adjustment.difficulty).not.toBe(prevBlock.difficulty);
   });

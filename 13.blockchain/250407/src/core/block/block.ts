@@ -80,6 +80,7 @@ class Block extends BlockHeader implements IBlock  {
         // DIFFICULTY_ADJUSTMENT_INTERVAL개의 블록이 실제로 채굴되는데 걸린 시간
         const timeToken: number = _newBlock.timestamp - _adjustmentBlock.timestamp;
         // 원래 예상했던 시간(예: 블록 하나당 10초 곱하기 주기 개수)
+        // 30000
         const timeExpected = BLOCK_GENERATION_INTERVAL * 10 * DIFFICULTY_ADJUSTMENT_INTERVAL;
         if (timeToken < timeExpected / 2) return _previousBlock.difficulty + 1; // 채굴 속도가 너무 빠르면 난이도 +1
         if (timeToken > timeExpected * 2) return _previousBlock.difficulty - 1; // 채굴 속도가 너무 느리면 난이도 -1
