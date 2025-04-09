@@ -15,6 +15,7 @@ export const GENESIS: IBlock = {
     data: ["tx01", "tx02"]
 }
 
+export const INTERVAL = 10;
 // 블록 10개 이전
 export const DIFFICULTY_ADJUSTMENT_INTERVAL = 10;
 // 블록 10개 생성 주기를 60초마다 가정 => 현재 10분

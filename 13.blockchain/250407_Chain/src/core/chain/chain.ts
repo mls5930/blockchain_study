@@ -25,7 +25,7 @@ class Chain implements IChain {
     // 특정 블록을 찾아야 되는 시점에서 필요한 메서드들 구현
     getBlock(callbackFn: (block: Block) => boolean): Block {
         const findBlock = this.chain.find(callbackFn);
-        if(!findBlock) throw new Error("찾은 블록이 없어 ㅠ");
+        if (!findBlock) throw new Error("찾은 블록이 없어 ㅠ");
         return findBlock;
     }
 
@@ -67,7 +67,7 @@ class Chain implements IChain {
 
         // 여기까지 도달했다 => 상대방 체인이 내꺼보다 길다
         this.chain = receivedChain;
-        return {isError: false, message: undefined}
+        return { isError: false, message: undefined }
     }
 
     getAdjustmentBlock(): Block {
@@ -84,7 +84,7 @@ class Chain implements IChain {
         // "[{block1}, {block2}, {block3}]"
         return JSON.stringify(this.chain);
     }
-    
+
     deserialize(chunk: string): Block[] {
         // 다른 노드에서 받은 체인JSON 문자열을 파싱
         return JSON.parse(chunk);
