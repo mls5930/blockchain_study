@@ -1,5 +1,5 @@
 import Block from "@core/block/block";
-import { GENESIS } from "@core/config";
+import { GENESIS, INTERVAL } from "@core/config";
 import { IChain } from "@core/interface/chain.interface";
 
 class Chain implements IChain {
@@ -39,6 +39,56 @@ class Chain implements IChain {
         return this.getBlock((block: Block) => block.hash === hash);
     }
 
+    replaceChain(receivedChain: Block[]): { isError: boolean | undefined; message: string; } {
+        /*
+            1. 상대방 체인을 가져온다 => 마지막 블록
+            2. 내 체인도 가져온다 => 내 블록
+
+            기준이 height 비교를 하면 되지 않냐
+        */
+        const latestReceivedBlock: Block = receivedChain[receivedChain.length - 1];
+        const latestBlock: Block = this.latestBlock();
+
+        // 상대방의 체인이 제네시스 블록만 가지고 있는가? 어 빠꾸
+        if (latestReceivedBlock.height === 0) {
+            return {
+                isError: true,
+                message: "상대방의 체인은 마지막 블록이 최초 블록이다."
+            }
+        }
+
+        // 상대방의 체인이 내 체인보다 짧거나 같다.
+        if (latestReceivedBlock.height <= latestBlock.height) {
+            return {
+                isError: true,
+                message: "상대방의 체인이 내 체인보다 짧거나 같다."
+            }
+        }
+
+        // 여기까지 도달했다 => 상대방 체인이 내꺼보다 길다
+        this.chain = receivedChain;
+        return {isError: false, message: undefined}
+    }
+
+    getAdjustmentBlock(): Block {
+        // 11
+        const currentLength = this.length();
+        // 블록이 10개 미만이면, GENESIS를 반환
+        if (currentLength < INTERVAL) return this.chain[0];
+
+        // 그렇지 않으면 => 만약 11개다? 11개 이전 블록 반환 => 기준 => 1 10 => timestamp 계산 => 난이도 조정
+        return this.chain[currentLength - INTERVAL]
+    }
+
+    serialize(): string {
+        // "[{block1}, {block2}, {block3}]"
+        return JSON.stringify(this.chain);
+    }
+    
+    deserialize(chunk: string): Block[] {
+        // 다른 노드에서 받은 체인JSON 문자열을 파싱
+        return JSON.parse(chunk);
+    }
 }
 
 export default Chain

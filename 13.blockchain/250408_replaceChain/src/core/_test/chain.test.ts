@@ -45,7 +45,6 @@ describe("🧪 난이도 조정 흐름 테스트 - 단계별", () => {
   it("4단계. 주기만큼 블록을 추가하고 난 후, 다음 블록을 생성한다", () => {
     for (let i = 1; i <= DIFFICULTY_ADJUSTMENT_INTERVAL + 1; i++) {
       let adjustment: Block;
-      // 10
       const prev = chain.latestBlock()
 
       if (i > DIFFICULTY_ADJUSTMENT_INTERVAL) {

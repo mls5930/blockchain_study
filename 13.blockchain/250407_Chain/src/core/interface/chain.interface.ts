@@ -8,4 +8,10 @@ export interface IChain {
     getBlock(callbackFn: (block: Block) => boolean): Block
     getBlockByHeight(height: number): Block
     getBlockByHash(hash: string): Block
+    // receivedChain => 상대 체인이라고 파악
+    replaceChain(receivedChain: Block[]) : { isError: boolean | undefined, message: string }
+    getAdjustmentBlock(): Block;
+    // P2P 통신할 때 사용할 메서드
+    serialize(): string
+    deserialize(chunk: string): Block[]
 }

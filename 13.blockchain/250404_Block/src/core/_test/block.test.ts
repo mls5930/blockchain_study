@@ -76,11 +76,11 @@ describe("block 테스트", () => {
         console.log(newBlock.hash);
         console.log(newBlock2.previousHash);
 
-        //     console.log
-        //     cfd571bb4ea9760eef11ec1f13e2f4c85b22a2f231bcebb893664c2f6559db3f
+        // console.log
+        // cfd571bb4ea9760eef11ec1f13e2f4c85b22a2f231bcebb893664c2f6559db3f
 
-        //      console.log
-        //     cfd571bb4ea9760eef11ec1f13e2f4c85b22a2f231bcebb893664c2f6559db3f
+        //  console.log
+        // cfd571bb4ea9760eef11ec1f13e2f4c85b22a2f231bcebb893664c2f6559db3f
 
 
 
