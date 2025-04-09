@@ -10,10 +10,8 @@ export class Receipt {
     sender: Sender;
     received: string;
     amount: number;
-    signature: SignatureInput
+    signature: SignatureInput;
 }
-
-
 
 export class Accounts {
     privateKey: string;

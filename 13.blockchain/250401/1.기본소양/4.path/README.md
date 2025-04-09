@@ -20,7 +20,6 @@
 
 ```js
 const path = require("path");
-
 const fullPath = path.join("folder", "sub", "file.txt");
 // Windows: folder\sub\file.txt
 // Mac/Linux: folder/sub/file.txt
