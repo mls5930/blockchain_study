@@ -3,8 +3,6 @@ import Wallet from "@core/wallet";
 import { randomBytes } from "crypto";
 import { SHA256 } from "crypto-js";
 import elliptic from "elliptic";
-import path from "path";
-import fs from "fs";
 
 describe("전자 서명 테스트",() => {
     let privateKey: string;
