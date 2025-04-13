@@ -1,8 +1,7 @@
 import elliptic, { SignatureInput } from "elliptic"
-import crypto, { verify } from "crypto"
+import crypto from "crypto"
 import { SHA256 } from "crypto-js";
 import { TransactionRow, TxIn, TxOut, UnspentTxOut } from "@core/interface/transaction.interface";
-import { stringify } from "querystring";
 import Transaction from "@core/transaction/transaction";
 /*
     bob이 Alice에게 7코인을 보낸다.
