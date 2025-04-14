@@ -55,7 +55,6 @@ class Transaction {
         return txouts;
     }
 
-
     // 트랜잭션 출력 직렬화
     serializeTxOut(txOut: TxOut): string {
         const { account, amount } = txOut;
@@ -121,10 +120,11 @@ class Transaction {
         );
         return SHA256(txOutsText + txInsText).toString();
     }
+
     update(transaction: TransactionRow): void {
         const findCallback = (tx: TransactionRow) => transaction.hash === tx.hash;
         const index = this.transactionPool.findIndex(findCallback);
-        if (index !== -1) this.transactionPool.splice(index, 1)
+        if (index !== -1) this.transactionPool.splice(index, 1);
     }
 
     // 트랜잭션 풀 동기화

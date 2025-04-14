@@ -1,55 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
-=======
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지갑 상호작용</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 </head>
 
-=======
-</head>
->>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
-=======
-</head>
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
 <body>
     <!--  -->
     <h1>지갑</h1>
     <button id="walletCreateBtn">지갑 생성</button>
     <ul id="walletList">
         <li>비트코인 지갑</li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <li>account: <spen id="account"></spen>
-        </li>
-        <li>private key: <spen id="privateKey"></spen>
-        </li>
-        <li>public key: <spen id="publicKey"></spen>
-        </li>
-        <li>balance: <spen id="balance"></spen>
-        </li>
-=======
-=======
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
         <li>account: <span id="account"></span></li>
         <li>private key: <span id="privateKey"></span></li>
         <li>public key: <span id="publicKey"></span></li>
         <li>balance: <span id="balance"></span></li>
-<<<<<<< HEAD
->>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
-=======
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
     </ul>
     <!--  -->
     <h1>지갑목록</h1>
@@ -64,50 +32,23 @@
             account.innerHTML = wallet.account
             balance.innerHTML = wallet.balance
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         walletCreateBtn.onclick = async () => {
-            // 우리 "서버"에 요청해야함 => 시간이 걸림 => 비동기
-            const { data } = await axios.post('http://localhost:4000/newWallet')
-            render(data);
-        }
-
-        const getWalletView = async (account) => {
-            const { data } = await axios.post('http://localhost:4000/walletSelect', { account })
-            render(data)
-        }
-
-        walletListBtn.onclick = async () => {
-=======
-=======
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
-
-        walletCreateBtn.onclick = async() => {
             const { data } = await axios.post('http://localhost:4000/newWallet');
             render(data);
         }
 
-        const getWalletView = async(account) => {
-            const { data } = await axios.post("http://localhost:4000/walletSelect", {account});
+        const getWalletView = async (account) => {
+            const { data } = await axios.post("http://localhost:4000/walletSelect", { account });
             render(data);
         }
 
-        walletListBtn.onclick = async() => {
-<<<<<<< HEAD
->>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
-=======
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
+        walletListBtn.onclick = async () => {
             const { data } = await axios.get("http://localhost:4000/wallet");
             const list = data.map((account) => `<li onclick="getWalletView('${account}')">${account}</li>`);
             walletListData.innerHTML = list;
         }
     </script>
 </body>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
-=======
->>>>>>> 97c9831b1269087f3a179db855d7ea324a58d09a
 </html>
