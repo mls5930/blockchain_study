@@ -1,125 +1,107 @@
-import { randomBytes } from "crypto";
+import elliptic, { SignatureInput } from "elliptic"
+import crypto from "crypto"
 import { SHA256 } from "crypto-js";
+import { TransactionRow, TxIn, TxOut, UnspentTxOut } from "@core/interface/transaction.interface";
 import Transaction from "@core/transaction/transaction";
-import { ec as EC } from "elliptic";
-import { SignatureInput } from "elliptic";
-import { TxIn, TxOut, UnspentTxOut } from "@core/transaction/interface/transaction.interface";
+/*
+    bob이 Alice 에게 7코인을 보낸다.
 
-const ec = new EC("secp256k1");
+    1.밥은 자신의 지갑에서 서명을 통해 트랜잭션을 생성하고,
+    2.자신이 가진 동전들(UTXO) 중에서 7코인 이상을 선택해 엘리스에게 전달한다.
+    3.트랜잭션은 해시 처리되어서 고유하게 식별되며 트랜잭션 풀에 등록된 후 
+    4.블록 생성에 사용될 준비를마친다 => 트랜잭션 저장소(풀)에 등록된다.
+*/
+const ec = new elliptic.ec("secp256k1")
+describe("밥이 엘리스에게 7코인을 보낸다", () => {
+    let privateKey: string;
+    let publicKey: string;
+    let signature: SignatureInput;
+    let unspent: UnspentTxOut[]; //밥은 도댜체 얼마를 가지고 있나? 기록들의 모음
+    it("1. 밥의 키쌍을 생성살 수 있어야 한다.", () => {
+        // 1, 비밀키 생성
+        // 2. 비밀키포 파생된 공개키 생성
+        privateKey = crypto.randomBytes(32).toString("hex");
+        const keypair = ec.keyFromPrivate(privateKey);
+        publicKey = keypair.getPublic().encode("hex", true);
+    })
+    it("2.밥의 서명은 유효한 형식이여야 한다.", () => {
+        // 한 번 트랜잭션을 만들어서 서명까지 해보자
 
-describe("시나리오 기반: 밥이 앨리스에게 7코인을 보낸다", () => {
-  const transaction = new Transaction();
 
-  let privateKey: string;
-  let publicKey: string;
-  let signature: SignatureInput;
-  let unspent: UnspentTxOut[];
 
-  const targetAmount = 7;
-  const recipient = "Alice";
 
-  // 1. 지갑 키쌍 생성
-  it("1. 밥의 키쌍을 생성할 수 있어야 한다", () => {
-    privateKey = randomBytes(32).toString("hex");
-    expect(privateKey.length).toBe(64);
+        // 검증도 해보고 싶은데 어떻게 해야 할까요?
+        const txData2 = "나 밥인데 100비트코인 있다고!"
+        const hash2 = SHA256(txData2).toString();
+        const keypair2 = ec.keyFromPrivate(publicKey, "hex")
 
-    const keyPair = ec.keyFromPrivate(privateKey);
-    publicKey = keyPair.getPublic().encode("hex", true);
-    expect(publicKey.length).toBe(66);
-  });
 
-  // 2. 서명 생성
-  it("2. 밥의 서명은 유효한 형식이어야 한다", () => {
-    const txData = "트랜잭션 준비중";
-    const hash = SHA256(txData).toString();
 
-    const keyPair = ec.keyFromPrivate(privateKey);
-    signature = keyPair.sign(hash, "hex");
 
-    expect(typeof signature.r).toBe("object");
-    expect(signature).toHaveProperty("s");
-  });
+    })
 
-  // 3. 밥의 잔액은 충분해야 한다
-  it("3. 밥의 UTXO 목록은 7 이상 총합을 가지고 있어야 한다", () => {
-    unspent = [
-      { txOutId: "tx001", txOutIndex: 0, account: publicKey, amount: 3 },
-      { txOutId: "tx002", txOutIndex: 0, account: publicKey, amount: 4 },
-      { txOutId: "tx003", txOutIndex: 0, account: publicKey, amount: 3 },
-    ];
-    const total = unspent.reduce((acc, cur) => acc + cur.amount, 0);
-    expect(total).toBeGreaterThanOrEqual(7);
-  });
+    it("3. 밥이 자신이 서명한 것을 검증함", () => {
+        const txData = "나 밥인데 100비트코인 있다고!"
+        const hash = SHA256(txData).toString()
+        const keypair = ec.keyFromPrivate(privateKey)
+        signature = keypair.sign(hash, "hex")
+        const isValid = keypair.verify(hash, signature)
+        expect(isValid).toBe(true)
+    })
+    it("4. 밥의 UTXO 목록은 7 이상 총합을 가지고 있어야 한다.", () => {
+        // 밥이 가지고 있는 미사용 잔액을 함 봐보자
+        // 아래 선언한 배열 객체는 미사용에 대한 임시 값임!!!
+        unspent = [
+            { txOutId: "tx001", txOutIndex: 0, account: publicKey.slice(26), amount: 3 },
+            { txOutId: "tx002", txOutIndex: 0, account: publicKey.slice(26), amount: 4 },
+            { txOutId: "tx003", txOutIndex: 0, account: publicKey.slice(26), amount: 3 }
 
-  // 4. createInput으로 필요한 입력을 구성한다
-  let txIns: TxIn[];
-  let usedAmount: number;
+        ];
+        // acc = 초기값 0
+        // reduce도 결국 순회하는거야. 근데 계속 더하는 것 => acc + 현재값 acc 는 초기 값 0으로 설명 cur.amount: 3
+        // 1. acc = 0 cur = { txOutId: "tx001", txOutIndex: 0, account: publicKey.slice(26), amount: 3 },
+        // 2. acc + cur.amount = 3
+        // 3. acc = 3,  cur  ={ txOutId: "tx002", txOutIndex: 0, account: publicKey.slice(26), amount: 4 }
+        // 4. acc + cur.amount = 7 
+        // 5. acc = 7 
+        // 6. acc + cur =  { txOutId: "tx003", txOutIndex: 0, account: publicKey.slice(26), amount: 10 }
+        // 7. acc = 10
+        const total = unspent.reduce((acc, cur) => acc + cur.amount, 0);
 
-  it("4. createInput()으로 필요한 UTXO를 꺼내서 TxIn을 만든다", () => {
-    
-    const [inputs, amount] = transaction.createInput(unspent, targetAmount, signature);
-    txIns = inputs;
-    usedAmount = amount;
+        expect(total).toEqual(10)
+    });
 
-    expect(txIns.length).toBeGreaterThanOrEqual(2);
-    expect(usedAmount).toBeGreaterThanOrEqual(targetAmount);
-  });
+    let txIns: TxIn[];
+    let usedAmount: number;
+    let targetAmount: number = 7
+    const transaction = new Transaction();
+    // 밥이 Alice한테 7코인을 보내려고 10코인을 꺼내고 거스름돈 받는 상황
+    it("5. createInput()으로 필요한 UTXO를 꺼내서 TxIn 을 만든다", () => {
+        // 4단계에서 unspent 를 봐야함!!
+        const [inputs, amount] = transaction.createInput(unspent, targetAmount, signature);
+        txIns = inputs;
+        usedAmount = amount;
 
-  // 5. 출력 TxOut을 만든다 (Alice에게 7코인)
-  let txOuts: TxOut[];
+        expect(txIns.length).toBeGreaterThanOrEqual(2);
+        expect(usedAmount).toBeGreaterThanOrEqual(targetAmount);
+    })
+    let txOuts: TxOut[];
+    const transactionPool: TransactionRow[] = [];
+    it("6. createOutInput()으로 Alice에게 7 코인을 보낸다", () => {
+        txOuts = transaction.createOutInput("aliceAddress", 7, publicKey.slice(26), 10)
+        expect(txOuts.find((o) => o.account === "aliceAddress")?.amount).toBe(7)
+        // 위의 테스트가 끝났다면, 하나의 트랜잭션이 만들어진것과 다름이 없음
+        // 단! 전체를 더한 hash값을 구해야 하겠지.
+        transactionPool.push({ txIns, txOuts })
+        // 위의 hash만 귀해서 넣으면 끝임
+        // 그건 문서 13번 ~16번을 보면 됌
+        console.log(JSON.stringify(transactionPool, null, 2));
 
-  it("5. createOutInput()으로 Alice에게 7코인을 보낸다", () => {
-    txOuts = transaction.createOutInput(recipient, targetAmount, publicKey, usedAmount);
-    expect(txOuts.find((o) => o.account === recipient)?.amount).toBe(7);
-  });
+    })
 
-  // 6. 거스름돈도 TxOut으로 생성되어야 한다
-  // 당연히, 6단계 이전에, 거스를 돈이 아예 없으니까 에러가 나야 하는 상황이 맞음.
-  it("6. 거스름돈은 밥에게 다시 TxOut으로 생성된다", () => {
-    const change = txOuts.find((o) => o.account === publicKey.slice(26));
-    expect(change).toBeDefined();
-    expect(change!.amount).toBe(usedAmount - targetAmount);
-  });
-
-  // 7. 입력금액과 출력금액은 항상 같아야 한다
-  it("7. 입력 총액과 출력 총액은 정확히 일치해야 한다", () => {
-    const outSum = txOuts.reduce((acc, cur) => acc + cur.amount, 0);
-    expect(outSum).toBe(usedAmount);
-  });
-
-  // 8. 직렬화해서 트랜잭션 해시를 생성할 수 있다
-  let hash: string;
-
-  it("8. serializeRow()로 해시 생성이 가능해야 한다", () => {
-    const row = { txIns, txOuts, hash: "" };
-    hash = transaction.serializeRow(row);
-    expect(hash.length).toBe(64);
-  });
-
-  // 9. 최종 트랜잭션을 create()로 생성할 수 있다
-  let finalTx: ReturnType<typeof transaction["create"]>;
-
-  it("9. create() 함수로 최종 트랜잭션을 만들 수 있다", () => {
-    finalTx = transaction.create(
-      {
-        signature,
-        amount: targetAmount,
-        received: recipient,
-        sender: { account: publicKey },
-      },
-      unspent
-    );
-
-    expect(finalTx.hash.length).toBe(64);
-    expect(finalTx.txIns.length).toBeGreaterThanOrEqual(1);
-    expect(finalTx.txOuts.length).toBeGreaterThanOrEqual(1);
-  });
-
-  // 10. 트랜잭션 풀에 트랜잭션이 등록되었는지 확인
-  it("10. 트랜잭션 풀에 트랜잭션이 등록되었는지 확인", () => {
-    // create() 안에서 push 되었는지 확인
-    const pool = (transaction as any).transactionPool;
-    const exists = pool.find((tx: any) => tx.hash === finalTx.hash);
-    expect(exists).toBeDefined();
-  });
 });
+
+
+
+
+

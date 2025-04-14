@@ -11,13 +11,17 @@ class Wallet implements Accounts {
     publicKey: string;
     account: string;
     balance: number;
+<<<<<<< HEAD
+    constructor(privateKey: string = "") {
+=======
     constructor(privateKey: string = "") {        
+>>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
         this.privateKey = privateKey || this.getPrivateKey();
         this.publicKey = this.getPublicKey();
         this.account = this.getAccount();
         this.balance = 0;
 
-        if(privateKey === "") {
+        if (privateKey === "") {
             Wallet.createWallet(this);
         }
     }
@@ -30,13 +34,13 @@ class Wallet implements Accounts {
         const keyPair = ec.keyFromPrivate(this.privateKey);
         return keyPair.getPublic().encode("hex", true);
     }
-    
-    getAccount():string {
+
+    getAccount(): string {
         // 공개키에서 뒷 부분 40자리만 잘라 주소로 사용
         return `${this.publicKey.slice(26)}`;
     }
-    
-    static createWallet(myWallet: Wallet) : void {
+
+    static createWallet(myWallet: Wallet): void {
         // 경로부터 한 번 미리 지정해보자
         // __dirname/data/0x12314124124124124124124124.txt
         // 제목: 주소, 내용: 비밀키
@@ -45,7 +49,7 @@ class Wallet implements Accounts {
         fs.writeFileSync(filePath, fileContent)
     }
 
-    static getWalletList (): string[] {
+    static getWalletList(): string[] {
         // 우리가 저장한 지갑 파일들을 읽어서 리스트를 가져오자
         const filepath = path.join(__dirname, "../data");
         return fs.readdirSync(filepath);
