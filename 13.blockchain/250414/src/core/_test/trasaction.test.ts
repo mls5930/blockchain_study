@@ -32,13 +32,16 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
         txOuts.forEach(unspent.create(initHash));
 
         // Bob의 키쌍 생성을 먼저 합니다.
-
         privateKey = crypto.randomBytes(32).toString("hex");
+<<<<<<< HEAD
         const keyPair = ec.keyFromPrivate(privateKey)
         publicKey = keyPair.getPublic().encode("hex", true);
+=======
+        const keyPair = ec.keyFromPrivate(privateKey);
+        publicKey = keyPair.getPublic().encode("hex",true);
+>>>>>>> 6c17691fd881ccf7d5d291958b711cc94720ee51
 
         // 생성한 키쌍으로 임시 사인을 한다
-
         const txData = "나 황금송아지 있다니께!";
         const hash = SHA256(txData).toString();
         signature = keyPair.sign(hash, "hex");
@@ -152,8 +155,21 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
             sender: { account: "Bob" }
         }
 
-        const tx2: TransactionRow = transaction.create(reciept2, myUnspentTxOut)
-        transaction.sync([tx1, tx2]);
+        const tx2: TransactionRow = transaction.create(reciept2, myUnspentTxOut);
+
+        const reciept3 = {
+            signature,
+            amount : 1,
+            received : "Charlie",
+            sender : { account: "Bob" }
+        }
+
+        const tx3: TransactionRow = transaction.create(reciept3, myUnspentTxOut)
+        transaction.sync([tx1, tx2, tx3]);
+        // transaction.update(tx1);
+        // transaction.update(tx2);
+        // transaction.update(tx3);
+
         console.log(JSON.stringify(transaction.getPool(), null, 2));
     })
 })

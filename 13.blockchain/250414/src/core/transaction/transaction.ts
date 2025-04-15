@@ -85,6 +85,7 @@ class Transaction {
             receipt.amount,
             receipt.signature
         );
+
         const txOuts = this.createOutInput(
             receipt.received,
             receipt.amount,
