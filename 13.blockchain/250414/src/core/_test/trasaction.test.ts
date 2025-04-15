@@ -26,7 +26,6 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD" , () =
         const txOuts: TxOut[] = [
             { account: "Bob", amount: 5},
             { account: "Bob", amount: 5},
-            // { account: "Bob", amount: 3 } 
             { account: "Charlie", amount: 10 }
         ]
         txOuts.forEach(unspent.create(initHash));
@@ -95,7 +94,7 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD" , () =
         const tx: TransactionRow = transaction.create(reciept, myUnspentTxOut)
 
         unspent.update(tx);
-        const result = unspent["unspentTxOuts"];
+        const result = unspent.getUnspentTxOuts();
 
         console.log(result);
     })
@@ -126,11 +125,8 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD" , () =
         const myUnspentTxOut = unspent.getUTXO("Bob");
 
         const tx: TransactionRow = transaction.create(reciept, myUnspentTxOut)
-
         transaction.update(tx);
-
         console.log(JSON.stringify(transaction.getPool(), null, 2));
-
     })
 
     it("sync() 메서드 활용. 여러 트랜잭션을 한 번에 제거", () => {

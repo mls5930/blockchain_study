@@ -9,6 +9,11 @@ class Unspent {
             { account: "Alice", amount: 7 },
         ]
     */
+
+   getUnspentTxOuts(): UnspentTxPool {
+    return this.unspentTxOuts;
+   }
+   
    create(hash: string) {
         return (txOut: TxOut, txOutIndex: number) => {
             const { account, amount } = txOut;

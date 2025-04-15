@@ -13,6 +13,7 @@ class Transaction {
         myUnspentTxOuts: UnspentTxOut[],
         receiptAmount: number,
         signature: SignatureInput
+        
     ): [TxIn[], number] {
         // 먼저 동전 짤짤이 다 꺼내볼거임 => 목표한, 필요한 만큼
         // 지금까지 꺼낸 UTXO들의 총 누적 값

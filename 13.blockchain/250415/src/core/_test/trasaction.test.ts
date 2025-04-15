@@ -4,7 +4,6 @@ import elliptic, { SignatureInput } from "elliptic";
 import crypto from "crypto";
 import { SHA256 } from "crypto-js";
 import { TxOut } from "@core/interface/transaction.interface";
-import { resourceUsage } from "process";
 // Bob이 Alice에게 7코인을 보낸다
 
 /*
@@ -102,7 +101,6 @@ describe("블록 생성 시나리오 - 코인베이스부터 트랜잭션 반영
 
             // 4단계 unspent.update()를 통해 잔액 상태 반영
             txsForBlock.forEach(tx => unspent.update(tx));
-
 
             // 5단계 검증 => 각각의 계정에 잔액이 반영이 되었는가?
             const result = unspent["unspentTxOuts"];
