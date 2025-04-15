@@ -114,7 +114,7 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
 
         const tx: TransactionRow = transaction.create(reciept, myUnspentTxOut)
 
-        // console.log(JSON.stringify(transaction.getPool(), null, 2));
+        console.log(JSON.stringify(transaction.getPool(), null, 2));
     })
 
     it("update(): 블록에 포함된 트랜잭션 1건 제거", () => {
@@ -157,3 +157,17 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
         console.log(JSON.stringify(transaction.getPool(), null, 2));
     })
 })
+
+// 1. KeyPair 생성 (지갑 생성)
+//    ↓
+// 2. 트랜잭션 생성
+//    ↓
+// 3. 트랜잭션에 서명 (signature)
+//    ↓
+// 4. 트랜잭션 풀(Transaction Pool)에 추가
+//    ↓
+// 5. 블록 후보 생성 (Pending Block)
+//    ↓
+// 6. 블록에 트랜잭션들 포함
+//    ↓
+// 7. 블록 생성 → 체인에 추가
