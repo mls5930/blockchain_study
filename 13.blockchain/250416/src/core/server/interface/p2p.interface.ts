@@ -1,7 +1,4 @@
-// 경로 : 250416/src/core/server/interface/p2p.interface.ts
-
-
+// 포트에서 P2P 서버를 열기
 export interface IP2P {
-    connectToPeer(host: string, port: number): void
     listen(port: number): void;
 }
