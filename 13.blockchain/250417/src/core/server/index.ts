@@ -1,4 +1,4 @@
-// 경로: 250416/src/core/server/index.ts
+// 경로: 250417/src/core/server/index.ts
 
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
@@ -7,7 +7,6 @@ import path from "path";
 import fs from "fs";
 import Chain from "@core/chain/chain";
 import { Client } from "./client";
-import { P2P } from "./p2p";
 
 const createApp = (client: Client, chain: Chain, targetPort: number) => {
   const app: Express = express();
