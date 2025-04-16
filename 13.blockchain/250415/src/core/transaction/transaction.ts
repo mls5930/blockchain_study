@@ -3,11 +3,13 @@ import { SHA256 } from "crypto-js";
 import { SignatureInput } from "elliptic";
 
 class Transaction {
+    private readonly REWARD = 50; // 체굴자 보상
     private readonly transactionPool: TransactionPool = []; // 미처리 트랜잭션 풀
 
     getPool(): TransactionPool {
         return this.transactionPool
     }
+
 
     createInput(
         myUnspentTxOuts: UnspentTxOut[],
@@ -71,10 +73,10 @@ class Transaction {
     // 트랜잭션 생성
     create(
         receipt: {
-            signature: SignatureInput;
-            amount: number;
-            received: string;
-            sender: { account: string };
+            signature: SignatureInput; // 서명
+            amount: number; // 보내야할 금액
+            received: string;// 받을사람 주소
+            sender: { account: string };// 보내는 사람 주소
         },
         unspentTxOuts: UnspentTxOut[]
     ): TransactionRow {
@@ -85,6 +87,7 @@ class Transaction {
             receipt.amount,
             receipt.signature
         );
+
         const txOuts = this.createOutInput(
             receipt.received,
             receipt.amount,
@@ -121,8 +124,44 @@ class Transaction {
         return SHA256(txOutsText + txInsText).toString();
     }
 
+    /*
+        1. 코인베이스 트랜잭션 출력값 생성
+        2. 코인베이스도 트랜잭션이기 때문에 => 입력값 구조 형태 만들어볼겁니다.
+        3. 입력값 + 출력값을 해시하는 메서드
+        4. 위의 1,2,3 을 조립하여 하나의 메서드 => createCoinbase
+        
+    */
+    createTxOut(account: string, amount: number): TxOut {
+        if (account.length !== 40) throw new Error("지갑주소가 아닙니다.")
+
+        const txOut = new TxOut()
+        txOut.account = account;
+        txOut.amount = amount;
+        return txOut;
+    }
+    createTxin(txOutIndex: number, txOutId?: string, signature?: SignatureInput): TxIn {
+        const txIn = new TxIn();
+        txIn.signature = signature;
+        txIn.txOutId = txOutId;
+        txIn.txOutIndex = txOutIndex;
+        return txIn;
+    }
+    createRow(txIns: TxIn[], txOuts: TxOut[]): TransactionRow {
+        const transactionRow = new TransactionRow();
+        transactionRow.txIns = txIns;
+        transactionRow.txOuts = txOuts;
+        transactionRow.hash = this.serializeRow(transactionRow)
+        return transactionRow
+    }
+
+    createCoinbase(account: string, latestBlockHeight: number): TransactionRow {
+        const txIn = this.createTxin(latestBlockHeight + 1)  // 트렌젝션 충족을 위한 인덱스
+        const txOut = this.createTxOut(account, this.REWARD);
+        return this.createRow([txIn], [txOut])
+    }
+
     update(transaction: TransactionRow): void {
-        const findCallback = (tx: TransactionRow) => transaction.hash === tx.hash;
+        const findCallback = (tx: TransactionRow) => transaction.hash === tx.hash
         const index = this.transactionPool.findIndex(findCallback);
         if (index !== -1) this.transactionPool.splice(index, 1);
     }

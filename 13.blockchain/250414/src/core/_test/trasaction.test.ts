@@ -33,13 +33,8 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
 
         // Bob의 키쌍 생성을 먼저 합니다.
         privateKey = crypto.randomBytes(32).toString("hex");
-<<<<<<< HEAD
-        const keyPair = ec.keyFromPrivate(privateKey)
-        publicKey = keyPair.getPublic().encode("hex", true);
-=======
         const keyPair = ec.keyFromPrivate(privateKey);
-        publicKey = keyPair.getPublic().encode("hex",true);
->>>>>>> 6c17691fd881ccf7d5d291958b711cc94720ee51
+        publicKey = keyPair.getPublic().encode("hex", true);
 
         // 생성한 키쌍으로 임시 사인을 한다
         const txData = "나 황금송아지 있다니께!";
@@ -159,9 +154,9 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
 
         const reciept3 = {
             signature,
-            amount : 1,
-            received : "Charlie",
-            sender : { account: "Bob" }
+            amount: 1,
+            received: "Charlie",
+            sender: { account: "Bob" }
         }
 
         const tx3: TransactionRow = transaction.create(reciept3, myUnspentTxOut)
