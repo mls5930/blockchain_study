@@ -24,9 +24,14 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
         // 이전 블록이 추가될 시점에서 Bob과 찰리의 미사용 조각들을 등록했다고 가정하는 것.
         const initHash = "init";
         const txOuts: TxOut[] = [
+<<<<<<< HEAD
             { account: "Bob", amount: 5 },
             { account: "Bob", amount: 5 },
             // { account: "Bob", amount: 3 } 
+=======
+            { account: "Bob", amount: 5},
+            { account: "Bob", amount: 5},
+>>>>>>> 2ff47a4202a47279629cc64f841cb122d721d9bc
             { account: "Charlie", amount: 10 }
         ]
         txOuts.forEach(unspent.create(initHash));
@@ -95,7 +100,7 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
         const tx: TransactionRow = transaction.create(reciept, myUnspentTxOut)
 
         unspent.update(tx);
-        const result = unspent["unspentTxOuts"];
+        const result = unspent.getUnspentTxOuts();
 
         console.log(result);
     })
@@ -125,11 +130,8 @@ describe("Transaction 클래스를 통한 트랜잭션 생성 흐름 TDD", () =>
         const myUnspentTxOut = unspent.getUTXO("Bob");
 
         const tx: TransactionRow = transaction.create(reciept, myUnspentTxOut)
-
         transaction.update(tx);
-
         console.log(JSON.stringify(transaction.getPool(), null, 2));
-
     })
 
     it("sync() 메서드 활용. 여러 트랜잭션을 한 번에 제거", () => {

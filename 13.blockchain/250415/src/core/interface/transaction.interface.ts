@@ -28,4 +28,8 @@ export class UnspentTxOut {
 // 트랜잭션 저장소
 export type TransactionPool = TransactionRow[];
 // 미사용 객체 저장소
+<<<<<<< HEAD
 export type UnspentTxPool = UnspentTxOut[]; ``
+=======
+export type UnspentTxPool = UnspentTxOut[];``
+>>>>>>> 2ff47a4202a47279629cc64f841cb122d721d9bc
