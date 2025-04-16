@@ -1,14 +1,3 @@
-/*
-    한 터미널 => node1
-    또 하나의 터미널 => node2
-
-    각 노드가 자신만의 체인을 가지고 서버를 열고
-    서로 연결된 상태에서 블록을 전파하는 구조
-
-    먼저, 하나의 설정
-    getConfig();
-*/
-
 import Chain from "./chain/chain";
 import { getConfig } from "./config"
 import createApp from "./server";
@@ -20,7 +9,6 @@ export const startNode = async(NODE_ID: string = "node1") => {
         httpPort, 
         nodeId, 
         p2pPort, 
-        peerHost, 
         peerPort 
     } = getConfig(NODE_ID);
 
@@ -31,7 +19,6 @@ export const startNode = async(NODE_ID: string = "node1") => {
     
     await startHttpServer(app, httpPort, nodeId);
     await startP2PServer(p2p, p2pPort, nodeId);
-    await connectInitialPeers(p2p, peerHost, peerPort);
 }
 
 function startHttpServer(app: any, port: number, nodeId: string): Promise<void> {
@@ -50,13 +37,3 @@ function startP2PServer(p2p: P2P, port: number, nodeId: string): Promise<void> {
         resolve();
     });
 }
-
-function connectInitialPeers(p2p: P2P, host: string, port: number): Promise<void> {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            p2p.connectToPeer(host, port);
-            resolve();
-        }, 1000);
-    });
-}
-  
