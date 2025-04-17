@@ -6,6 +6,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+        /* @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        } */
+
+        #blockCreate,
+        #blockListViewBtn {
+            /* width: 70px; */
+            height: 22px;
+            background: linear-gradient(to right, #786be6, #f57f7f);
+            border: 1 px solid #ccc;
+            animation: gradientMove 8s ease infinite;
+            background-size: 200% 200%;
+
+        }
+    </style>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
     integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
