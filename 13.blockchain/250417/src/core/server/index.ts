@@ -25,7 +25,7 @@ const createApp = (client: Client, chain: Chain, targetPort: number) => {
 
   app.post("/block/mine", (req: Request, res: Response) => {
     const { data }: { data: string[] } = req.body;
-    // node2
+    
     client.connect("127.0.0.1", targetPort, MessageType.addBlock, data);
     res.json(chain.get()); // 블록 생성 후 자신의 체인 상태 응답
   });

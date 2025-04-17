@@ -27,16 +27,19 @@ export class P2P implements IP2P {
         socket.on('data', (data) => {
             try{
                 const message: IMessage =  JSON.parse(data.toString().trim());
-    
+                console.log("message", message);
+                
                 switch (message.type) {
                     case MessageType.addBlock:
                         this.chain.replaceChain(message.payload as Block[])
+                        this.sendMessage(socket, MessageType.allBlock);
                         break;
                     case MessageType.allBlock:
-                        socket.write(JSON.stringify(message));
+                        // 1. socket, 2. 메세지 타입, 3. 데이터
+                        this.sendMessage(socket, MessageType.allBlock, this.chain.get());
                         break;
-                    case MessageType.latestBlock:
-                        socket.write(JSON.stringify(message));
+                        case MessageType.latestBlock:
+                        this.sendMessage(socket, MessageType.latestBlock, this.chain.latestBlock());
                         break;
                     default:
                         break;
@@ -50,6 +53,11 @@ export class P2P implements IP2P {
             if (index !== -1) this.sockets.splice(index, 1);
             console.log(`[-] 소켓 연결 종료 ${socket.remoteAddress}: ${socket.remotePort}`);   
         })
+    }
+
+    private sendMessage(socket: Socket, type: MessageType, payload?: Block | Block[]) : void{
+        const message: IMessage = { type, payload };
+        socket.write(JSON.stringify(message));
     }
 }
 
