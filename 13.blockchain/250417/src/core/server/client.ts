@@ -1,10 +1,11 @@
+// 경로: 250417/src/core/server/client.ts
 import net from "net"
 import Chain from "@core/chain/chain";
 import { IMessage, MessageType } from "./interface/message.interface";
 import Block from "@core/block/block";
 
 export class Client {
-    constructor(private readonly chain: Chain) { }
+    constructor(private readonly chain: Chain) {}
 
     connect(host: string, port: number, type: MessageType, payload?: string[]): void {
         const client = new net.Socket();
@@ -14,14 +15,14 @@ export class Client {
         })
 
         client.on("close", () => {
-            console.log("[Client] 즉, 터미널 종료함!");
+            console.log("[Client] 즉, 터미널 종료함!");  
         })
     }
-
+    
     private addBlock(payload: string[]): Block[] {
         const block = Block.generateBlock(
-            this.chain.latestBlock(),
-            payload,
+            this.chain.latestBlock(), 
+            payload, 
             this.chain.getAdjustmentBlock()
         );
         this.chain.addToChain(block);
@@ -36,8 +37,8 @@ export class Client {
                     payload: this.addBlock(payload)
                 }
             case MessageType.allBlock:
-                return {
-                    type,
+                return { 
+                    type, 
                     payload: this.chain.get()
                 }
             case MessageType.latestBlock:

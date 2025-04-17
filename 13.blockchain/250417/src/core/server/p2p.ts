@@ -1,3 +1,5 @@
+// 경로: 250417/src/core/server/p2p.ts
+
 import net, { Socket } from "net";
 import { IP2P } from "./interface/p2p.interface";
 import { IMessage, MessageType } from "./interface/message.interface";
@@ -7,7 +9,7 @@ import Block from "@core/block/block";
 export class P2P implements IP2P {
     sockets: Socket[] = [];
 
-    constructor(private readonly chain: Chain) { }
+    constructor(private readonly chain: Chain) {}
 
     listen(port: number): void {
         const server = net.createServer((socket) => {
@@ -23,9 +25,9 @@ export class P2P implements IP2P {
     private initializeSocket(socket: Socket): void {
         this.sockets.push(socket);
         socket.on('data', (data) => {
-            try {
-                const message: IMessage = JSON.parse(data.toString().trim());
-
+            try{
+                const message: IMessage =  JSON.parse(data.toString().trim());
+    
                 switch (message.type) {
                     case MessageType.addBlock:
                         this.chain.replaceChain(message.payload as Block[])
@@ -46,7 +48,8 @@ export class P2P implements IP2P {
         socket.on("end", () => {
             const index = this.sockets.indexOf(socket);
             if (index !== -1) this.sockets.splice(index, 1);
-            console.log(`[-] 소켓 연결 종료 ${socket.remoteAddress}: ${socket.remotePort}`);
+            console.log(`[-] 소켓 연결 종료 ${socket.remoteAddress}: ${socket.remotePort}`);   
         })
     }
 }
+
