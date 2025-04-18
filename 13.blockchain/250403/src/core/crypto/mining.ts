@@ -19,4 +19,4 @@ const mine = (difficulty: number, base: string) => {
     }
 }
 
-mine(10, "string11");
+mine(10, "나 엄준식임");
