@@ -9,12 +9,10 @@ import Block from "@core/block/block";
 export class P2P implements IP2P {
     sockets: Socket[] = [];
 
-    constructor(private readonly chain: Chain) { }
+    constructor(private readonly chain: Chain) {}
 
     listen(port: number): void {
-        const server = net.createServer((socket) => { //초기화 로직
-            console.log("젠장 이건 대체 뭐냐", socket);
-
+        const server = net.createServer((socket) => {
             this.initializeSocket(socket);
         })
 
@@ -27,26 +25,6 @@ export class P2P implements IP2P {
     private initializeSocket(socket: Socket): void {
         this.sockets.push(socket);
         socket.on('data', (data) => {
-<<<<<<< HEAD
-            try {
-                const message: IMessage = JSON.parse(data.toString().trim());
-
-                switch (message.type) {
-                    case MessageType.addBlock:
-                        this.chain.replaceChain(message.payload as Block[])
-                        this.sendMessage(socket, MessageType.allBlock)
-                        break;
-                    case MessageType.allBlock:
-                        // 1. socket, 2. 메세지 타입, 3. 데이터
-                        socket.write(JSON.stringify(message));
-                        this.sendMessage(socket, MessageType.allBlock, this.chain.get())
-
-                        break;
-                    case MessageType.latestBlock:
-                        socket.write(JSON.stringify(message));
-                        this.sendMessage(socket, MessageType.latestBlock, this.chain.latestBlock())
-
-=======
             try{
                 const message: IMessage =  JSON.parse(data.toString().trim());
                 console.log("message", message);
@@ -62,7 +40,6 @@ export class P2P implements IP2P {
                         break;
                         case MessageType.latestBlock:
                         this.sendMessage(socket, MessageType.latestBlock, this.chain.latestBlock());
->>>>>>> c47f374604261d4bfb78e1b6f32ffac6fe490066
                         break;
                     default:
                         break;
@@ -74,19 +51,13 @@ export class P2P implements IP2P {
         socket.on("end", () => {
             const index = this.sockets.indexOf(socket);
             if (index !== -1) this.sockets.splice(index, 1);
-            console.log(`[-] 소켓 연결 종료 ${socket.remoteAddress}: ${socket.remotePort}`);
+            console.log(`[-] 소켓 연결 종료 ${socket.remoteAddress}: ${socket.remotePort}`);   
         })
     }
 
-<<<<<<< HEAD
-    private sendMessage(socket: Socket, type: MessageType, payload?: Block | Block[]): void {
-        const message: IMessage = { type, payload };
-        socket.write(JSON.stringify(message))
-=======
     private sendMessage(socket: Socket, type: MessageType, payload?: Block | Block[]) : void{
         const message: IMessage = { type, payload };
         socket.write(JSON.stringify(message));
->>>>>>> c47f374604261d4bfb78e1b6f32ffac6fe490066
     }
 }
 
