@@ -1,0 +1,17 @@
+{
+  "name": "250421",
+  "version": "1.0.0",
+  "description": "P2P 수업 3일차예요.   드디어 **“실시간 연결”**,   이 말을 코드로 **몸으로 느껴보는 날**입니다.",
+  "main": "deploy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ganache": "^7.9.2",
+    "solc": "^0.8.29",
+    "web3": "^4.16.0"
+  }
+}
