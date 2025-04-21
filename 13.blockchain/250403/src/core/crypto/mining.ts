@@ -20,4 +20,8 @@ const mine = (difficulty: number, base: string) => {
     }
 }
 
+<<<<<<< HEAD
 mine(4, "나 김두한이다.");
+=======
+mine(10, "나 엄준식임");
+>>>>>>> 702e548c225cb101f6a3905d95d7570eb57962a6

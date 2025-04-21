@@ -27,30 +27,10 @@ export class P2P implements IP2P {
     private initializeSocket(socket: Socket): void {
         this.sockets.push(socket);
         socket.on('data', (data) => {
-<<<<<<< HEAD
             try {
                 const message: IMessage = JSON.parse(data.toString().trim());
-
-                switch (message.type) {
-                    case MessageType.addBlock:
-                        this.chain.replaceChain(message.payload as Block[])
-                        this.sendMessage(socket, MessageType.allBlock)
-                        break;
-                    case MessageType.allBlock:
-                        // 1. socket, 2. 메세지 타입, 3. 데이터
-                        socket.write(JSON.stringify(message));
-                        this.sendMessage(socket, MessageType.allBlock, this.chain.get())
-
-                        break;
-                    case MessageType.latestBlock:
-                        socket.write(JSON.stringify(message));
-                        this.sendMessage(socket, MessageType.latestBlock, this.chain.latestBlock())
-
-=======
-            try{
-                const message: IMessage =  JSON.parse(data.toString().trim());
                 console.log("message", message);
-                
+
                 switch (message.type) {
                     case MessageType.addBlock:
                         this.chain.replaceChain(message.payload as Block[])
@@ -60,9 +40,8 @@ export class P2P implements IP2P {
                         // 1. socket, 2. 메세지 타입, 3. 데이터
                         this.sendMessage(socket, MessageType.allBlock, this.chain.get());
                         break;
-                        case MessageType.latestBlock:
+                    case MessageType.latestBlock:
                         this.sendMessage(socket, MessageType.latestBlock, this.chain.latestBlock());
->>>>>>> c47f374604261d4bfb78e1b6f32ffac6fe490066
                         break;
                     default:
                         break;
@@ -78,15 +57,9 @@ export class P2P implements IP2P {
         })
     }
 
-<<<<<<< HEAD
     private sendMessage(socket: Socket, type: MessageType, payload?: Block | Block[]): void {
         const message: IMessage = { type, payload };
-        socket.write(JSON.stringify(message))
-=======
-    private sendMessage(socket: Socket, type: MessageType, payload?: Block | Block[]) : void{
-        const message: IMessage = { type, payload };
         socket.write(JSON.stringify(message));
->>>>>>> c47f374604261d4bfb78e1b6f32ffac6fe490066
     }
 }
 
