@@ -126,20 +126,39 @@ P2P 수업 3일차예요.
 > 그 실행을 EVM이 어떻게 처리하고 저장하는지,  
 > 전체 구조와 흐름을 ‘몸으로’ 이해했는가?"**
 
----
+## 디렉토리 구성
 
-> 여러분이 해야 할 건 외우는 게 아닙니다.  
-> 지금 이 코드 한 줄이
->
-> - 누구에게 요청을 보내고 있고
-> - 어떤 메시지를 보내고 있고
-> - 어떤 결과가 네트워크에 남고 있고
-> - 그걸 누가, 언제, 어떻게 처리하는지
-
-> **그 구조를 머릿속에서 '그림으로' 떠올릴 수 있어야 합니다.**
-
----
-
-> “아, `deploy()` → `send()` 하면  
-> 결국 내가 바이트코드를 실제 네트워크에 배포하는 거고  
-> 그걸 EVM이 실행해서 스마트컨트랙트가 ‘존재하게’ 되는 거구나.”
+```
+250421
+├─ README.md
+├─ contracts
+│  ├─ Counter.sol
+│  ├─ compile.js
+│  ├─ contracts_sol_Counter.abi
+│  └─ contracts_sol_Counter.bin
+├─ counter.ts
+├─ deploy.js
+├─ document
+│  ├─ 1.lastWeek.md
+│  ├─ 10.solc.md
+│  ├─ 11.abiBytecode.md
+│  ├─ 11.deploy.md
+│  ├─ 12.ganache.md
+│  ├─ 13.EVM.md
+│  ├─ 14.RPC.md
+│  ├─ 15.sonnaUruubnea.md
+│  ├─ 16.abiBytecode.md
+│  ├─ 2.network.md
+│  ├─ 3.soultion.md
+│  ├─ 4.limitations.md
+│  ├─ 5.problem.md
+│  ├─ 6.whatEtherium.md
+│  ├─ 7.contract.md
+│  ├─ 8.solidity.md
+│  └─ 9.compile.md
+├─ package-lock.json
+├─ package.json
+└─ study
+   ├─ hyesung.md
+   └─ sangah.md
+```
