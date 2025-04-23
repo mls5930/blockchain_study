@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
 // 비트코인과의 큰 차이점 => 상태를 가질 수 있어.
 contract Counter {
