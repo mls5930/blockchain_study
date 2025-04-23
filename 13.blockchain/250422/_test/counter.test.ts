@@ -126,4 +126,72 @@ describe("카운터 컨트랙트 테스트", () => {
         const count: number = Number(await contract.methods.getCount().call())
         expect(count).toEqual(1)
     })
+
+    // 1. `increment()` 호출 후 실제로 블록 하나가 생겼는가 ? => 필요한 메서드 찾아서 사용해보기
+    // 2. `Contract Address`로 EVM 내 코드를 추적할 수 있는가 ? => 필요한 메서드 있습니다.
+    // 3. accounts[0] => 반드시 하나의 정해진 account로만 배포 및 함수 호출이 가능한가 ?
+    //    => 다른 account도 되지 않을까 ?
+
+    // eth_getTransactionReceipt
+    // eth_blockNumber
+    // eth_call
+    // eth_accounts
+    // eth_estimateGas
+    // eth_gasPrice
+    // eth_blockNumber
+    // eth_sendTransaction
+
+    it("5단계:호출 후 실제로 블록이 생겼는지 검증", async () => {
+        const web3 = new Web3("http://127.0.0.1:8545")
+        const contract = new web3.eth.Contract(abi, contractAddress)
+        const accounts = await web3.eth.getAccounts()
+        const account = accounts[0]
+        const gas = (await contract.methods.increment().estimateGas({ from: account })).toString()
+
+        const genesisBlock = await web3.eth.getBlockNumber()
+        console.log(genesisBlock); //20
+
+        await contract.methods.increment().send({
+            from: account,
+            gas: gas
+        })
+        const latestBlock = await web3.eth.getBlockNumber()
+        console.log(latestBlock); //21  
+        expect(genesisBlock).toBeLessThan(latestBlock)
+    })
+    it("6단계:Contract Address로 내코드 검증 ", async () => {
+        // EVN 에서 내가쓴코드를 주소값으로 검증?
+        const web3 = new Web3("http://127.0.0.1:8545")
+        const addressCode = await web3.eth.getCode(contractAddress)
+        console.log(fs.readFileSync("./contracts_Counter_sol_Counter.bin").toString());
+
+        expect(addressCode.length).toBe(fs.readFileSync("../contracts_Counter_sol_Counter.bin").toString)
+
+
+
+    })
+    it("7단계: accounts[0] => 반드시 하나의 정해진 account로만 배포 및 함수 호출이 가능한가 ?", async () => {
+        const web3 = new Web3("http://127.0.0.1:8545")
+        const contract = new web3.eth.Contract(abi, contractAddress)
+        const accounts = await web3.eth.getAccounts(); //주소를 가져옴
+        const account = accounts[1];
+        const account2 = accounts[2];
+        const gas = (await contract.methods.increment().estimateGas({ from: account })).toString()
+        const gas2 = (await contract.methods.increment().estimateGas({ from: account2 })).toString()
+
+
+        await contract.methods.increment().send({
+            from: account,
+            gas: gas
+        })
+        await contract.methods.increment().send({
+            from: account2,
+            gas: gas2
+
+        })
+        const count: number = Number(await contract.methods.getCount().call())
+        expect(count).toEqual(4)
+
+    })
+
 })
