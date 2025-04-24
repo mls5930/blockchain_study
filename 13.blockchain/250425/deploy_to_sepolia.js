@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Web3 인스턴스 생성 (Sepolia 연결)
-const web3 = new Web3("https://aeneid.storyrpc.io");
+const web3 = new Web3(process.env.SEPOLIA_RPC_URL);
 
 // 경로 설정
 const abiPath = path.join(__dirname, 'contracts_Counter_sol_Counter.abi');

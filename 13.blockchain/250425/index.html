@@ -132,7 +132,6 @@
       }
 
       const reset = async() => {
-        // A1, A2 => A1 나는 A2계정을 가져와서 테스트해볼게
         const contractAddress = document.querySelector("#address").value
         const resultDiv = document.querySelector("#result")
         
@@ -145,8 +144,6 @@
           console.log(`트랜잭션 날리는 중....`);
           const tx = await contract.methods.reset().send({
             from: account,
-            gas: 100000, // 충분한 여유
-            gasPrice: web3.utils.toWei("20", "gwei")
           })
 
           console.log(`카운터 초기화! ${tx.transactionHash}`);
