@@ -1,0 +1,132 @@
+<!-- 경로: /250424/index.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter Explorer</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .input-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      input {
+        padding: 8px;
+        flex: 1;
+        min-width: 300px;
+      }
+      button {
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .result {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Counter Explorer</h1>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="address"
+          placeholder="컨트랙트 주소를 입력하세요"
+        />
+        <button onclick="getCount()">카운트 조회</button>
+        <button onclick="increment()">카운트 증가</button>
+      </div>
+
+      <div class="result" id="result">결과가 여기에 표시됩니다.</div>
+    </div>
+
+    <script>
+      // Web3 인스턴스 초기화
+      let web3;
+      if (typeof window.ethereum !== 'undefined') {
+        web3 = new Web3(window.ethereum);
+      } else {
+        alert('MetaMask가 설치되어 있지 않습니다.');
+      }
+
+      let contractABI = null;
+
+      // ABI.json 불러오기
+      async function loadABI() {
+        if (!contractABI) {
+          const response = await axios.get('./contracts_Counter_sol_Counter.abi');
+          contractABI = response.data;
+        }
+      }
+
+      async function getCount() {
+        const address = document.getElementById('address').value;
+        const resultDiv = document.getElementById('result');
+
+        if (!address) {
+          resultDiv.textContent = '컨트랙트 주소를 입력해주세요.';
+          return;
+        }
+
+        try {
+          await loadABI(); // ABI 로드
+          const contract = new web3.eth.Contract(contractABI, address);
+          const count = await contract.methods.getCount().call();
+          resultDiv.textContent = `현재 카운트: ${count}`;
+        } catch (error) {
+          resultDiv.textContent = `에러 발생: ${error.message}`;
+        }
+      }
+
+      async function increment() {
+        const address = document.getElementById('address').value;
+        const resultDiv = document.getElementById('result');
+
+        if (!address) {
+          resultDiv.textContent = '컨트랙트 주소를 입력해주세요.';
+          return;
+        }
+
+        try {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const accounts = await web3.eth.getAccounts();
+          const sender = accounts[0];
+
+          await loadABI(); // ABI 로드
+          const contract = new web3.eth.Contract(contractABI, address);
+
+          resultDiv.textContent = '트랜잭션을 전송 중입니다...';
+
+          const tx = await contract.methods.increment().send({ from: sender });
+          resultDiv.textContent = `카운트 증가 완료! 트랜잭션 해시: ${tx.transactionHash}`;
+        } catch (error) {
+          resultDiv.textContent = `에러 발생: ${error.message}`;
+        }
+      }
+    </script>
+  </body>
+</html>
