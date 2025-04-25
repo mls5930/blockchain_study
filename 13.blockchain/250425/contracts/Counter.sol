@@ -11,6 +11,7 @@ contract Counter {
         owner = _owner;
         count = 0;
     }
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this");
         _;

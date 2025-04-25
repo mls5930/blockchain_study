@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Web3 인스턴스 생성 (Sepolia 연결)
-const web3 = new Web3(process.env.SEPOLIA_RPC_URL);
+const web3 = new Web3("https://public-en-kairos.node.kaia.io");
 
 // 경로 설정
 const abiPath = path.join(__dirname, 'contracts_Counter_sol_Counter.abi');
@@ -38,7 +38,9 @@ async function deployToSepolia() {
     const contract = new web3.eth.Contract(abi);
 
     // 4. 배포 트랜잭션 데이터 준비
-    const deployTx = contract.deploy({ data: bytecode, arguments: [] });
+    const deployTx = contract.deploy({ data: bytecode, arguments: [
+      account.address
+    ] });
     const gas = await deployTx.estimateGas();
     const gasPrice = await web3.eth.getGasPrice();
 
