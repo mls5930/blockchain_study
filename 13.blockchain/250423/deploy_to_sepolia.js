@@ -14,9 +14,15 @@ const abiPath = path.join(__dirname, "contracts_Counter_sol_Counter.abi");
 const bytecodePath = path.join(__dirname, "contracts_Counter_sol_Counter.bin");
 const outputPath = path.join(__dirname, "etherscan_links.txt");
 
+<<<<<<< HEAD
 const deployToSepolia = async () => {
     try {
         if (!fs.existsSync(abiPath) || !fs.existsSync(bytecodePath)) {
+=======
+const deployToSepolia = async() => {
+    try {
+        if (!fs.existsSync(abiPath) || !fs.existsSync(bytecodePath)){
+>>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
             throw new Error("ABI.json 또는 Bytecode.json이 없습니다. 먼저 컴파일을 진행해주세요")
         }
         // npx solc --abi --bin contracts/Counter.sol
@@ -24,7 +30,11 @@ const deployToSepolia = async () => {
         const abi = JSON.parse(fs.readFileSync(abiPath, "utf8"));
         const bytecode = "0x" + fs.readFileSync(bytecodePath, "utf8");
 
+<<<<<<< HEAD
         if (!bytecode.startsWith("0x")) {
+=======
+        if (!bytecode.startsWith("0x")){
+>>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
             throw new Error("올바른 주소값이 아닙니다.")
         }
 
@@ -34,7 +44,11 @@ const deployToSepolia = async () => {
             process.env.PRIVATE_KEY
         )
 
+<<<<<<< HEAD
         const deployTx = contract.deploy({ data: bytecode, arguments: [] });
+=======
+        const deployTx = contract.deploy({ data: bytecode, arguments: []});
+>>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
         const gas = await deployTx.estimateGas();
         const gasPrice = await web3.eth.getGasPrice();
 
@@ -49,6 +63,7 @@ const deployToSepolia = async () => {
             tx,
             process.env.PRIVATE_KEY
         )
+<<<<<<< HEAD
         /*
             타원곡선 알고리즘 적용하여 
             {
@@ -61,11 +76,17 @@ const deployToSepolia = async () => {
         */
 
 
+=======
+>>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
 
         const receipt = await web3.eth.sendSignedTransaction(
             signedTx.rawTransaction
         )
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
         // 결과 출력
         console.log("배포 성공!");
         console.log("Contract Address", receipt.contractAddress);
@@ -84,7 +105,11 @@ const deployToSepolia = async () => {
         console.log(`Etherscan 링크가 ${outputPath}에 저장되었습니당`);
     } catch (error) {
         console.log("배포 중! 오류 발생", error.message);
+<<<<<<< HEAD
         if (error.message.includes("funds")) {
+=======
+        if(error.message.includes("funds")) {
+>>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
             console.log("sepolia 지갑에 충분한 ETH가 있는지 확인하세요.");
         }
     }
