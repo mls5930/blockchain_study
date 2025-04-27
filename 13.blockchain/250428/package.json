@@ -1,0 +1,11 @@
+{
+  "name": "counter-project",
+  "version": "1.0.0",
+  "description": "7차 월별 평가: 카운터 구현 및 트랜잭션 추적",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": { 
+    
+  }
+}
