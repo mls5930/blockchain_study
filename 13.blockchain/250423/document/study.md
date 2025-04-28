@@ -102,7 +102,7 @@ Timestamp: 트랜잭션이 블록에 포함된 시간
 
 From: 트랜잭션을 보낸 계정 주소 (EOA)
 
-To: 받는 계정 주소 or 호출된 스마트 컨트랙트 주소
+To: 받는 계정 주소 (EOA) or 호출된 스마트 컨트랙트 주소 (CA)
 
 Value: 보낸 이더(ETH)의 양
 
@@ -118,16 +118,16 @@ Gas Limit & Usage: 트랜잭션 실행을 위해 최대 허용치 vs 실제 소�
 
 Burnt Fees: EIP-1559 이후 소각된 가스비 (베이스피)
 
-    EIP-1559 이후 도입된 Base Fee 소각이란?
-    EIP-1559는 이더리움이 2021년에 도입한 수수료 개혁 시스템입니다.
+EIP-1559 이후 도입된 Base Fee 소각이란?
+EIP-1559는 이더리움이 2021년에 도입한 수수료 개혁 시스템입니다.
 
-    핵심 개념: Base Fee Burn
+핵심 개념: Base Fee Burn
 
-    항목	설명
-    Base Fee	트랜잭션을 블록에 포함시키기 위한 최소 수수료
-    Priority Fee	채굴자(지금은 블록 프로듀서)에게 주는 팁 (tip)
-    Total Fee	Base Fee + Tip
-    Base Fee는 자동 소각됨	즉, 그만큼의 ETH는 없어짐 (→ 디플레이션 효과)
+항목	설명
+Base Fee	트랜잭션을 블록에 포함시키기 위한 최소 수수료
+Priority Fee	채굴자(지금은 블록 프로듀서)에게 주는 팁 (tip)
+Total Fee	Base Fee + Tip
+Base Fee는 자동 소각됨	즉, 그만큼의 ETH는 없어짐 (→ 디플레이션 효과)
 
 Nonce: 이 계정의 트랜잭션 순번 (중복 방지용)
 

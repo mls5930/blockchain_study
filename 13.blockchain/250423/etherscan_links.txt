@@ -1,13 +1,6 @@
 # Contract Address
-<<<<<<< HEAD
             https://sepolia.etherscan.io/address/0x94361e48351a024d29cd5d0ea4adf6032c29537e
 
             # Deployment Transaction
             https://sepolia.etherscan.io/tx/0x9b12bcc3c4ac589bc8c5d8cf876f53a487c1cddc66138767419d8fd235c94f81
-=======
-            https://sepolia.etherscan.io/address/0x086fa0e52e8edbe3136b67406d5d07f0f30adab4
-
-            # Deployment Transaction
-            https://sepolia.etherscan.io/tx/0xd3231285764661dfade369f571357af9ec6127b430cea0f66a6fca92e60e7114
->>>>>>> 94d68cb99ca5d86fda822134bc4ef3d5e2852292
         

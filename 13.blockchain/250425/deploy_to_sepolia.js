@@ -38,7 +38,11 @@ async function deployToSepolia() {
     const contract = new web3.eth.Contract(abi);
 
     // 4. 배포 트랜잭션 데이터 준비
-    const deployTx = contract.deploy({ data: bytecode, arguments: [] });
+    const deployTx = contract.deploy({
+      data: bytecode, arguments: [
+        account.address
+      ]
+    });
     const gas = await deployTx.estimateGas();
     const gasPrice = await web3.eth.getGasPrice();
 
@@ -46,7 +50,7 @@ async function deployToSepolia() {
       from: account.address,
       data: deployTx.encodeABI(),
       gas,
-      gasPrice, 
+      gasPrice,
     };
 
     // 5. 트랜잭션 서명 및 전송
