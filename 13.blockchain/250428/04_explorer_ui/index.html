@@ -1,11 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>지갑 연결 후 상호작용 구현</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  input {
+    padding: 8px;
+    flex: 1;
+    min-width: 300px;
+  }
+
+  button {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .result {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+</style>
+
 <body>
-  
+  <div class="container">
+    <h1>Counter</h1>
+
+    <div class="input-group">
+      <input type="text" id="address" placeholder="컨트랙트 주소를 입력하세요">
+      <button onclick="walletConnect()">연결</button>
+      <button onclick="getCount()">카운터 조회</button>
+      <button onclick="increment()">카운터 증가</button>
+      <button onclick="reset()">리셋</button>
+    </div>
+    <div class="result" id="result">결과가 여기에 표시됩니당</div>
+  </div>
+  <script>
+    let web3;
+    web3 = new Web3(window.ethereum)
+    console.log(web3);
+
+    const loadABI = async () => {
+
+      const loadABI = async () => {
+        const { data } = await axios.get("../contracts_Counter_sol_Counter.abi");
+        console.log(data);
+
+        return data
+      }
+
+      const walletConnect = async () => {
+
+      }
+      const getCount = async () => {
+
+      }
+      const increment = async () => {
+
+      }
+      const reset = async () => {
+
+      }
+
+    }
+
+
+  </script>
 </body>
+
 </html>

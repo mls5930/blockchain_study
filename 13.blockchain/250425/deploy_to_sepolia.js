@@ -38,17 +38,11 @@ async function deployToSepolia() {
     const contract = new web3.eth.Contract(abi);
 
     // 4. 배포 트랜잭션 데이터 준비
-<<<<<<< HEAD
     const deployTx = contract.deploy({
       data: bytecode, arguments: [
         account.address
       ]
     });
-=======
-    const deployTx = contract.deploy({ data: bytecode, arguments: [
-      account.address
-    ] });
->>>>>>> ac815d2526e01a92f3cc7a23f18626910aaa2ce1
     const gas = await deployTx.estimateGas();
     const gasPrice = await web3.eth.getGasPrice();
 

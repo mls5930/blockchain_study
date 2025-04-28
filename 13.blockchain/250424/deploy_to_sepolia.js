@@ -46,7 +46,7 @@ async function deployToSepolia() {
       from: account.address,
       data: deployTx.encodeABI(),
       gas,
-      gasPrice, 
+      gasPrice,
     };
 
     // 5. 트랜잭션 서명 및 전송
