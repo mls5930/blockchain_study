@@ -133,17 +133,32 @@
         const contract = new web3.eth.Contract(abi, contractAddress);
         console.log("나 트렌젝션 날리는 중");
 
+<<<<<<< HEAD
         const tx = await contract.methods.increment().send({
           from: window.ethereum.selectedAddress,
           to: contractAddress
         });
+=======
+        try {
+          // 1. 메타마스크 브라우저 연결 요청
+          const accounts = await window.ethereum.request({
+            method: "eth_requestAccounts"
+          })
+>>>>>>> ac815d2526e01a92f3cc7a23f18626910aaa2ce1
 
         resultDiv.innerHTML = `카운터 증가가 되었음! 트랜잭션 해시: ${tx.transactionHash}`
       } catch (error) {
         console.log(error);
         resultDiv.innerHTML = `에러 발생: ${error.message}`;
       }
+<<<<<<< HEAD
     }
+=======
+      const getCount = async() => {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const contractAddress = document.querySelector("#address").value;
+        const resultDiv = document.querySelector("#result");
+>>>>>>> ac815d2526e01a92f3cc7a23f18626910aaa2ce1
 
     const reset = async () => {
       const contractAddress = document.querySelector("#address").value
@@ -180,22 +195,50 @@
         resultDiv.innerHTML = `에러 발생: ${error.message}`;
       }
 
+<<<<<<< HEAD
     }
   </script>
+=======
+      const reset = async() => {
+        const contractAddress = document.querySelector("#address").value
+        const resultDiv = document.querySelector("#result")
+        
+        try {
+          await window.ethereum.request({ method: "eth_requestAccounts"});
+          const account = window.ethereum.selectedAddress
+          const abi = await loadABI();
+          const contract = new web3.eth.Contract(abi, contractAddress);
+          
+          console.log(`트랜잭션 날리는 중....`);
+          // 트랜잭션: 해당 함수를 실행시키겠습니다.
+          // from: 나 트랜잭션 날릴건데 이런 주소다!
+          const estimateGas = await contract.methods.reset().estimateGas({ from : account });
+          const gasPrice = await web3.eth.getGasPrice();
+          // 묻고 1.2배로 가
+          const adjustedGasPrice = BigInt(gasPrice) * BigInt(12) / BigInt(10) // 1.2배로 내겠다!
+          const nonce = await web3.eth.getTransactionCount(account);
+
+          const tx = await contract.methods.reset().send({
+            from: account,
+            to: contractAddress,
+            gas: estimateGas,
+            gasPrice: adjustedGasPrice,
+            nonce,
+            data: await contract.methods.reset().encodeABI(),
+            // chainId: "11155111" // 얘가 뭘 뜻하는지 공부해보세요. => 세폴리아 체인 아이디
+            chainId: "1315" // => Aeneid 체인 아이디
+          })
+
+          console.log(`카운터 초기화! ${tx.transactionHash}`);
+
+        } catch (error) {
+          console.log(error);
+          resultDiv.innerHTML = `에러 발생: ${error.message}`;
+        }
+        
+      }
+    </script>
+>>>>>>> ac815d2526e01a92f3cc7a23f18626910aaa2ce1
 </body>
 
 </html>
-
-<!-- 
-
-  const tx = {
-    from: "0x"
-  }
-
-  sendTransaction(tx, privateKey);
-  getCount() 함수를 호출할거임 (컨트랙트 코드 말하는거임.)
-  필요한거: abi
-
-  1. Contract 인스턴스가 필요하겠죠(abi, CA)
-  2. contract.methods.getCount().call();
--->

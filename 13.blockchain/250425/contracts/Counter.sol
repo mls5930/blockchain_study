@@ -11,6 +11,7 @@ contract Counter {
         owner = _owner;
         count = 0;
     }
+
     modifier onlyOwner() {
         // 미들웨어
         require(msg.sender == owner, "Only owner can call this"); //require 판단
