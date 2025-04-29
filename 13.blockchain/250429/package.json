@@ -1,0 +1,25 @@
+{
+  "name": "250429",
+  "version": "1.0.0",
+  "description": "4월 29일 수업 \"책임을 기록하는 언어, Solidity\" (최종 서사 포함 세부 목차 — 수정사항 반영)",
+  "main": "deploy_to_sepolia.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/web3": "^1.2.2",
+    "dotenv": "^16.5.0",
+    "ganache": "^7.9.2",
+    "jest": "^29.7.0",
+    "solc": "^0.8.29",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.2",
+    "web3": "^4.16.0"
+  }
+}
