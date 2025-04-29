@@ -57,7 +57,7 @@ contract Counter {}
 
 ## 이더스캔 결과 첨부 필수
 
-- 컨트랙트를 Sepolia 또는 다른 퍼블릭 네트워크에 배포 후,
+- 배포 네트워크는 스토리 아이네이스 테스트넷에 배포하고 트랜잭션 상호작용 하세요.
 - **Etherscan 주소 스크린샷 또는 URL을 제출**하세요.
   - 예: `https://sepolia.etherscan.io/address/0x1234...`
   - 필수 확인 항목: `getCount()` 실행 결과가 5임을 증명
