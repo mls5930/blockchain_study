@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지갑 연결 후 상호작용 구현</title>
+    <!-- CDN으로 설치 -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input {
+            padding: 8px;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: linear-gradient(to right, #786be6, #f57f7f);
+            border: 1 px solid #ccc;
+            animation: gradientMove 8s ease infinite;
+            background-size: 200% 200%;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Counter</h1>
+
+        <div class="input-group">
+            <input type="text" id="address" placeholder="컨트랙트 주소를 입력하세요">
+            <button onclick="walletConnect()">연결</button>
+            <button onclick="getCount()">카운터 조회</button>
+            <button onclick="increment()">카운터 증가</button>
+            <button onclick="decrement()">카운터 감소</button>
+            <div>
+                <input type="text" id="compare" placeholder="비교할 숫자를 넣어주세요 ">
+                <button onclick="isOver()">카운터 비교</button>
+            </div>
+            <div>
+                <input type="text" id="add1" placeholder="숫자를 입력해주세요">
+                <input type="text" id="add2" placeholder="숫자를 입력해주세요">
+                <button onclick="sum()">더하기 함수</button>
+            </div>
+
+        </div>
+        <div class="result" id="result">결과가 여기에 표시됩니당</div>
+    </div>
+    <script>
+        let web3;
+        if (typeof window.ethereum !== "undefined") {
+            web3 = new Web3(window.ethereum);
+        } else {
+
+            alert("Metamask가 설치되어 있지 않습니다.")
+        }
+
+        const loadABI = async () => {
+            const { data } = await axios.get("./contracts_Counter_sol_Counter.abi");
+            return data
+        }
+
+        const walletConnect = async () => {
+            const resultDiv = document.getElementById("result");
+
+            try {
+                // 1. 메타마스크 브라우저 연결 요청
+                const accounts = await window.ethereum.request({
+                    method: "eth_requestAccounts"
+                })
+
+                // 2. 연결된 계정 중 첫 번째 주소 가져오기
+                const address = accounts[0];
+                resultDiv.innerHTML = `지갑 연결 완료: ${address}`;
+            } catch (error) {
+                resultDiv.innerHTML = `연결 실패 ㅠ: ${error.message}`;
+            }
+        }
+        const getCount = async () => {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            const contractAddress = document.querySelector("#address").value;
+            const resultDiv = document.querySelector("#result");
+
+            if (!contractAddress) {
+                resultDiv.innerHTML = "큰트륵트 으드르스 느으르";
+                return;
+            }
+
+            try {
+                const abi = await loadABI();
+                const contract = new web3.eth.Contract(abi, contractAddress);
+                const count = await contract.methods.getCount().call();
+                resultDiv.innerHTML = `현재 카운트: ${count}`;
+            } catch (error) {
+                resultDiv.innerHTML = `에러 발생: ${error.message}`;
+            }
+        }
+
+        const increment = async () => {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            const contractAddress = document.querySelector("#address").value;
+            const resultDiv = document.querySelector("#result");
+
+            if (!contractAddress) {
+                resultDiv.innerHTML = "큰트륵트 으드르스 즈블 그즈으르그";
+            }
+
+            try {
+                const abi = await loadABI();
+                const contract = new web3.eth.Contract(abi, contractAddress);
+                const tx = await contract.methods.increment().send({ from: window.ethereum.selectedAddress });
+                resultDiv.innerHTML = `카운터 증가가 되었음! 트랜잭션 해시: ${tx.transactionHash}`
+            } catch (error) {
+                console.log(error);
+                resultDiv.innerHTML = `에러 발생: ${error.message}`;
+            }
+        }
+        const decrement = async () => {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            const contractAddress = document.querySelector("#address").value;
+            const resultDiv = document.querySelector("#result");
+            try {
+                const abi = await loadABI();
+                const contract = new web3.eth.Contract(abi, contractAddress);
+                const tx = await contract.methods.decrement().send({ from: window.ethereum.selectedAddress });
+                resultDiv.innerHTML = `카운터 감소 트랜잭션 해시: ${tx.transactionHash}`
+            } catch (error) {
+                console.log(error);
+                resultDiv.innerHTML = `에러 발생: ${error.message}`;
+            }
+        }
+        const isOver = async () => {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            const contractAddress = document.querySelector("#address").value;
+            const resultDiv = document.querySelector("#result");
+            const isOverInput = document.querySelector("#compare").value
+            // console.log(isOverInput);
+            // if (isOverInput === typeof (Number)) {
+            //     resultDiv.innerHTML = `통과 입력해주세요 `;
+            // } else {
+            //     resultDiv.innerHTML = `에러 발생: 숫자를 입력해주세요 `;
+            // }
+            try {
+                const abi = await loadABI();
+                const contract = new web3.eth.Contract(abi, contractAddress);
+                const result = await contract.methods.isOver(isOverInput).call();
+                resultDiv.innerHTML = result;
+            } catch (error) {
+                console.log(error);
+                resultDiv.innerHTML = `에러 발생: ${error.message}`;
+            }
+        }
+        const sum = async () => {
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+            const contractAddress = document.querySelector("#address").value;
+            const add1 = document.querySelector("#add1").value
+            const add2 = document.querySelector("#add2").value
+            const resultDiv = document.querySelector("#result");
+
+            try {
+                const abi = await loadABI();
+                const contract = new web3.eth.Contract(abi, contractAddress);
+                const result = await contract.methods.sum(add1, add2).call();
+                resultDiv.innerHTML = result;
+            } catch (error) {
+                console.log(error);
+
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>

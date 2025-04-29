@@ -5,8 +5,9 @@ contract Counter {
     uint256 public count = 0;
     address private owner;
 
-    constructor() {
+    constructor(address _owner) {
         count = 2;
+        owner = _owner;
     }
 
     modifier onlyOwner() {
@@ -26,9 +27,7 @@ contract Counter {
     }
     // 4)
     function isOver(uint target) public view returns (bool) {
-        if (count > target) {
-            return true;
-        } else return false;
+        return count > target;
     }
     function sum(uint a, uint b) public pure returns (uint) {
         return a + b;
