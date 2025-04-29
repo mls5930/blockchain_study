@@ -10,8 +10,8 @@ const abiPath = path.join(__dirname, '../01_contracts_Counter_sol_Counter.abi');
 const bytecodePath = path.join(__dirname, "../01_contracts_Counter_sol_Counter.bin");
 
 const deploy = async () => {
-    try {
 
+    try {
         const accounts = await web3.eth.getAccounts();
         const account = accounts[0]; // env.로 관리
         // console.log("난 주소", account);

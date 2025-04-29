@@ -58,8 +58,6 @@ const deploy = async () => {
             nonce
         }
 
-
-
         //서명 
 
         const Txsign = await web3.eth.accounts.signTransaction(
