@@ -68,32 +68,100 @@
   </div>
   <script>
     let web3;
-    web3 = new Web3(window.ethereum)
-    console.log(web3);
+    let address;
+    if (!window.ethereum) {
+      alert("메타마스크를 설치해 주세요 ")
+    } else {
+
+      web3 = new Web3(window.ethereum)
+      console.log(web3);
+    }
 
     const loadABI = async () => {
+      const { data } = await axios.get("../01_contracts_Counter_sol_Counter.abi");
+      // console.log(data);
 
-      const loadABI = async () => {
-        const { data } = await axios.get("../contracts_Counter_sol_Counter.abi");
-        console.log(data);
+      return data
+    }
 
-        return data
+    const walletConnect = async () => {
+      let wallet = document.getElementById("result")
+      address = await getAdress()
+
+      wallet.innerHTML = `지갑이 연결되었습니다. ${address}`
+    }
+
+    const getAdress = async () => {
+
+      try {
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts"
+        });
+        const address = account[0];
+
+        return address
+      } catch (error) {
+        console.log("지갑이 없습니다", error);
       }
+    }
 
-      const walletConnect = async () => {
+    const getCount = async () => {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const contractAddress = document.querySelector("#address").value;
+      const resultDiv = document.querySelector("#result");
 
-      }
-      const getCount = async () => {
 
-      }
-      const increment = async () => {
+      try {
+        const abi = await loadABI()
+        console.log("log", abi);
 
-      }
-      const reset = async () => {
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        // console.log(contract);
 
+        const count = await contract.methods.getCount().call();
+        resultDiv.innerHTML = `현재 카운트: ${count}`;
+        console.log(count);
+      } catch (error) {
+        resultDiv.innerHTML = `에러 발생: ${error.message}`;
       }
 
     }
+    const increment = async () => {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const contractAddress = document.querySelector("#address").value;
+      const resultDiv = document.querySelector("#result");
+      try {
+        const abi = await loadABI()
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        console.log(contract);
+
+        console.log(address);
+        const incrementcount = await contract.methods.increment().send(
+          { from: address }
+        )
+        console.log(incrementcount);
+
+      } catch (error) {
+        console.log("incrment에러", error.message);
+
+      }
+    }
+    const reset = async () => {
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      const contractAddress = document.querySelector("#address").value;
+      const resultDiv = document.querySelector("#result");
+      try {
+        const abi = await loadABI()
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        const reset = await contract.methods.reset().send(
+          { from: address }
+        )
+        console.log(reset);
+      } catch (error) {
+        console.log("incrment에러", error.message);
+      }
+    }
+
 
 
   </script>

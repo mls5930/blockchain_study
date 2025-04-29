@@ -3,14 +3,14 @@ pragma solidity ^0.8.19;
 
 contract Counter {
     uint256 private count;
-    address public CAaddress;
+    address public owner;
 
-    constructor(address _CAaddress) {
-        CAaddress = _CAaddress;
+    constructor(address _owner) {
+        owner = _owner;
         count = 0;
     }
     modifier onlyOwner() {
-        require(msg.sender == CAaddress, "your not manager.");
+        require(msg.sender == owner, "your not manager.");
         _;
     }
 

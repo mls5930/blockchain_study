@@ -129,9 +129,7 @@
       try {
         const abi = await loadABI();
         const contract = new web3.eth.Contract(abi, contractAddress);
-
         const tx = await contract.methods.increment().send({ from: window.ethereum.selectedAddress });
-
         resultDiv.innerHTML = `카운터 증가가 되었음! 트랜잭션 해시: ${tx.transactionHash}`
       } catch (error) {
         console.log(error);
