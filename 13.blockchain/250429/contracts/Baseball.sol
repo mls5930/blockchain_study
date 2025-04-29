@@ -2,8 +2,8 @@
 pragma solidity ^0.8.19;
 
 contract Baseball {
-    address private owner;
     uint256 private progress = 10;
+    address private owner;
 
     function getProgress() public view returns (uint) {
         return progress;
