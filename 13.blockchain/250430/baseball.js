@@ -117,7 +117,6 @@ const gameStart = async () => {
         alert("숫자를 제대로 입력하세요 3자리!")
         return;
     }
-
     await window.ethereum.request({ method: "eth_requestAccounts" });
     const account = window.ethereum.selectedAddress;
     const contract = await getContractInstance();
