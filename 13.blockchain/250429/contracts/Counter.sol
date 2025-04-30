@@ -2,34 +2,28 @@
 pragma solidity ^0.8.20;
 
 contract Counter {
-    uint256 public count = 0;
-    address private owner;
+    uint256 public count;
+    address public owner;
 
-    constructor(address _owner) {
-        count = 2;
+    constructor(uint _initial, address _owner) {
         owner = _owner;
+        count = _initial;
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can call this");
+        require(msg.sender == owner, "Not authorized");
         _;
     }
-    // 3)
-    function getCount() public view returns (uint) {
+
+    function getCount() public view returns (uint256) {
         return count;
     }
 
-    function increment() public onlyOwner {
-        count += 1;
-    }
-    function decrement() public onlyOwner {
-        count -= 1;
-    }
-    // 4)
     function isOver(uint target) public view returns (bool) {
         return count > target;
     }
-    function sum(uint a, uint b) public pure returns (uint) {
+
+    function sum(uint a, uint b) public pure returns (uint256) {
         return a + b;
     }
 }
