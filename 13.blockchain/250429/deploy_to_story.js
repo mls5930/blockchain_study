@@ -42,7 +42,6 @@ async function deploystory() {
         const signedTx = await web3.eth.accounts.signTransaction(
             tx,
             process.env.PRIVATE_KEY
-
         )
         // console.log(signedTx);
 
