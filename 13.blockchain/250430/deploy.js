@@ -5,11 +5,11 @@ const path = require("path");
 
 const web3 = new Web3(process.env.RPC_URL);
 
-const abiPath = path.join(__dirname, "contracts_Transfer_sol_Transfer.abi");
-const bytecodePath = path.join(__dirname, "contracts_Transfer_sol_Transfer.bin");
+const abiPath = path.join(__dirname, "contracts_baseball_sol_Baseball.abi");
+const bytecodePath = path.join(__dirname, "contracts_baseball_sol_Baseball.bin");
 const outputPath = path.join(__dirname, "etherscan_links.txt")
 
-async function deployToSepolia() {
+async function deploy() {
     try {
         if (!fs.existsSync(abiPath) || !fs.existsSync(bytecodePath)) {
             throw new Error('ABI.json or bytecode.json is not exist, compile first');
@@ -80,4 +80,4 @@ async function deployToSepolia() {
     }
 }
 
-deployToSepolia()
+deploy()
