@@ -61,7 +61,22 @@ const getProgress = async () => {
         console.log(contract);
 
         const progress = await contract.methods.getProgress().call();
-        selectedProgress.innerHTML = progress;
+        const array = Array.from({ length: 10 });
+        selectedProgress.innerHTML = "총 시도 횟수";
+        const getProgress = array.map((value, index) => {
+            const div = document.createElement("div")
+            if (index < progress) {
+                div.className = "progress";
+                div.innerHTML = "[x]";
+            } else {
+                div.className = "opportunity";
+                div.innerHTML = "[ㅤ]";
+            }
+            return div;
+        })
+        getProgress.forEach(div => {
+            selectedProgress.appendChild(div);
+        });
 
     } catch (error) {
         console.log(error);
@@ -73,7 +88,10 @@ const getReward = async () => {
     try {
         const contract = await getContract();
         const reward = await contract.methods.getReward().call();
-        selectedReward.innerHTML = reward;
+        selectedProgress.innerHTML = reward;
+
+
+
     } catch (error) {
         console.log(error);
         selectedReward.innerHTML = error.message;
@@ -112,19 +130,40 @@ const getOwner = async () => {
 }
 
 const gameStart = async () => {
-    const resultInput = document.querySelector("#result").value
-    if (resultInput.length < 3) {
-        alert("숫자를 제대로 입력하세요 3자리!")
-        return;
-    }
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-    const account = window.ethereum.selectedAddress;
-    const contract = await getContractInstance();
-    const result = await contract.methods.gameStart(Number(resultInput)).send({
-        from: account,
-        value: web3.utils.toWei("1", "ether")
-    })
-    console.log(result);
+    try {
+        const proceed = confirm("게임 입장 티켓값으로 0.01 ETH가 소요됩니다.");
+        if (proceed !== true) return
 
+        const resultInput = document.querySelector("#result").value
+        if (resultInput.length < 3) {
+            alert("숫자를 제대로 입력하세요 3자리!")
+            return;
+        }
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const account = window.ethereum.selectedAddress;
+        const contract = await getContractInstance();
+
+        await contract.methods.getticket().send({
+            from: account,
+            value: web3.utils.toWei("0.01", "ether"),
+
+        })
+        const result = await contract.methods.gameStart(Number(resultInput)).send({
+            from: account,
+            value: web3.utils.toWei("1", "ether"),
+            // value: {
+            //     value: web3.utils.toWei("1", "ether"),
+            //     ticket: web3.utils.toWei("0.02", "ether"),
+            // } value는 단 하나의 값만 보내야아함 
+
+
+        })
+        console.log(result);
+
+    } catch (error) {
+        console.log(error);
+        selectedrandom.innerHTML = error.message;
+
+    }
 
 }

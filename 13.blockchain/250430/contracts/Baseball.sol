@@ -6,6 +6,9 @@ contract Baseball {
     address private owner; // 관리자 및 배포한 주체
     uint256 private random; // 정답 숫자
     uint256 private reward; // 누적 보상금
+    uint256 private ticket; // 티켓값
+    uint256 private gameState = 0; // 게임종료 progress 초기화
+    mapping(address => bool) public addressticket; //티켓 사용자
 
     constructor(address _owner) {
         owner = _owner;
@@ -40,7 +43,6 @@ contract Baseball {
         require((_value >= 100) && (_value < 1000), "_value error (100~999)");
         // 몇 번 트라이 했는지?
         progress += 1;
-
         // 만약에 사용자가 맞추었으면 보상을 준다.
         if (_value == random) {
             // 해당 컨트랙트가 가지고 있는 ETH를 뜻함
@@ -52,6 +54,23 @@ contract Baseball {
         } else {
             reward += msg.value;
         }
+    }
+    function getticket() public payable {
+        if (!addressticket[msg.sender]) {
+            require(msg.value >= 0.01 ether, "ticket fee required");
+            addressticket[msg.sender] = true;
+            ticket += msg.value;
+        } else {
+            if (progress > 10) {
+                addressticket[msg.sender] = false;
+                gemeOver();
+            }
+        }
+    }
+    function gemeOver() public {
+        gameState = 0;
+        progress = 0;
+        require(gameState == 1, "game over");
     }
 
     function getProgress() public view returns (uint) {
