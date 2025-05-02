@@ -5,8 +5,13 @@ const path = require("path");
 
 const web3 = new Web3(process.env.RPC_URL);
 
+<<<<<<< HEAD
 const abiPath = path.join(__dirname, "contracts_Baseball_sol_Baseball.abi");
 const bytecodePath = path.join(__dirname, "contracts_Baseball_sol_Baseball.bin");
+=======
+const abiPath = path.join(__dirname, "contracts_baseball_sol_Baseball.abi");
+const bytecodePath = path.join(__dirname, "contracts_baseball_sol_Baseball.bin");
+>>>>>>> aeb062bec907a35e2e666b9ae1f47a3efdf8f385
 const outputPath = path.join(__dirname, "etherscan_links.txt")
 
 async function deploy() {
