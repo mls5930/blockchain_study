@@ -51,7 +51,6 @@ contract Baseball {
             // 이더가 송수신될 수 있음을 나타내는 명시적 키워드 payable
             payable(msg.sender).transfer(address(this).balance);
             reward = 0;
-            gameState = 0;
         } else {
             reward += msg.value;
         }

@@ -6,19 +6,11 @@ contract Baseball {
     uint256 private progress; // 시도 횟수
     uint256 private random; // 랜덤으로 정해진 정답 숫자
     uint256 private reward; // 누적 보상금
-    uint256 private constant GAME_COUNT = 10; // 게임 숫자 constant 는 정수를 나타내는 예약어
-    uint256 private ticket = 100000000000000000;
-    enum GameState {
-        playing,
-        gameOver
-    }
-    GameState public gameState;
 
     constructor(address _owner) {
         owner = _owner; // 배포자가 소유자
         progress = 0; // 초기 시도 횟수는 0
         reward = 0; // 초기 보상금 0
-        gameState = GameState.playing;
 
         // 랜덤 정답 생성
         random = uint256(
@@ -41,9 +33,7 @@ contract Baseball {
     // _value: 사용자가 입력한 숫자
     // 사용자가 입력한 숫자와 random을 비교할거임
     function gameStart(uint256 _value) public payable {
-        require(progress < GAME_COUNT, "GameOver"); // if 대신쓰는이유 는 바이너리 데이터 떄문 데이터 크기가짧아진다.
         // 사용자가 입력한 숫자가 100 이상 1000 미만이어라
-        require(msg.value == ticket, "ticket amount error (0.01ether)");
         require((_value >= 100) && (_value < 1000), "_value error (100 ~ 999)");
         // 몇 번 트라이 했는지?
         progress += 1;
@@ -56,7 +46,6 @@ contract Baseball {
             // 이더가 송수신될 수 있음을 나타내는 명시적 키워드 payable
             payable(msg.sender).transfer(address(this).balance);
             reward = 0;
-            gameState = GameState.gameOver;
         } else {
             reward += msg.value;
         }
@@ -78,14 +67,5 @@ contract Baseball {
 
     function getOwner() public view returns (address) {
         return owner;
-    }
-    function getPlaying() public view returns (uint256) {
-        uint256 playing = 0;
-        // 게임의 상태가? GameState.Playing과 다를때
-        // progress == GAME_COUNT 즉, 게임 종료일 때는
-        if ((gameState != GameState.playing) || (progress == GAME_COUNT)) {
-            playing = 1;
-        }
-        return playing;
     }
 }

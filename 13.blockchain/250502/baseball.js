@@ -4,6 +4,8 @@ const selectedAccount = document.querySelector("#account");
 const selectedProgress = document.querySelector("#progress");
 const selectedReward = document.querySelector("#reward");
 const selectedrandom = document.querySelector("#random")
+const selectedPlaying = document.querySelector("#playing")
+
 
 let web3;
 
@@ -29,7 +31,7 @@ const getContractInstance = async () => {
     const abi = await loadABI();
 
 
-    const contract = await new web3.eth.Contract(abi, "0x69881643937f3cd805e0ac0611cad31e9807139a");
+    const contract = await new web3.eth.Contract(abi, "0xafdfb23fd42afbe9fd415b6a033f21d50833a287");
     return contract;
 }
 
@@ -51,7 +53,7 @@ const getContract = async () => {
     // 컨트랙트 인스턴스 있니?
     const abi = await loadABI();
 
-    const contract = new web3.eth.Contract(abi, "0x69881643937f3cd805e0ac0611cad31e9807139a");
+    const contract = new web3.eth.Contract(abi, "0xafdfb23fd42afbe9fd415b6a033f21d50833a287");
     return contract;
 }
 
@@ -88,10 +90,9 @@ const getReward = async () => {
     try {
         const contract = await getContract();
         const reward = await contract.methods.getReward().call();
-        selectedProgress.innerHTML = reward;
-
-
-
+        const result = wad3.utils.fromWei(reward);
+        console.log(result);
+        selectedReward.innerHTML = reward;
     } catch (error) {
         console.log(error);
         selectedReward.innerHTML = error.message;
@@ -158,12 +159,24 @@ const gameStart = async () => {
 
 
         })
+
+
         console.log(result);
+
+
 
     } catch (error) {
         console.log(error);
         selectedrandom.innerHTML = error.message;
 
     }
-
 }
+const getPlaying = async () => {
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    const contract = await getContractInstance();
+    const tx = await contract.methods.getPlaying().call();
+    const result = tx == 0 ? "게임중" : "게임종료";
+    selectedPlaying.innerHTML = result;
+    return result
+}
+

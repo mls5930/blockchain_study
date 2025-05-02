@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<style>
+    #progress {
+        display: flex;
+        gap: 8px;
+    }
+
+    .progress {
+        color: red;
+    }
+
+    .opportunity {
+        color: blue;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2>숫자 야구 게임</h2>
+        <div class="game-info">
+            <div class="info-item">
+                <label>접속중인 Account</label>
+                <div id="account"></div>
+            </div>
+            <div class="info-item">
+                <button onclick="getProgress()">현재 진행도</button>
+                <div id="progress"></div>
+            </div>
+            <div class="info-item">
+                <button onclick="getReward()">현재 쌓인 상금</button>
+                <div id="reward"></div>
+            </div>
+            <div class="info-item">
+                <button onclick="getPlaying()">현재 게임 상태</button>
+                <div id="playing"></div>
+            </div>
+        </div>
+
+        <div>
+            <label>정답 입력 (3자리 숫자)</label>
+            <input type="text" id="result">
+            <button onclick="gameStart()">게임 시작</button>
+            <br><br>
+            <button onclick="connectWallet()">지갑연결</button>
+        </div>
+
+        <div>
+            <label>정답이 뭔데? (관리자용)</label>
+            <div id="random"></div>
+            <button onclick="getRandom()">정답 알려주라!</button>
+        </div>
+    </div>
+    <script src="baseball.js"></script>
+</body>
+
+</html>
