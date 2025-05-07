@@ -4,9 +4,9 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const web3 = new Web3(process.env.RPC_URL);
+const web3 = new Web3("http://127.0.0.1:8545");
 const { PRIVATE_KEY } = process.env;
-const deployer = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+const deployer = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
 web3.eth.accounts.wallet.add(deployer);
 
 const ERC20Compiled = JSON.parse(
@@ -18,6 +18,11 @@ let user1, user2;
 
 beforeAll(async () => {
   const accounts = await web3.eth.getAccounts();
+  /*
+    1. 배포한 오너
+    2. user1(주소1)
+    3. user2(주소2)
+  */
   user1 = accounts[1];
   user2 = accounts[2];
 
@@ -44,20 +49,21 @@ describe('ERC20 approve + transferFrom + allowance', () => {
       .send({ from: user1 });
 
     const allowance = await contract.methods.allowance(user1, user2).call();
-
+    // user1 너가 권한 목록에 있으며, 50만큼 권한 위임했누?
     expect(allowance.toString()).toBe(web3.utils.toWei('50', 'ether'));
   });
 
-  it('2. user2가 user1 대신 user2에게 30개 전송한다', async () => {
-    await contract.methods.balanceOf(user2).call();
+  it('2. user2가 user1 대신 user2(자신)에게 30개 전송한다', async () => {
+    await contract.methods.balances(user2).call();
 
     await contract.methods
       .transferFrom(user1, user2, web3.utils.toWei('30', 'ether'))
       .send({ from: user2 });
 
-    await contract.methods.balanceOf(user2).call();
+    await contract.methods.balances(user2).call();
     const allowanceLeft = await contract.methods.allowance(user1, user2).call();
-
+    // user2가 user1너한테 50중 30개의 토큰 권한을 통해서 가져가버림!
+    // 그래서, 너 현재 20개 토큰 권한 위임되어있는거 맞아?
     expect(allowanceLeft.toString()).toBe(web3.utils.toWei('20', 'ether'));
   });
 });

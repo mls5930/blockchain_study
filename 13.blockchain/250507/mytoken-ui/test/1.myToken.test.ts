@@ -1,12 +1,10 @@
 import Web3 from 'web3';
 import path from 'path';
 import fs from 'fs';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const web3 = new Web3(process.env.RPC_URL);
-const { PRIVATE_KEY } = process.env;
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+const web3 = new Web3("http://127.0.0.1:8545");
+// 아래의 비밀키는 가나슈 가상 이더리움 네트워크에서 제공하는 첫 번째 주소의 비밀키를 가져옴.
+const account = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
 web3.eth.accounts.wallet.add(account);
 web3.eth.defaultAccount = account.address;
 

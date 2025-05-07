@@ -6,8 +6,8 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const web3 = new Web3(process.env.RPC_URL);
-const account = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
+const web3 = new Web3("http://127.0.0.1:8545");
+const account = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
 web3.eth.accounts.wallet.add(account);
 web3.eth.defaultAccount = account.address;
 
@@ -36,22 +36,24 @@ beforeAll(async () => {
   user2 = web3.eth.accounts.create(); // 수신자 계정 생성
 });
 
-describe('ERC20 transfer 기능 테스트', () => {
+describe('user1과 user2의 주소를 만들어서 ERC20 transfer 기능을 테스트한다.', () => {
   it('1. transfer를 실행하면 잔액이 정확히 이동해야 한다', async () => {
     const amount = web3.utils.toWei('100', 'ether');
 
     // 전송 전 잔액
-    const beforeSender = await contractInstance.methods.balanceOf(account.address).call();
+    // const beforeSender = await contractInstance.methods.balanceOf(account.address).call();
+    const beforeSender = await contractInstance.methods.balances(account.address).call();
+    
     const beforeReceiver = await contractInstance.methods
-      .balanceOf(user2.address)
+      .balances(user2.address)
       .call();
 
     await contractInstance.methods.transfer(user2.address, amount).send({
       from: account.address,
     });
 
-    const afterSender = await contractInstance.methods.balanceOf(account.address).call();
-    const afterReceiver = await contractInstance.methods.balanceOf(user2.address).call();
+    const afterSender = await contractInstance.methods.balances(account.address).call();
+    const afterReceiver = await contractInstance.methods.balances(user2.address).call();
 
     expect(BigInt(beforeSender) - BigInt(amount)).toBe(BigInt(afterSender));
     expect(BigInt(beforeReceiver) + BigInt(amount)).toBe(BigInt(afterReceiver));
