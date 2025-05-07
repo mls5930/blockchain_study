@@ -6,7 +6,7 @@ contract Baseball {
     uint256 private progress; // 시도 횟수
     uint256 private random; // 랜덤으로 정해진 정답 숫자
     uint256 private reward; // 누적 보상금
-    uint256 private constant GAME_COUNT = 10;
+    uint256 private constant GAME_COUNT = 10; // constant 는 값을 고정하고 가스비용절감
     uint256 private ticket = 10000000000000000;
 
     enum GameState {

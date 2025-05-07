@@ -9,6 +9,9 @@ contract Baseball {
     uint256 private ticket; // 티켓값
     uint256 private gameState = 0; // 게임종료 progress 초기화
     mapping(address => bool) public addressticket; //티켓 사용자
+    // mapping 은 키 => 벨류 형태의 자료구조로서 키 address가 있는지 판단하고 bool값을 반환
+
+    event winOrDefeat(string state);
 
     constructor(address _owner) {
         owner = _owner;
@@ -35,42 +38,40 @@ contract Baseball {
         _;
     }
 
-    // _value: 사용자가 입력한 숫자
-    // 사용자가 입력한 숫자와 random을 비교할거임
-    // payable 은 보상
-    function gameStart(uint256 _value) public payable {
-        // 사용자가 입력한 숫자가 100 이상 1000미만 이여라
-        require((_value >= 100) && (_value < 1000), "_value error (100~999)");
-        // 몇 번 트라이 했는지?
-        progress += 1;
-        // 만약에 사용자가 맞추었으면 보상을 준다.
-        if (_value == random) {
-            // 해당 컨트랙트가 가지고 있는 ETH를 뜻함
-            // 그게, 현재 쌓인 보상금(rewaed)보다 커야 함!
-            require(reward <= address(this).balance);
-            // 이더가 송수신될 수 있음을 나타내는 명시적 키워드 payable
-            payable(msg.sender).transfer(address(this).balance);
-            reward = 0;
-        } else {
-            reward += msg.value;
-        }
+    modifier gameOver() {
+        require(gameState == 1, "game over");
+        _;
     }
-    function getticket() public payable {
+
+    function setTicket() public payable {
         if (!addressticket[msg.sender]) {
             require(msg.value >= 0.01 ether, "ticket fee required");
             addressticket[msg.sender] = true;
             ticket += msg.value;
-        } else {
-            if (progress > 10) {
-                addressticket[msg.sender] = false;
-                gemeOver();
-            }
+        } else if (progress > 10) {
+            addressticket[msg.sender] = false;
+            gameState = 0;
+            progress = 0;
         }
     }
-    function gemeOver() public {
-        gameState = 0;
-        progress = 0;
-        require(gameState == 1, "game over");
+
+    function gameStart(uint256 _value) public payable gameOver {
+        require((_value >= 100) && (_value < 1000), "_value error (100~999)");
+        progress += 1;
+        if (_value == random) {
+            require(reward <= address(this).balance);
+            payable(msg.sender).transfer(address(this).balance);
+            reward = 0;
+            gameState = 0;
+            emit winOrDefeat("success");
+        } else {
+            reward += msg.value;
+            emit winOrDefeat("defeat");
+        }
+    }
+
+    function getTicket() public view returns (uint256) {
+        return ticket;
     }
 
     function getProgress() public view returns (uint) {
