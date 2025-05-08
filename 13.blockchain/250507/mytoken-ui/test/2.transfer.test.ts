@@ -6,8 +6,8 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const web3 = new Web3(process.env.RPC_URL);
-const account = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
+const web3 = new Web3("http://127.0.0.1:8545");
+const account = web3.eth.accounts.privateKeyToAccount("0xed0806321c63f78441f1b0c3bb3a39c32f220d00f025554280ef4d564ff31def");
 web3.eth.accounts.wallet.add(account);
 web3.eth.defaultAccount = account.address;
 
@@ -41,17 +41,19 @@ describe('ERC20 transfer 기능 테스트', () => {
     const amount = web3.utils.toWei('100', 'ether');
 
     // 전송 전 잔액
-    const beforeSender = await contractInstance.methods.balanceOf(account.address).call();
+    const beforeSender = await contractInstance.methods.balances(account.address).call();
+    console.log(beforeSender);
+
     const beforeReceiver = await contractInstance.methods
-      .balanceOf(user2.address)
+      .balances(user2.address)
       .call();
 
-    await contractInstance.methods.transfer(user2.address, amount).send({
+    const receipt = await contractInstance.methods.transfer(user2.address, amount).send({
       from: account.address,
     });
 
-    const afterSender = await contractInstance.methods.balanceOf(account.address).call();
-    const afterReceiver = await contractInstance.methods.balanceOf(user2.address).call();
+    const afterSender = await contractInstance.methods.balances(account.address).call();
+    const afterReceiver = await contractInstance.methods.balances(user2.address).call();
 
     expect(BigInt(beforeSender) - BigInt(amount)).toBe(BigInt(afterSender));
     expect(BigInt(beforeReceiver) + BigInt(amount)).toBe(BigInt(afterReceiver));
@@ -66,7 +68,8 @@ describe('ERC20 transfer 기능 테스트', () => {
         .send({
           from: account.address,
         })
-    ).rejects.toThrow(/Invalid recipient/);
+    ).rejects.toThrow(/Invalid recipient/);// 위의 내용을 실패했을경우 Invalid recipient 반환.
+
   });
 
   it('3. 잔액보다 큰 금액 전송 시 실패해야 한다', async () => {

@@ -4,9 +4,10 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const web3 = new Web3(process.env.RPC_URL);
-const { PRIVATE_KEY } = process.env;
-const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
+const web3 = new Web3("http://127.0.0.1:8545");
+// 아래의 비밀키는 가나슈 가상 이더리움 네트워크에서 제공하는 첫 번째 주소의 비밀키를 가져옴.
+
+const account = web3.eth.accounts.privateKeyToAccount("0xed0806321c63f78441f1b0c3bb3a39c32f220d00f025554280ef4d564ff31def");
 web3.eth.accounts.wallet.add(account);
 web3.eth.defaultAccount = account.address;
 
@@ -19,7 +20,7 @@ let contractInstance;
 beforeAll(async () => {
   const { abi, bytecode } = ERC20Compiled;
   const contract = new web3.eth.Contract(abi);
-  
+
   const deployTx = contract.deploy({
     data: bytecode,
     arguments: ['MyToken', 'MTK', 1000000],
