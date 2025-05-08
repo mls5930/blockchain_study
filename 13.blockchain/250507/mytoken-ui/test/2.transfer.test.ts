@@ -7,11 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const web3 = new Web3("http://127.0.0.1:8545");
-<<<<<<< HEAD
 const account = web3.eth.accounts.privateKeyToAccount("0xed0806321c63f78441f1b0c3bb3a39c32f220d00f025554280ef4d564ff31def");
-=======
-const account = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
->>>>>>> b0b2e3b66a2a9f74fe8d81be1e9ea661f67a8310
 web3.eth.accounts.wallet.add(account);
 web3.eth.defaultAccount = account.address;
 
@@ -45,15 +41,9 @@ describe('user1과 user2의 주소를 만들어서 ERC20 transfer 기능을 테�
     const amount = web3.utils.toWei('100', 'ether');
 
     // 전송 전 잔액
-<<<<<<< HEAD
-    const beforeSender = await contractInstance.methods.balances(account.address).call();
-    console.log(beforeSender);
-
-=======
     // const beforeSender = await contractInstance.methods.balanceOf(account.address).call();
     const beforeSender = await contractInstance.methods.balances(account.address).call();
-    
->>>>>>> b0b2e3b66a2a9f74fe8d81be1e9ea661f67a8310
+
     const beforeReceiver = await contractInstance.methods
       .balances(user2.address)
       .call();

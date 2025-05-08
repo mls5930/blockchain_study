@@ -4,12 +4,8 @@ import fs from 'fs';
 
 const web3 = new Web3("http://127.0.0.1:8545");
 // 아래의 비밀키는 가나슈 가상 이더리움 네트워크에서 제공하는 첫 번째 주소의 비밀키를 가져옴.
-<<<<<<< HEAD
 
 const account = web3.eth.accounts.privateKeyToAccount("0xed0806321c63f78441f1b0c3bb3a39c32f220d00f025554280ef4d564ff31def");
-=======
-const account = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
->>>>>>> b0b2e3b66a2a9f74fe8d81be1e9ea661f67a8310
 web3.eth.accounts.wallet.add(account);
 web3.eth.defaultAccount = account.address;
 
