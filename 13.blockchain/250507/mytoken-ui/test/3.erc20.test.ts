@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const web3 = new Web3("http://127.0.0.1:8545");
-const { PRIVATE_KEY } = process.env;
 const deployer = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
 web3.eth.accounts.wallet.add(deployer);
 
