@@ -16,7 +16,6 @@ contract ERC20 is IERC20 {
         _allowances: {
             0x8E43AEbaa5eBb31D4cdd4F14D33c3166F216caBe:{
             0xf63D6E61D751aecD8028C167D094F6e6661489a2: 1000token
-            },
             유정님주소: {
                 0x8E43AEbaa5eBb31D4cdd4F14D33c3166F216caBe: 2000token
             }
@@ -27,9 +26,6 @@ contract ERC20 is IERC20 {
     constructor(string memory _name, string memory _symbol, uint256 _amount) {
         owner = msg.sender;
         name = _name;
-        symbol = _symbol;
-        _mint(_amount * (10 ** decimals));
-    }
 
     modifier onlyOwner() {
         require(msg.sender == owner, "can onlyOwner");

@@ -4,10 +4,8 @@ import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 
-
 const web3 = new Web3("http://127.0.0.1:8545");
-const account = web3.eth.accounts.privateKeyToAccount("0xed0806321c63f78441f1b0c3bb3a39c32f220d00f025554280ef4d564ff31def");
-const deployer = web3.eth.accounts.privateKeyToAccount("0xed0806321c63f78441f1b0c3bb3a39c32f220d00f025554280ef4d564ff31def");
+const deployer = web3.eth.accounts.privateKeyToAccount("0x4ab5635a7575c4beb964f00af5ad09c4c4458ae3269b71372267b0f3f0a6ad21");
 web3.eth.accounts.wallet.add(deployer);
 
 const ERC20Compiled = JSON.parse(
@@ -19,6 +17,11 @@ let user1, user2;
 
 beforeAll(async () => {
   const accounts = await web3.eth.getAccounts();
+  /*
+    1. 배포한 오너
+    2. user1(주소1)
+    3. user2(주소2)
+  */
   user1 = accounts[1];
   user2 = accounts[2];
 
@@ -49,7 +52,7 @@ describe('ERC20 approve + transferFrom + allowance', () => {
     expect(allowance.toString()).toBe(web3.utils.toWei('50', 'ether'));
   });
 
-  it('2. user2가 user1 대신 user2에게 30개 전송한다', async () => {
+  it('2. user2가 user1 대신 user2(자신)에게 30개 전송한다', async () => {
     await contract.methods.balances(user2).call();
 
     await contract.methods
