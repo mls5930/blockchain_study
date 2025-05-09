@@ -1,16 +1,26 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "outDir": "./dist",
-    "target": "ES6",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {
-      // 기본 경로에서 부터 설정할 별칭
-      "@core/*": ["src/core/*"]
-    }
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
-  }
+  "include": [
+    "src"
+  ]
 }
