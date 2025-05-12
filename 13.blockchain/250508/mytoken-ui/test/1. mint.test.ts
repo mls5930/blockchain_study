@@ -30,7 +30,7 @@ beforeAll(async () => {
     const receipt = await deployTx.send({
         from: deployer.address,
         gas: "3000000"
-    })
+    });
 
     tokenContract = new web3.eth.Contract(abi, receipt.options.address);
 })

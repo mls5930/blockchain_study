@@ -16,24 +16,17 @@ contract Baseball {
         playing,
         gameOver
     }
+    enum PlayerChoice {
+        rock,
+        scissors,
+        paper
+    }
     GameState public gameState;
     constructor(address tokenAddress) {
         owner = msg.sender;
         gameState = GameState.playing;
         token = IERC20(tokenAddress);
-        random =
-            (uint256(
-                keccak256(
-                    abi.encodePacked(
-                        block.timestamp,
-                        block.prevrandao,
-                        block.number
-                    )
-                )
-            ) % 900) +
-            100;
     }
-
     // _value: 사용자가 입력한 숫자
     // 사용자가 입력한 숫자와 random을 비교할거임
     function gameStart(uint256 _value) public {
@@ -68,6 +61,15 @@ contract Baseball {
         token.transfer(owner, reword);
         reword = 0;
     }
+    function getRandomChoice() internal view returns (PlayerChoice) {
+        uint256 rand = uint256(
+            keccak256(
+                abi.encodePacked(block.timestamp, block.prevrandao, msg.sender)
+            )
+        );
+        return PlayerChoice(rand % 3);
+    }
+
     function getReword() public view returns (uint256) {
         return reword;
     }
