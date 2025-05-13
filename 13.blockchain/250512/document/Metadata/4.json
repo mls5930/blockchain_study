@@ -1,0 +1,15 @@
+{
+    "name": "강아지",
+    "description": "얘는 강아지",
+    "image": "ipfs://bafybeidrlr4fxm7m45bqys63zfivu55jsncmllz6krboqpwxirxxhbrqmy/4.png",
+    "attributes": [
+        {
+            "trait_type": "color",
+            "value": "black"
+        },
+        {
+            "trait_type": "eye",
+            "value": "black"
+        }
+    ]
+}

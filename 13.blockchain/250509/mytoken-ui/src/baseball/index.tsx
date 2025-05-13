@@ -11,15 +11,15 @@ declare global {
     }
 }
 
-const Baseball = ():JSX.Element => {
+const Baseball = (): JSX.Element => {
     const [account, setAccount] = useState('0x...');
     const [balance, setBalance] = useState('0');
     const [progress, setProgress] = useState("0");
-    const [reword, setReword] = useState('0'); 
-    const [gameState, setGameState] = useState("0"); 
-    const [allow, setAllow] = useState('0'); 
-    const [random, setRandom] = useState(""); 
-    const [input, setInput] = useState(''); 
+    const [reword, setReword] = useState('0');
+    const [gameState, setGameState] = useState("0");
+    const [allow, setAllow] = useState('0');
+    const [random, setRandom] = useState("");
+    const [input, setInput] = useState('');
     const web3 = new Web3(window.ethereum);
 
     const {
@@ -28,7 +28,7 @@ const Baseball = ():JSX.Element => {
         myTokenContract
     } = getContract()
 
-    const connectWallet = async() => {
+    const connectWallet = async () => {
         const accounts = await window.ethereum.request({
             method: "eth_requestAccounts"
         })
@@ -42,9 +42,9 @@ const Baseball = ():JSX.Element => {
         const progress: string = await baseBallContract.methods.getProgress().call();
         const gameState: number = await baseBallContract.methods.gameState().call();
         const allow: string = await myTokenContract.methods
-          .allowance(selectedAddress, baseballAddress)
-          .call();
-        
+            .allowance(selectedAddress, baseballAddress)
+            .call();
+
         setBalance(web3.utils.fromWei(bal, 'ether'));
         setReword(web3.utils.fromWei(reword, "ether"));
         setProgress(progress);
@@ -52,7 +52,7 @@ const Baseball = ():JSX.Element => {
         setAllow(web3.utils.fromWei(allow, 'ether'));
     };
 
-    const approve = async() => {
+    const approve = async () => {
         try {
             const ticket = web3.utils.toWei("1000", "ether"); // 1000MTK => ticket 가격
             await myTokenContract.methods.approve(baseballAddress, ticket).send({ from: account });
@@ -61,15 +61,37 @@ const Baseball = ():JSX.Element => {
             console.log(error);
         }
     }
-    
-    const gameStart = async() => {
+
+    const gameStart = async () => {
         try {
-            await baseBallContract.methods.gameStart(parseInt(input)).send({
-                from: account
-            })
-            alert("게임 실행 완료");
+            if (reword) {
+                await baseBallContract.methods.gameStart(parseInt(input)).send({
+                    from: account
+                })
+                alert("게임 실행 완료");
+            }
         } catch (error) {
             console.log(error);
+        }
+    }
+    const givemeToken = async () => {
+        try {
+            const selectedAddress = window.ethereum.selectedAddress;
+            const bal: string = await myTokenContract.methods.balanceOf(selectedAddress).call();
+            const token = web3.utils.fromWei(bal, "ether")
+            if (token > 100) {
+                const result = confirm("정말 기부하시겠습니까?");
+                if (result) {
+                    await myTokenContract.methods.transfer(baseballAddress, 100).send({ from: selectedAddress });
+                } else {
+                    alert("기부가 취소되었습니다.");
+                }
+            } else {
+                alert("토큰 잔액이 부족합니다. 기부는 힘들 것 같아요 ㅠㅠ");
+            }
+        } catch (error) {
+            console.log(error);
+
         }
     }
 
@@ -94,9 +116,10 @@ const Baseball = ():JSX.Element => {
             <button onClick={connectWallet}>지갑연결</button>
             <button onClick={getState}>현재 상태</button>
             <button onClick={approve}>게임에 참가하시겠습니까?(권한 위임 할거임? 1000MTK임!)</button>
+            <button onClick={givemeToken}> 기부좀 ㅜㅜ 제발</button>
 
             <div>
-                <input 
+                <input
                     type="text"
                     placeholder="100 ~ 999 숫자 입력하라"
                     value={input}

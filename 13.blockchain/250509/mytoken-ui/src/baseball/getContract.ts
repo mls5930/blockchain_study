@@ -9,7 +9,7 @@ const getContract = () => {
     const web3 = new Web3(window.ethereum);
 
     const myTokenContract = new web3.eth.Contract(
-        myTokenContractABI.abi, 
+        myTokenContractABI.abi,
         myTokenAddress
     );
     const baseBallContract = new web3.eth.Contract(
@@ -22,6 +22,6 @@ const getContract = () => {
         myTokenContract,
         baseBallContract
     }
-}  
+}
 
 export default getContract
