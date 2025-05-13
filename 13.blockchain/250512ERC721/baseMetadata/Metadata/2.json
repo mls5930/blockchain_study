@@ -1,0 +1,27 @@
+{
+    "name": "포수",
+    "description": "얘는 포수에유",
+    "image": "ipfs://bafybeibyhsauzyjgldi3eso5aos6hy5qqsxfqqhtunwflj6wmbssxnct4q/2.png",
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "basic"
+        },
+        {
+            "trait_type": "uniform",
+            "value": "white"
+        },
+        {
+            "trait_type": "team",
+            "value": "gia"
+        },
+        {
+            "trait_type": "batting average",
+            "value": "2.85"
+        },
+        {
+            "trait_type": "stature",
+            "value": "178"
+        }
+    ]
+}

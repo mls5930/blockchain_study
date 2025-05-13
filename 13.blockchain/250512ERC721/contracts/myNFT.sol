@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.20;
 
@@ -37,4 +35,3 @@ contract myNFT is ERC721 {
         return totalSupply;
     }
 }
->>>>>>> c8f5360163d4d7e4355900986466ed4c37b6dde3

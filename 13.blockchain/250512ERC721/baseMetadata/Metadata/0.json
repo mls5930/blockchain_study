@@ -1,0 +1,27 @@
+{
+    "name": "타자",
+    "description": "얘는 타자에유",
+    "image": "ipfs://bafybeibyhsauzyjgldi3eso5aos6hy5qqsxfqqhtunwflj6wmbssxnct4q/0.png",
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "basic"
+        },
+        {
+            "trait_type": "uniform",
+            "value": "white"
+        },
+        {
+            "trait_type": "team",
+            "value": "gia"
+        },
+        {
+            "trait_type": "batting average",
+            "value": "3.25"
+        },
+        {
+            "trait_type": "stature",
+            "value": "180"
+        }
+    ]
+}
