@@ -1,0 +1,10 @@
+{
+  "name": "타자",
+  "description": "얘는 타자에유",
+  "image": "ipfs://bafybeidw2nmvlgv7bbb7eveeuwrbv2x2f7xoh2pggn4aadu4zpgk7iu5cy/1.png",
+  "attributes": [
+    { "trait_type": "Background", "value": "basic" },
+    { "trait_type": "Eyes", "value": "Black" },
+    { "trait_type": "Hat", "value": "Red" }
+  ]
+}

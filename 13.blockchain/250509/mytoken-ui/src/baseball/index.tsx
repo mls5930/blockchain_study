@@ -4,9 +4,6 @@ import Web3 from "web3";
 
 declare global {
     interface Window {
-        // 일단 any 밖는다.
-        // 지금은 흐름이 중요하니, any를 밖는거지
-        // 함부로 any쓰면 안됩니다^^
         ethereum?: any
     }
 }
