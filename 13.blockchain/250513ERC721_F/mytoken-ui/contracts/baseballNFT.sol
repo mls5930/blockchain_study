@@ -32,22 +32,26 @@ contract BaseballNFT is ERC721 {
         allTokenIds.push(tokenId);
         // 권한을 위임 받았는지 안받는지 => CA가
     }
-
-    function purchase(uint256 tokenId) public payable {
-        require(minted[tokenId], "Token does not exist");
-        address currentOwner = ownerOf(tokenId);
-        require(currentOwner != msg.sender, "You Already Own this token");
-        require(
-            getApproved(tokenId) == address(this),
-            "Contract not approver for transfer"
-        );
-        require(msg.value == 1 ether, "Price is 1 ether");
-        // 이더 전송
-        payable(currentOwner).transfer(msg.value);
-        // 이 컨트랙트가 대신 소유권 이전
-        // from, to, tokenId
-        _transfer(currentOwner, msg.sender, tokenId);
+    function isApprovedForAll() public payable {
+        
     }
+    function purchase(uint256 tokenId) public payable {
+        if() {
+                require(minted[tokenId], "Token does not exist");
+                address currentOwner = ownerOf(tokenId); // A 
+                require(currentOwner != msg.sender, "You Already Own this token"); // A !== B
+                require(
+                    getApproved(tokenId) == address(this), //권한 비교 
+                    "Contract not approver for transfer"
+                );
+                require(msg.value == 1 ether, "Price is 1 ether");
+                // 이더 전송
+                payable(currentOwner).transfer(msg.value);
+                // 이 컨트랙트가 대신 소유권 이전
+                // from, to, tokenId
+                _transfer(currentOwner, msg.sender, tokenId);
+            }
+        }
 
     function tokenURI(
         uint256 tokenId

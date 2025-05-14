@@ -17,7 +17,7 @@ const Baseball = () => {
     []
   );
   const [allNfts, setAllNfts] = useState<{ tokenId: string; image: string; owner: string }[]>([]);
-
+  const [buttonMsg, setbuttonMsg] = useState(true)
   const {
     baseballNftTokenAddress,
     baseballNftTokenContract
@@ -140,7 +140,39 @@ const Baseball = () => {
 
     }
   }
+  const approveAllTokens = async () => {
+    if (!web3 || !account) return;
 
+    /*
+    setApprovalForAll address oprator에게 모든 권한을 넘기겠다.
+    function setApprovalForAll(address operator, bool approved) external;
+      1. 지금 연결된 지갑가져오기 mag.sender
+      2. 권한을 받을 주소 가져오기 
+      3. 모든 권한을 CA가 받아서 토큰을 처리 
+    */
+
+    try {
+      const isApproved = await baseballNftTokenContract.methods
+        .isApprovedForAll(account, baseballNftTokenAddress)
+        .call();
+      console.log(isApproved);
+      if (isApproved === false) {
+        await baseballNftTokenContract.methods.setApprovalForAll(baseballNftTokenAddress, true).send({
+          from: account
+        })
+        setbuttonMsg(false)
+
+      } else {
+        setbuttonMsg(false)
+      }
+
+
+    } catch (error) {
+      console.log(error);
+
+    }
+
+  }
   return (
     <div className="App">
       <h2>⚾ Baseball NFT Game</h2>
@@ -192,6 +224,10 @@ const Baseball = () => {
             </div>
           ))
         )}
+        <div onClick={() => approveAllTokens()}>
+          {buttonMsg ?
+            <button>전부 판매하려고 내놓기</button> : <button disabled>이미 전부 내놓으셨습니다.</button>}
+        </div>
       </div>
 
       <hr />
