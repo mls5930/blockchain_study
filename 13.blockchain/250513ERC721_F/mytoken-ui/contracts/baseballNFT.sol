@@ -36,7 +36,6 @@ contract BaseballNFT is ERC721 {
         
     }
     function purchase(uint256 tokenId) public payable {
-        if() {
                 require(minted[tokenId], "Token does not exist");
                 address currentOwner = ownerOf(tokenId); // A 
                 require(currentOwner != msg.sender, "You Already Own this token"); // A !== B
@@ -50,7 +49,6 @@ contract BaseballNFT is ERC721 {
                 // 이 컨트랙트가 대신 소유권 이전
                 // from, to, tokenId
                 _transfer(currentOwner, msg.sender, tokenId);
-            }
         }
 
     function tokenURI(
