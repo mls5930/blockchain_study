@@ -11,11 +11,7 @@ class Wallet implements Accounts {
     publicKey: string;
     account: string;
     balance: number;
-<<<<<<< HEAD
     constructor(privateKey: string = "") {
-=======
-    constructor(privateKey: string = "") {        
->>>>>>> 3ae37454fd13f75883b4450924ea80a6343f0d41
         this.privateKey = privateKey || this.getPrivateKey();
         this.publicKey = this.getPublicKey();
         this.account = this.getAccount();
