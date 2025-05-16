@@ -1,22 +1,38 @@
 {
   "name": "250515",
   "version": "1.0.0",
+<<<<<<< HEAD
+=======
+  "description": "",
+>>>>>>> dab8e3c8aac1987655f1b1689761ad243518379a
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+<<<<<<< HEAD
   "author": "",
   "license": "ISC",
   "keywords": [],
+=======
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+>>>>>>> dab8e3c8aac1987655f1b1689761ad243518379a
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.15",
     "dotenv": "^16.5.0",
     "solc": "^0.8.30",
     "truffle": "^5.11.5",
+<<<<<<< HEAD
     "web3": "^4.16.0"
   },
   "devDependencies": {
     "mocha": "^10.1.0"
   },
   "description": ""
+=======
+    "truffle-plugin-verify": "^0.6.7",
+    "web3": "^4.16.0"
+  }
+>>>>>>> dab8e3c8aac1987655f1b1689761ad243518379a
 }

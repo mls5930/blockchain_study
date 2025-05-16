@@ -4,8 +4,11 @@ pragma solidity ^0.8.20;
 contract DAO {
     address private chairperson;
 
+<<<<<<< HEAD
     string public membersmsg = "";
     uint private count = 0;
+=======
+>>>>>>> dab8e3c8aac1987655f1b1689761ad243518379a
     struct Proposal {
         string title;
         uint yes;
@@ -88,6 +91,7 @@ contract DAO {
         require(!p.finished, "Already finished");
         p.finished = true;
     }
+<<<<<<< HEAD
 
     function setMessage(
         string memory _string
@@ -108,3 +112,6 @@ contract DAO {
 
 
  */
+=======
+}
+>>>>>>> dab8e3c8aac1987655f1b1689761ad243518379a

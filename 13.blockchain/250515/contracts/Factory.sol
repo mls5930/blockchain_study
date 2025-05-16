@@ -4,6 +4,7 @@ pragma solidity ^0.8.20;
 import "./DAO.sol";
 
 contract Factory {
+<<<<<<< HEAD
     // 모든 DAO 배포된 컨트랙트 주소 저장 상태
     address[] public deployedDAOs;
     // 각 EOA 가 낸 안건 => CA
@@ -19,6 +20,23 @@ contract Factory {
     }
     function getDAO(uint index) public view returns (address) {
         require(index < deployedDAOs.length, "Inbalid index");
+=======
+    address[] private deployedDAOs;
+    mapping(address => address[]) private createdBy;
+
+    function createDAO() public {
+        DAO dao = new DAO(msg.sender);
+        deployedDAOs.push(address(dao));
+        createdBy[msg.sender].push(address(dao));
+    }
+    // 내 안건들 뭔데?
+    function getMyDAOs() public view returns (address[] memory) {
+        return createdBy[msg.sender];
+    }
+    // 0번째 안건의 CA는 뭔데?
+    function getDAO(uint index) public view returns (address) {
+        require(index < deployedDAOs.length, "Invalid index");
+>>>>>>> dab8e3c8aac1987655f1b1689761ad243518379a
         return deployedDAOs[index];
     }
 }
