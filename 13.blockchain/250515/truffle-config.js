@@ -17,18 +17,4 @@ module.exports = {
             version: "0.8.20"
         }
     },
-    plugins: ['truffle-plugin-verify'],
-    etherscan: {
-        apiKey: process.env.KAIASCAN_KEY, // 오타 수정
-        customChains: [
-            {
-                network: "kairos",
-                chainId: 1001,
-                urls: {
-                    apiURL: "https://kairos-oapi.kaiascan.io/api",
-                    browserURL: "https://kairos.kaiascan.io/"
-                }
-            }
-        ]
-    }
 };
