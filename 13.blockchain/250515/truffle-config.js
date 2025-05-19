@@ -11,7 +11,6 @@ module.exports = {
         ),
       network_id: 1001,
     },
-<<<<<<< HEAD
   },
   compilers: {
     solc: {
@@ -20,11 +19,3 @@ module.exports = {
   }
 }
 // npx fruffle migrate
-=======
-    compilers: {
-        solc: {
-            version: "0.8.20"
-        }
-    },
-};
->>>>>>> aea9dba04d8fae0dfb0778723bd1ee7f1113bd0b
