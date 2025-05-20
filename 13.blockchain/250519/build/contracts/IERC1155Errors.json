@@ -1609,11 +1609,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-<<<<<<< HEAD
-  "updatedAt": "2025-05-19T04:56:07.792Z",
-=======
-  "updatedAt": "2025-05-19T04:12:02.985Z",
->>>>>>> f91bfba67871c28e1e1d72936f85f36b054fd2d9
+  "updatedAt": "2025-05-19T09:45:48.145Z",
   "devdoc": {
     "details": "Standard ERC-1155 Errors Interface of the https://eips.ethereum.org/EIPS/eip-6093[ERC-6093] custom errors for ERC-1155 tokens.",
     "errors": {

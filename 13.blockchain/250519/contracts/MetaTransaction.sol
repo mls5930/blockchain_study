@@ -52,7 +52,7 @@ contract MetaTransaction {
         require(user == ecrecover(ethSign, v, r, s));
     }
 
-    // 메시지를 해시화하는 함수
+    // 메시지를 해시화하는 함수 (서명전용 메세지임을 표시하기 위해서)
     // 이더리움 표준 서명 포맷은 다음과 같음
     // "\x19Ethereum Signed Message:\n" + <length> + <message>
     function getEthSignMsgHash(

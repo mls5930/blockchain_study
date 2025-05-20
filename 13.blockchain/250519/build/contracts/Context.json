@@ -341,11 +341,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-<<<<<<< HEAD
-  "updatedAt": "2025-05-19T04:56:07.812Z",
-=======
-  "updatedAt": "2025-05-19T04:12:02.998Z",
->>>>>>> f91bfba67871c28e1e1d72936f85f36b054fd2d9
+  "updatedAt": "2025-05-19T09:45:48.152Z",
   "devdoc": {
     "details": "Provides information about the current execution context, including the sender of the transaction and its data. While these are generally available via msg.sender and msg.data, they should not be accessed in such a direct manner, since when dealing with meta-transactions the account sending and paying for execution may not be the actual sender (as far as an application is concerned). This contract is only required for intermediate, library-like contracts.",
     "kind": "dev",

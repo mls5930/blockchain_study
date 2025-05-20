@@ -18899,11 +18899,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-<<<<<<< HEAD
-  "updatedAt": "2025-05-19T04:56:07.819Z",
-=======
-  "updatedAt": "2025-05-19T04:12:03.003Z",
->>>>>>> f91bfba67871c28e1e1d72936f85f36b054fd2d9
+  "updatedAt": "2025-05-19T09:45:48.153Z",
   "devdoc": {
     "details": "String operations.",
     "errors": {

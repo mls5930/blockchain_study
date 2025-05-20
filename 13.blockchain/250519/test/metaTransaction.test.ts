@@ -1,6 +1,9 @@
 // metaTransaction.test.ts
 
 import { ethers } from "ethers";
+// 지갑을 만들고, 잔액을 조회하고,
+// 서명까지 가능하게 해주는 핵심 라이브러리입니다.
+
 import contractJSON from "../build/contracts/MetaTransaction.json";
 import tokenJSON from "../build/contracts/MyToken.json";
 /*
@@ -54,6 +57,8 @@ describe("/sign 시나리오 사용자 요청 처리", () => {
         }
         // 스마트 컨트랙트 내부의 ecrecover 처럼 공개키를 복원할 수 있는 메서드입니다. 
         const recovered = ethers.verifyMessage(JSON.stringify(message), signature);
+        console.log(recovered);
+
         // ecrecover(sign, v, r, s); => 공개키
         expect(recovered).toEqual(wallets[0].address)
     })
@@ -94,7 +99,7 @@ describe("/sign 시나리오 사용자 요청 처리", () => {
         // 번들러: 배포한 owner => 회사에서 배포한 주소
         const bundler = new ethers.Wallet(privateKey, provider);
 
-        // 컨트랙트 인스턴 연결
+        // 컨트랙트 인스턴스 연결 체인아이디 연결
         const contractAddress = contractJSON.networks["1747628248916"].address;
         const tokenAddress = tokenJSON.networks["1747628248916"].address;
 
