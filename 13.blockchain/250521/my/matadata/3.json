@@ -1,0 +1,19 @@
+{
+    "name": "Rabbit",
+    "description": "pexelRabbit",
+    "image": "ipfs://bafybeic7466ndojdqnn33xfvpt35s2noslox2acfrt55qh56qlggken3zm/3.PNG",
+    "attributes": [
+        {
+            "trait_type": "weight",
+            "value": "3.6kg"
+        },
+        {
+            "trait_type": "color",
+            "value": "whitebrown"
+        },
+        {
+            "trait_type": "tail length",
+            "value": "1cm"
+        }
+    ]
+}

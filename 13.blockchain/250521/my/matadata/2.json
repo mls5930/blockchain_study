@@ -1,0 +1,23 @@
+{
+    "name": "Penguin",
+    "description": "pexelPenguin",
+    "image": "ipfs://bafybeic7466ndojdqnn33xfvpt35s2noslox2acfrt55qh56qlggken3zm/2.png",
+    "attributes": [
+        {
+            "trait_type": "weight",
+            "value": "4.6kg"
+        },
+        {
+            "trait_type": "color",
+            "value": "sky blue"
+        },
+        {
+            "trait_type": "patternColor",
+            "value": "white"
+        },
+        {
+            "trait_type": "tail length",
+            "value": "6cm"
+        }
+    ]
+}

@@ -41,7 +41,10 @@ contract BaseballNFT is ERC721 {
         require(minted[tokenId], "Token does not exist");
         address currentOwner = ownerOf(tokenId);
         require(currentOwner != msg.sender, "You Already Own this token");
-        require(isApprovedForAll(currentOwner, address(this)), "you not token approved!");
+        require(
+            isApprovedForAll(currentOwner, address(this)),
+            "you not token approved!"
+        );
         require(msg.value == 1 ether, "Price is 1 ether");
 
         // 이더 전송

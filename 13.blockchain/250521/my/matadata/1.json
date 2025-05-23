@@ -1,0 +1,23 @@
+{
+    "name": "Dog",
+    "description": "pexelDog",
+    "image": "ipfs://bafybeic7466ndojdqnn33xfvpt35s2noslox2acfrt55qh56qlggken3zm/1.png",
+    "attributes": [
+        {
+            "trait_type": "weight",
+            "value": "2.9kg"
+        },
+        {
+            "trait_type": "color",
+            "value": "cream"
+        },
+        {
+            "trait_type": "patternColor",
+            "value": "white"
+        },
+        {
+            "trait_type": "tail length",
+            "value": "13cm"
+        }
+    ]
+}

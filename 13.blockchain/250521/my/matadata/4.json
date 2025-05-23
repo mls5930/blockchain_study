@@ -1,0 +1,23 @@
+{
+    "name": "Sloth",
+    "description": "pexelSloth",
+    "image": "ipfs://bafybeic7466ndojdqnn33xfvpt35s2noslox2acfrt55qh56qlggken3zm/4.PNG",
+    "attributes": [
+        {
+            "trait_type": "weight",
+            "value": "6.1kg"
+        },
+        {
+            "trait_type": "color",
+            "value": "brown"
+        },
+        {
+            "trait_type": "stripeColor",
+            "value": "whitebrown"
+        },
+        {
+            "trait_type": "tail length",
+            "value": "1cm"
+        }
+    ]
+}
