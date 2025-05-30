@@ -18,9 +18,9 @@ const Baseball = () => {
   );
   const [allNfts, setAllNfts] = useState<{ tokenId: string; image: string; owner: string }[]>([]);
 
-  const { 
-    baseballNftTokenAddress, 
-    baseballNftTokenContract 
+  const {
+    baseballNftTokenAddress,
+    baseballNftTokenContract
   } = getContract();
 
   useEffect(() => {
@@ -52,19 +52,19 @@ const Baseball = () => {
     }
   }
 
-  const loadMyNFTsWithoutEnumerable = async() => {
-    if(!web3 || !account) return;
+  const loadMyNFTsWithoutEnumerable = async () => {
+    if (!web3 || !account) return;
     try {
       // 일단 총 발행량 확인
       // for문을 여기다가 돌리겠습니다.
       const maxTokenId = await baseballNftTokenContract.methods.getTotalSupply().call();
-      const found: { tokenId:string, image: string}[] = [];
+      const found: { tokenId: string, image: string }[] = [];
       // 지금 컨트랙트에 있는 NFT는 2개 발행했으니 총 발행량이 2
-      for(let id = 0; id < maxTokenId; id++) {
+      for (let id = 0; id < maxTokenId; id++) {
         try {
           // 내 NFT니까 ownerOf로 id 전달하여 address를 가져오고 내 상태와 비교
           const owner = await baseballNftTokenContract.methods.ownerOf(id).call();
-          if(owner.toLowerCase() === account.toLowerCase()) {
+          if (owner.toLowerCase() === account.toLowerCase()) {
             // ipfs://bafybeif4zdkotbumzuh6pxv5fjcvn3f4ajsqn74kiggelsskk6t5iqjsse/0.json
             const uri = await baseballNftTokenContract.methods.tokenURI(id).call();
             // https://ipfs.io/ipfs/로 변환 
@@ -73,7 +73,7 @@ const Baseball = () => {
             const { data } = await axios.get(metadataUri);
             const image = data.image.replace("ipfs://", "https://ipfs.io/ipfs/");
             // https://ipfs.io/ipfs/bafybeif4zdkotbumzuh6pxv5fjcvn3f4ajsqn74kiggelsskk6t5iqjsse/0.png
-            found.push({ tokenId: id.toString(), image});
+            found.push({ tokenId: id.toString(), image });
           }
         } catch (error) {
           // 해당 맥락은, 해당하는 내 토큰을 못찾았을 때, 다음 토큰을 찾을 수 있게끔 하는 코드
@@ -87,47 +87,47 @@ const Baseball = () => {
     }
   }
 
-  
+
   const loadAllNFTs = async () => {
-  if (!web3 || !account) return;
+    if (!web3 || !account) return;
 
-  try {
-    const total = await baseballNftTokenContract.methods.getAllTokenIds().call();
-    const found: { tokenId: string; image: string; owner: string }[] = [];
+    try {
+      const total = await baseballNftTokenContract.methods.getAllTokenIds().call();
+      const found: { tokenId: string; image: string; owner: string }[] = [];
 
-    for (let i = 0; i < total.length; i++) {
-      const tokenId = total[i];
-      try {
-        const owner = await baseballNftTokenContract.methods.ownerOf(tokenId).call();
-        const uri = await baseballNftTokenContract.methods.tokenURI(tokenId).call();
+      for (let i = 0; i < total.length; i++) {
+        const tokenId = total[i];
+        try {
+          const owner = await baseballNftTokenContract.methods.ownerOf(tokenId).call();
+          const uri = await baseballNftTokenContract.methods.tokenURI(tokenId).call();
 
-        const metadataUrl = uri.replace('ipfs://', 'https://ipfs.io/ipfs/');
-        const { data } = await axios.get(metadataUrl);
-        const image = data.image.replace('ipfs://', 'https://ipfs.io/ipfs/');
-        found.push({ tokenId: tokenId.toString(), image, owner,});
-      } catch (err) {
-        continue;
+          const metadataUrl = uri.replace('ipfs://', 'https://ipfs.io/ipfs/');
+          const { data } = await axios.get(metadataUrl);
+          const image = data.image.replace('ipfs://', 'https://ipfs.io/ipfs/');
+          found.push({ tokenId: tokenId.toString(), image, owner, });
+        } catch (err) {
+          continue;
+        }
       }
-    }
       setAllNfts(found);
     } catch (err) {
       console.error('전체 NFT 조회 실패:', err);
     }
   };
 
-  const approveToken = async(tokenId: string) => {
-    if(!web3 || !account) return;
+  const approveToken = async (tokenId: string) => {
+    if (!web3 || !account) return;
     try {
       await baseballNftTokenContract.methods.approve(baseballNftTokenAddress, tokenId)
-      .send({ from: account});
+        .send({ from: account });
       alert("판매 등록 완료(권한 위임 완료)")
     } catch (error) {
       console.log("판매 등록 실패", error);
     }
   }
 
-  const purchaseNFT = async(tokenId: string) => {
-    if(!web3 || !account) return;
+  const purchaseNFT = async (tokenId: string) => {
+    if (!web3 || !account) return;
     const price = web3.utils.toWei("1", "ether");
     try {
       await baseballNftTokenContract.methods.purchase(tokenId).send({
@@ -205,18 +205,18 @@ const Baseball = () => {
         </button>
         {allNfts.length === 0 ? (
           <p>NFT 없음</p>
-          ) : (
-            allNfts.map((nft) => (
-              <div key={nft.tokenId}>
-                <img src={nft.image} alt={`NFT ${nft.tokenId}`} width={200} />
-                <p>Token ID: {nft.tokenId}</p>
-                <p>소유자: {nft.owner}</p>
-                {nft.owner.toLowerCase() !== account.toLowerCase() && (
-                  <button onClick={() => purchaseNFT(nft.tokenId)}>🛒 구매하기</button>
-                )}
-              </div>
-            ))
-          )}
+        ) : (
+          allNfts.map((nft) => (
+            <div key={nft.tokenId}>
+              <img src={nft.image} alt={`NFT ${nft.tokenId}`} width={200} />
+              <p>Token ID: {nft.tokenId}</p>
+              <p>소유자: {nft.owner}</p>
+              {nft.owner.toLowerCase() !== account.toLowerCase() && (
+                <button onClick={() => purchaseNFT(nft.tokenId)}>🛒 구매하기</button>
+              )}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
