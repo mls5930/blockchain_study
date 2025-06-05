@@ -8,8 +8,8 @@ const StyleBtn = styled.div`
 `
 
 
-export const Button = ({ children }) => {
-    return (<StyleBtn>
+export const Button = ({ children, onClick }) => {
+    return (<StyleBtn onClick={onClick}>
         {children}
     </StyleBtn>)
 }

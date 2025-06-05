@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Button } from "../components/button"
 import { useCounter } from "../hooks/counthooks"
 import { useDispatch, useSelector } from "react-redux"
-export const MainPage2 = () => {
+export const Page = () => {
     const { count, decrement } = useCounter()
     const count2 = useSelector((state) => state.counter.count)
 
@@ -11,7 +11,7 @@ export const MainPage2 = () => {
 
     return (
         <div>
-            <div>뺴기 page</div>
+            <div> page</div>
             {count}
             <Button>
                 <button onClick={decrement}>빼기</button>
